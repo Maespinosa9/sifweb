@@ -2,7 +2,7 @@
 include("../controlador/conexion.php");
 
 class mOrdenCompra{
-	var $arr;
+
 	function mOrdenCompra(){
 
 	}
@@ -17,7 +17,7 @@ class mOrdenCompra{
 		$this->cons($sql);
 	}
 	
-	function update($id_orden, $FechaFactura, $vencimiento, $factura, $subtotal, $iva, $pagado, $IdUsuario, $descuento, $total, $observacion, $vendedor, $ajuste, 																										$nit_id){
+	function update($id_orden, $FechaFactura, $vencimiento, $factura, $subtotal, $iva, $pagado, $IdUsuario, $descuento, $total, $observacion, $vendedor, $ajuste, $nit_id){
 		$sql = "UPDATE orden_compra SET fecha_factura='".$FechaFactura."', vencimiento= '".$vencimiento."', factura='".$factura."', subtotal= '".$subtotal."', iva='".$iva."', pagado='".$pagado."', usuario_id='".$IdUsuario."', descuento= '".$descuento."', total= '".$total."', observacion= '".$observacion."', vendedor= '".$vendedor."', ajuste= '".$ajuste."', nit_id='".$nit_id."' WHERE id_orden = '".$id_orden."';";
 		$this->cons($sql);
 	}

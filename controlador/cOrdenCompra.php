@@ -24,7 +24,7 @@
 	$actu = isset($_POST["actu"]) ? $_POST["actu"]:NULL;
 	
 	if ($id_orden && $actu ){
-		$ins-> update($id_orden, $FechaFactura, $vencimiento, $factura, $subtotal, $iva, $pagado, $IdUsuario, $descuento, $total, $observacion, $vendedor, $ajuste, 																										$nit_id);
+		$ins-> update($id_orden, $FechaFactura, $vencimiento, $factura, $subtotal, $iva, $pagado, $IdUsuario, $descuento, $total, $observacion, $vendedor, $ajuste, $nit_id);
 	}
 	
 	if (!$actu && $id_orden){
