@@ -1,31 +1,23 @@
 <?Php
 include ("../controlador/cOrdenCompra.php");
 ?>
-
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
 <center>
-<h1>INGRESAR ORDEN DE COMPRA</h1>
-<table align="center" width="700" border="0" cellspacing="5" cellpadding="3" style="background:white"">
-<form name="OrdenCompra" action="" method="post"><br/>
-<tr>
-	<td>
-	<label for="FechaFactura">Fecha de Compra</label><br/>
-	<input type="datetime-local" id= "FechaFactura" name="FechaFactura"/><br/></td>
-    <td>
-    <label for = "Vencimiento">Fecha de Vencimiento</label><br/>
-    <input type = "datetime-local" id= "Vencimiento" name = "Vencimiento" /><br/></td>
-	<td valign="bottom">
-    <input type = "text" id="Factura" name = "Factura" placeholder="N&uacute;mero de Factura" size="20px"/><br/></td>
-    </tr>
-<tr>
-    <td>
-    <input type = "text" id = "subtotal" name="subtotal" placeholder="SubTotal" size="20px"/></br></td>
-    <td>
-    <input type = "text" id = "iva" name= "iva" placeholder="Iva" size="20px"/></br></td>
-    <td>
-    Pagado  <input type="checkbox" id= "Pagado" name="pagado" value="True"></br></td>
-</tr>
-<tr>
-	<td>
+
+<div name="OrdenCompra" id="izquierda">
+<h3>INGRESAR ORDEN DE COMPRA</h3>
+
+<form name="OrdenCompra" action="" method="post">
+	<label>Fecha de Compra&nbsp;</label>
+	<input type="date" id= "FechaFactura" name="FechaFactura" required="required"/><br/><br/>
+    <label>Fecha de Vencimiento</label>
+    <input style="width:14em; height:2em" type = "date" id= "Vencimiento" name = "Vencimiento" /><br/><br/>
+    <input style="width:14em; height:1em" type = "text" id="Factura" name = "Factura" placeholder="N&uacute;mero de Factura" size="20px"/>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <input type = "text" id = "subtotal" name="subtotal" placeholder="SubTotal" size="20px"/>
+    <br/>
+    <input type = "text" id = "iva" name= "iva" placeholder="Iva" size="20px"/></br><br/>
+    Pagado  <input type="checkbox" id= "Pagado" name="pagado" value="True"></br><br/>
     Usuario
     <select name="Usuario" >
     <?php 
@@ -35,22 +27,12 @@ include ("../controlador/cOrdenCompra.php");
     <?php
 		}
 	?>
-    </select></br></td>
-    <td>
-    <input type="text" id="descuento" name="descuento" placeholder="Descuento %"></br></td>
-    <td>
-    <input type="text" id ="Total" name = "Total" placeholder="Valor Total"></br></td>
-</tr>
-<tr>
-	<td align="center" colspan="3">
-    <textarea id="Observaciones" name= "Observaciones" rows="4" cols="100" placeholder="Ingrese sus Observaciones, M&aacute;ximo 250 caracteres" maxlength="250"></textarea><br></td>
-</tr>
-<tr>
-	<td>
-	<input type="text" name="Vendedor" id="Vendedor" placeholder="Vendedor"></td>
-    <td>
-    <input type="text" name="ajuste" id="ajuste" placeholder="Ajuste"></td>
-    <td colspan="2">
+    </select></br><br/>
+    <input type="text" id="descuento" name="descuento" placeholder="Descuento %"></br><br/>
+    <input type="text" id ="Total" name = "Total" placeholder="Valor Total"></br><br/>
+    <textarea id="Observaciones" name= "Observaciones" rows="4" cols="50" placeholder="Ingrese sus Observaciones, M&aacute;ximo 250 caracteres" maxlength="250"></textarea><br><br/>
+	<input type="text" name="Vendedor" id="Vendedor" placeholder="Vendedor">
+    <input type="text" name="ajuste" id="ajuste" placeholder="Ajuste">
     Seleccione el Proveedor
     <select name="proveedor">
     <?php
@@ -61,6 +43,6 @@ include ("../controlador/cOrdenCompra.php");
 		}
 	?>
     </select>
-    </td>
- </form>
+</form>
+</div>
 	

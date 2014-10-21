@@ -29,6 +29,8 @@
                             include("vista/vproveedor.php");
                        }else if ($Pac == "102") {
                             include("vista/vtienda.php");
+					   }else if ($Pac == "103"){
+						   	include("vista/vOrdenCompra.php");
 					   }
 								
                         
