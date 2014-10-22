@@ -3,7 +3,7 @@ include ("modelo/mfactura.php");
 
 
 $ins = new mfactura();
-
+//factura de venta
  $del = isset($_GET["del"]) ? $_GET["del"]:NULL;
     if ($del){
         $ins->delfactura($del);
@@ -21,9 +21,6 @@ $observacion = isset($_POST["observacion"])? $_POST["observacion"]:NULL;
 $actu = isset($_POST["actu"]) ? $_POST["actu"]:NULL;
 $pr = isset($_GET["pr"]) ? $_GET["pr"]:NULL;
 
-
-
-
 if ($fecha && $subtotal && $total && $iva && $cliente_id && $estado && $descuento && $usuario_id && $observacion && !$actu){
     
     $ins->insfactura($fecha,$subtotal,$total,$iva,$cliente_id,$estado,$descuento,$usuario_id,$observacion);
@@ -32,8 +29,13 @@ if ($id_factura && $fecha && $subtotal && $total && $iva && $cliente_id && $esta
         $ins->updfactura($id_factura,$fecha,$subtotal,$total,$iva,$cliente_id,$estado,$descuento,$usuario_id,$observacion);
     }
 
-   
-
+  
 $datt = $ins->selfactura1($pr);
+$dat = $ins->selfactura();
+//producto
+$id_producto = isset($_POST["id_producto"])? $_POST["id_producto"]:NULL;
+$descripcion = isset($_POST["descripcion"])? $_POST["descripcion"]:NULL;
+$precio_venta = isset($_POST["precio_venta"])? $_POST["precio_venta"]:NULL;
+
 
 ?>

@@ -27,9 +27,13 @@
                             include("vista/vproveedor.php");
                        }else if ($Pac == "102") {
                             include("vista/vtienda.php");
-								       }else if ($Pac == "103") {
-                            include("vista/vabono_venta.php");
-                       }else if ($Pac == "104") {
+								       } else if ($Pac == "103") {
+                            if (is_null($Up)) {
+                                include("vista/vfactura.php");
+                            } else {
+                                include("vista/vfactura1.php");
+                            }
+                        }else if ($Pac == "104") {
                             include("vista/menusec.php");
                       }else if ($Pac == "105") {
                             include("vista/vusuario.php");

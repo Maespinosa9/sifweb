@@ -1,11 +1,27 @@
 <?php
 include ("controlador/cfactura.php");
+//include ("controlador/cproductof.php");
+
 ?>
 
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
+<script src="js/jquery-1.9.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+ function RecargarProdcutos(value){
+    var parametros = {
+                "valor" : value
+        };
+        $.ajax({
+                data:  parametros,
+                url:   'vista/vproduct.php',
+                type:  'post',
+                success:  function (response) {
+                        $("#reloadPrecio").html(response);
+                }
+        });
+     }
+</script>
 
-<div style="width:1350; height:50; float:left"></div>
-<div style="width:700; height:150; float:left"></div>
 <div name="izquierda" id="izquierda">
 <form name="form1" action="" method="post">
 
@@ -46,7 +62,54 @@ include ("controlador/cfactura.php");
             </td>
     </tr>
 </table>
+
+<div style="width:400; height:100; float:left"></div>
+
 </form>
+    <form name "form4" action="" method="post">
+    <table>
+    <tr>
+    	<td colspan="2" align="center">
+			<H3 style="font-family:'Comic Sans MS', cursive; font-size:22px" align="center">Productos</H3>
+        </td>
+    </tr>
+    <tr>
+        <td>
+             <div align="left" id="10" class="rojo">Producto</div>
+
+                   <select name="producto" onchange="javascript:RecargarProdcutos(this.value);" style="width: 195px;" onblur="probar(id='depto', 10)" required>
+
+            <option value="" id="producto">Seleccione</option>
+             <?php 
+                //Select
+                     $dat5 = $ins->selproducto();
+                         for ($i=0; $i < count($dat5); $i++){
+             ?>
+            
+            <option value="<?php echo $dat5[$i]['id_producto'] ?>"><?php echo $dat5[$i]['descripcion'] ?></option>
+            
+            <?php } ?>
+        </select>
+        </td>
+        <td valign="bottom">
+        <div id="reloadPrecio"></div>
+    </td>
+    </tr>
+    <tr>
+    	<td>
+        	<label>Cantidad</label>
+        	<input type="text" name="cantidad" id="cantidad">
+        </td>
+    </tr>
+    <tr>
+    	<td colspan="2" align="center">
+            <input class="guardar" id="guardar" type="submit" value="Agregar"></input>
+        </td>
+    </tr>
+    
+    
+    </table>
+    </form>
 </div>
 <div style="width:250; height:150; float:left"></div>
 <div style="width:351; height:150; float:left"></div>
@@ -90,7 +153,25 @@ include ("controlador/cfactura.php");
 	<?php  }  ?>
 </table>
 </form>
+	<table height="50">
+	</table>
+    
+	<table border="2">
+		<tr>
+        	<td>
+            	Producto
+            </td>
+            <td>
+            	Precio
+            </td>
+        	<td>
+            	Cantidad
+            </td>
+    	</tr>
+	</table>
+
 </div>
+
 
 
 
