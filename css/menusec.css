@@ -2,58 +2,11 @@
 /* CSS Document */
 
 
-body{
-background-image:url(../image/fondo.jpg);
-}
-ul.circulos { 
-width:70%; 
-margin: 60px auto; 
-text-align: center;
-list-style-type: none; 
-font: bold 14px arial;
-min-height:330px;
-} 
- 
-ul.circulos li { 
-display: inline; 
-margin: 20px;
-padding: 0;
 
-} 
- 
-ul.circulos li a { 
-display: inline-block;
-text-decoration: none; 
-color:#000; 
-background:#ee1414;
-border: solid #fff 5px;
-padding: 5px;
-width:110px; 
-height:110px; 
--o-border-radius: 200px;
--moz-border-radius: 200px; 
--webkit-border-radius: 200px; 
--ms-border-radius: 200px;
-border-radius: px;
-
-} 
-ul.circulos a span { 
-position: relative;
-top:20%;
-padding: 5px;
-text-align: center;
-} 
-ul.circulos a:hover { 
-background:#f55c5c;
-transform:translateY(30px);
-transition-duration:2s;
-zoom: 110%;
-
-}
 
 ul
 {
-margin-top:50px;
+margin-top:60px;
 margin-left:0px;
 padding:0px;
 list-style-type:none;

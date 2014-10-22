@@ -9,11 +9,10 @@
 		  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' type='text/javascript'/></script>
 	  </head>
 	  <body>
-
-	  <div id="contenedor">
+       <div id="contenedor">
 	  <div id="cabez">
 					</div>
-                    <div id="inicio">&nbsp;&nbsp;<a href="home.php"><img border=0 src="image/home.png" width="30" height="30"/></a></div>
+                    <div id="inicio">&nbsp;&nbsp;<a id="ini"href="home.php"><img border=0 src="image/home.png" width="30" height="30"/></a></div>
                     <div id="salir"><img border=0 src="image/salir1.png" width="30" height="30"/></div>
                       <div id="contenidorc">
                   <div id="contcen" class="bodytext" style="padding:12px;">
@@ -22,31 +21,31 @@
                         $Pac = isset($_GET["pac"]) ? $_GET["pac"] : NULL;
                         $Up = isset($_GET["up"]) ? $_GET["up"] : NULL;
 
-			if (is_null($Pac)) {
-				include("vista/menu.php");
-			} else if ($Pac == "101") {
-				include("vista/vproveedor.php");
-			}else if ($Pac == "102") {
-				include("vista/vtienda.php");
-			}else if ($Pac == "103") {
-				if (is_null($Up)) {
-					include("vista/vfactura.php");
-				}else {
-					include("vista/vfactura1.php");
-				}
-			}else if ($Pac == "104"){
-				include ("vista/vPago.php");
-			}else if ($Pac == "200"){
-				include ("vista/menusec.php");
-			}
-?>
+                        if (is_null($Pac)) {
+                             include("vista/menu.php");
+                       } else if ($Pac == "101") {
+                            include("vista/vproveedor.php");
+                       }else if ($Pac == "102") {
+                            include("vista/vtienda.php");
+								       }else if ($Pac == "103") {
+                            include("vista/vabono_venta.php");
+                       }else if ($Pac == "104") {
+                            include("vista/menusec.php");
+                      }else if ($Pac == "105") {
+                            include("vista/vusuario.php");
+                      }else if ($Pac == "106") {
+                            include("vista/vtienda.php");
+                                        }
 
-</div>
-</div>
-</div>
-<div id="pie">
-</div>
-</div>		
- 
-</body>
-</html>
+
+                        
+                        ?>
+
+                    </div>
+				</div>
+                </div>
+				  <div id="pie">
+				   </div>
+				</div>		
+		  </body>
+  </html>
