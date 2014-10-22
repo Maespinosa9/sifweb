@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
  <meta charset="utf-8"/>
- <link rel="stylesheet" type="text/css" href="../css/menusec.css"/>
+ <link rel="stylesheet" type="text/css" href="css/menusec.css"/>
  </head>
  <body>
  <nav>

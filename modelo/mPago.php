@@ -26,7 +26,10 @@ class mPago{
 		$conexionBD->conectarBD();
 		$conexionBD->ejeCon($c,1);
 	}
-	
+	function InsertaTipo($pago){
+		$sql = "INSERT INTO valor (descripcion, idparametro) VALUES ('".$pago."', 1);";
+		$this->cons($sql);
+	}
 	function selTipo (){
 		$sql = "SELECT idValor, descripcion FROM valor where idParametro = 1;";
 		$conexionBD = new conexion();
