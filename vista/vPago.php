@@ -19,6 +19,17 @@ include ("controlador/cPago.php");
 	}
 </script>
 <script>
+function fnAgregarPago(){
+
+	$.ajax({ type: "POST",   
+                     url: "controlador/cAgregarPago.php",   
+                     async: false,
+                     success : function(text)
+                     {
+                         $("#divPago").html= text;
+                     }
+            });
+}
 function insertaTipo(){
 	var newTipo = document.getElementById("nuevoPago");
 	if (newTipo = ""){
@@ -59,8 +70,11 @@ function insertaTipo(){
 		?>
 		</select>
         </div>
-        <input id="agrega" type="button" value="Agregar" onclick="agregaTipo();" />
-        <div id = "divPago"></div>
+        <input id="agrega" type="button" value="Agregar" onclick="$('#divPago').css('display','block');" />
+        <div id = "divPago" style="display:none">
+        	<input type="text" name="new_pago" id="new_pago" >
+        	<input type='button' value='Agregar' onclick="fnAgregarPago();">
+        </div>
         </br></br>
         <textarea name="descripcion" rows="3" cols="35" placeholder = "Ingrese la Descripci&oacute;n del Pago Realizado"></textarea><br/></br>
         </br></br></br></br></br></br><input class="guardar" type="submit"  id="guardar" value="Guardar">

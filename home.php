@@ -1,4 +1,4 @@
-  <?php include("modelo/mseguridad.php"); 
+  <?php include("modelo/mseguridad1.php"); 
   $perusu = isset($_SESSION["perfil"]) ? $_SESSION["perfil"]:NULL;?>
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <html xmlns="http://www.w3.org/1999/xhtml">
@@ -38,7 +38,7 @@
                       }else if ($Pac == "105") {
                             include("vista/vusuario.php");
                       }else if ($Pac == "106") {
-                            include("vista/vtienda.php");
+                            include("vista/vPago.php");
                                         }
 
 
