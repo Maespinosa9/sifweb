@@ -21,15 +21,26 @@ include ("controlador/cPago.php");
 <script>
 function fnAgregarPago(){
 
-	$.ajax({ type: "POST",   
-                     url: "controlador/cAgregarPago.php",   
-                     async: false,
-                     success : function(text)
-                     {
-                         $("#divPago").html= text;
-                     }
-            });
+var AgregaPago = $("#new_pago").val();
+
+	 $.ajax({
+        type: "POST",
+        dataType: 'html',
+        url: "home.php?pac=106",
+		data: "new_pago="+AgregaPago,
+        success: function(resp){
+            $('#SelectPagos').html(resp);
+            Limpiar();
+            Cargar();
+        }
+    });
+}  
+function Cargar()
+{
+    $('#SelectPagos').load('cAgregarPago.php');   
 }
+}
+
 function insertaTipo(){
 	var newTipo = document.getElementById("nuevoPago");
 	if (newTipo = ""){
@@ -70,7 +81,7 @@ function insertaTipo(){
 		?>
 		</select>
         </div>
-        <input id="agrega" type="button" value="Agregar" onclick="$('#divPago').css('display','block');" />
+        <input id="agrega" type="button" value="Agregar" onclick="$('#divPago').css('display','block');" /><br/><br/>
         <div id = "divPago" style="display:none">
         	<input type="text" name="new_pago" id="new_pago" >
         	<input type='button' value='Agregar' onclick="fnAgregarPago();">
