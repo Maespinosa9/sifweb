@@ -1,5 +1,5 @@
 <?php
-include("../controlador/conexion.php");
+include("controlador/conexion.php");
 
 class mOrdenCompra{
 

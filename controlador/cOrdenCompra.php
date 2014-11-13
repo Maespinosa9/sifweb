@@ -1,5 +1,5 @@
 <?php 
- include ("../modelo/mOrdenCompra.php");
+ include ("modelo/mOrdenCompra.php");
  $ins = new mOrdenCompra();
  
   $delete = isset($_GET["del"]) ? $_GET["del"]:NULL;

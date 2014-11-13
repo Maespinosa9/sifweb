@@ -1,11 +1,11 @@
 <?php 
-    include ("../controlador/ccliente.php");
-    include ("../js/cliente.js");
+    include ("controlador/ccliente.php");
+    include ("js/cliente.js");
 ?>
 
 
 
-<script language="javascript" src="../../Sifweb/js/jquery-1.2.6.min.js"></script><!-- llamamos al JQuery-->
+<script language="javascript" src="../Sifweb/js/jquery-1.2.6.min.js"></script><!-- llamamos al JQuery-->
 <script language="javascript">
     
      function Duplicidad(Id){
@@ -15,7 +15,7 @@
 
         $.ajax({
                 data:  doc,
-                url:   '../vista/vduplicidad.php',
+                url:   'vista/vduplicidad.php',
                 type:  'post',
                 success:  function (response) {
                         $("#id_nit_duplicado").html(response);
@@ -24,63 +24,39 @@
      }
 </script>
 
-
-<center>
+<div id="izquierda">
 	<form name="form1" action="" method="POST">
-		<table align="center" width="400" border="0" cellspacing="5" cellpadding="3" style="background:white">
-
-            <tr>
-                <td colspan=5 align="center"><h1>Registrese</h1></td>
-            </tr>
-
-            <tr>
-                <td >Tipo de Documento
-                    <select name="tipo_documento" id="tipo_documento">
-                       <?php 
-                            //Select
-                            $dat3 = $ins->selpara(1);
-                            for ($i=0; $i < count($dat3); $i++){
-                         ?>
-                            <option value="<?php echo $dat3[$i]['codval'] ?>"><?php echo $dat3[$i]['nomval'] ?></option>
-                        <?php } ?>
-                    </select>
-                </td>
-
-              <td ><div id="id_nit_duplicado"></div>
-                    <input type="text" name="documento" id="documento" size="25" maxlength="11"  required="required" placeholder="Numero del Documento"  onkeypress="return validar(event);" onblur="Duplicidad(this.value)" /></td>
-            </tr>
-            <tr></tr>
-            <tr>
-                <td>
-                    <input type="text" name="nombre" id="nombre" size="25" maxlength="30" required placeholder="Ingrese su Nombre" /> </td>
-
-                <td>
-                    <input type="text" name="apellido" id="apellido" size="25" maxlength="30" required placeholder="Ingrese su Apellido"  /></td>                    
-
-                <td>
-                    <input type="text" name="telefono_1" id="telefono_1" size="25" maxlength="20" required placeholder="Tel&eacute;fono Fijo" onkeypress="return validar(event)" /></td>
-
-            </tr>
-            <tr></tr>
-            <tr>
-
-                <td>
-                    <input type="text" name="celular" id="celular" size="25" maxlength="20"  placeholder="Numero Celular" onkeypress="return validar(event)" /></td>
-
-                <td>
-                    <input type="email" name="e_mail" id="e_mail" size="25" maxlength="30" required placeholder="Ingrese su E-mail" />
-                </td>  
-
-                <td>
-                    <input type="text" name="direccion" id="direccion" size="25" maxlength="30" required placeholder="Ingrese su Direcci&oacute;n"  /></td>               
-            </tr>
-            <tr></tr>
-            <tr>
-                <td  align="center" valign="bottom" colspan="3">
-                    <input id="boton" type="submit" value="Guardar" />
-                    <input id="boton1" type="button" value=" Volver " onclick="location = 'home.php'" />
-
-                </td>
-            </tr>
-        </table>
-    </form>
+    <h3>Registrese</h3>
+    <label for="tipo_documento">Tipo de Documento &nbsp;</label>
+        <td><select name="tipo_documento" id="tipo_documento">
+        <option value="" selected="selected">Seleccione </option>
+           <?php 
+                //Select
+                $dat3 = $ins->selpara(1);
+                for ($i=0; $i < count($dat3); $i++){
+             ?>
+                <option value="<?php echo $dat3[$i]['idvalor'] ?>"><?php echo $dat3[$i]['descripcion'] ?></option>
+            <?php } ?>
+        </select>
+            <div id="id_nit_duplicado"></div>
+            <br/><br/><label for="documento">Numero del Documento&nbsp;</label>
+            <input type="text" name="documento" id="documento" size="25" maxlength="11"  required="required" onkeypress="return validar(event);" onblur="Duplicidad(this.value)" />
+            <br/><br/><label for="nombre">Ingrese su Nombre&nbsp;</label>
+            <input type="text" name="nombre" id="nombre" size="25" maxlength="30" required/>
+            <br/><br/><label for="apellido">Ingrese su Apellido&nbsp;</label>
+            <input type="text" name="apellido" id="apellido" size="25" maxlength="30" required />                    
+            <br/><br/><label for="telefono_1">Tel&eacute;fono Fijo&nbsp;</label>
+            <input type="text" name="telefono_1" id="telefono_1" size="25" maxlength="20" required onkeypress="return validar(event)" />
+            <br/><br/><label for="celular">N&uacute;mero Celular&nbsp;</label>
+            <input type="text" name="celular" id="celular" size="25" maxlength="20" onkeypress="return validar(event)" />
+            <br/><br/><label for="e_mail">Ingrese su E-mail&nbsp;</label>
+            <input type="email" name="e_mail" id="e_mail" size="25" maxlength="30" required />
+            <br/><br/><label for="direccion">Ingrese su Direcci&oacute;n&nbsp;</label>
+          
+            <input type="text" name="direccion" id="direccion" size="25" maxlength="30" required /> 
+              <p>             
+            <br/><br/><br/><br/><input id="boton" type="submit" value="Guardar" class="guardar" />
+            <input id="boton1" type="button" class="guardar" value=" Volver " onclick="location = 'home.php'" />
+            </p>
+</form>
+</div>

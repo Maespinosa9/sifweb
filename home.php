@@ -6,6 +6,7 @@
       <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
           <link rel="stylesheet" href="css/style.css" type="text/css" />
         <link rel="stylesheet" href="css/estilos.css" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
       <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' type='text/javascript'/></script>
     </head>
     <body>
@@ -39,7 +40,11 @@
                             include("vista/vusuario.php");
                       }else if ($Pac == "106") {
                             include("vista/vPago.php");
-                                        }
+                      }else if ($Pac == "107") {
+                            include("vista/vproducto.php");
+                      }else if ($Pac == "108") {
+                            include("vista/vOrdenCompra.php");
+                      }
 
 
                         

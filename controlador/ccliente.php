@@ -1,5 +1,5 @@
 <?php 
-    include ("../modelo/mcliente.php");
+    include ("modelo/mcliente.php");
     $ins = new mcliente();
 
     $delete = isset($_GET["delete"]) ? $_GET["delete"]:NULL;

@@ -1,5 +1,5 @@
 <?php
-include("../controlador/conexion.php");
+include("controlador/conexion.php");
 class mcliente{
 	var $arr;
 	function mcliente(){
@@ -49,12 +49,11 @@ class mcliente{
 	}
 
 	function selpara($num){
-       $sql = "SELECT  codval, nomval, codpar FROM valor WHERE codpar = '".$num."';";
+       $sql = "SELECT  idvalor, descripcion, idparametro FROM valor WHERE idparametro = '".$num."';";
         $conexionBD = new conexion();        
         $conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
-
 	}
 }
 ?>
