@@ -58,7 +58,6 @@ include ("controlador/cOrdenCompra.php");
         <form id="formfil" name="formfil" method="GET" action="home.php">
         <thead>
             <th>Nro. Factura</th>
-            <th>Fecha Factura</th>
             <th>Pagada</th>
             <th>Total</th>
             <th>Proveedor</th>
@@ -71,6 +70,11 @@ include ("controlador/cOrdenCompra.php");
         <tbody>
             <tr>
                 <td><?php echo $dat[$i]['factura']; ?></td>
+                <td><?php echo $dat[$i]['pagado']; ?></td>
+                <td><?php echo $dat[$i]['total']; ?></td>
+                <td><?php echo $dat[$i]['nit_id']; ?></td>
+                <td align = "center"><a href = "home.php?pr=<?php echo $dat[$i]['id_orden'] ?>&pac=<?php echo $pac; ?>&up=11"><input type="button" name="del" value="Editar"/></a>
+    <a href = "home.php?del=<?php echo $dat[$i]['id_orden'] ?>&pac=<?php echo $pac; ?>"><button value="<?php echo $dat[$i]['id_orden'] ?>" name="del">Eliminar</button></a></td>
             </tr>
         </tbody>
         <?php } ?>
