@@ -35,6 +35,16 @@
       <a href="home.php?pac=106"><span>Tienda</span></a>
       </div>
    </li>
+
+   <li class="var_nav">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon> 
+        <i class="icon-briefcase icon-2x"></i>
+        </div>
+      <a href="home.php?pac=109"><span>Parametros</span></a>
+      </div>
+   </li>
      
   </UL>
 </nav>

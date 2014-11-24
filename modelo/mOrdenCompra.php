@@ -1,5 +1,5 @@
 <?php
-include("../controlador/conexion.php");
+include("controlador/conexion.php");
 
 class mOrdenCompra{
 
@@ -8,6 +8,7 @@ class mOrdenCompra{
 	}
 	
 	function insert($FechaFactura, $vencimiento, $factura, $subtotal, $iva, $pagado, $IdUsuario, $descuento, $total, $observacion, $vendedor, $ajuste, $nit_id){
+		echo "entro";
 		$sql = "INSERT INTO orden_compra(fecha_factura, vencimiento, factura, subtotal, iva, pagado, usuario_id, descuento, total, observacion, vendedor, ajuste, nit_id) VALUES ('".$FechaFactura."', '".$vencimiento."', '".$factura."', '".$subtotal."', '".$iva."', '".$pagado."', '".$IdUsuario."', '".$descuento."', '".$total."', '".$observacion."', '".$vendedor."', '".$ajuste."', '".$nit_id."');";
 		$this->cons($sql);
 	}

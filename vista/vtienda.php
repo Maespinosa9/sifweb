@@ -2,13 +2,6 @@
 	include ("controlador/ctienda.php");
 ?>
 
-<html>
-<head>
-<title>INFORMACION DE LA TIENDA</title>
-	<link rel="stylesheet" type="text/css" href="../css/style.css" />
-
-</head>
-</body>
 
 <div name="izquierda" id="izquierda">
 <form name="form1" action="" id="form1" method="post">
@@ -73,6 +66,3 @@
 </p>
 </form>
 </div>
-</body>
-</html>
-

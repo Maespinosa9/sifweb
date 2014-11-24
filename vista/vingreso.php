@@ -27,11 +27,11 @@
 				}
 				?>
                                 <p> 
-                                    <label for="username" class="uname" data-icon="u" > Usuario </label>
+                                    <label for="username" class="uname" data-icon="u" >Usuario </label>
                                     <input id="username" name="username" required="required" type="text" placeholder="No de Documento"/>
                                 </p>
                                 <p> 
-                                    <label for="password" class="youpasswd" data-icon="p"> Contraseña </label>
+                                    <label for="password" class="youpasswd" data-icon="p">Contraseña </label>
                                     <input id="password" name="password" required="required" type="password" placeholder="Minimo 6 Digitos" /> 
                                 </p>
                                     <p class="login button"> 

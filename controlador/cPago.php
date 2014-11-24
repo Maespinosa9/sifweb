@@ -13,12 +13,17 @@ include ("modelo/mPago.php");
 	$fecha = isset($_POST["fecha"]) ? $_POST["fecha"]:NULL;
 	$tipo = isset($_POST["tipo"]) ? $_POST["tipo"]:NULL;
 	$actu = isset($_POST["actu"]) ? $_POST["actu"]:NULL;
-
+	$dat =  $ins->selTipo();
 	if ($id_pago && $valor && $fecha && $tipo && $actu){
 		$ins->update($id_pago,$descripcion,$valor,$fecha,$tipo);
 	}
 	if ($pago){
 		$ins->insertaTipo($pago);
+		$dat = $ins ->selTipo();
+		for ($i=0; $i<count($dat); $i++){ 
+			echo "<option value =".$dat[$i]['idValor']." > ".$dat[$i]['descripcion']."</option>";
+		}
+
 	}
 	if ($id_pago && $valor && $fecha && $tipo && !$actu){
 		$ins->insert($descripcion,$valor,$fecha, $tipo);

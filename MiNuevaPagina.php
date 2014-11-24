@@ -1,3 +1,6 @@
-Aqui podemos agregar nuevas paginas.
-Modificar las existentes y despues
-Se suministran a github.com
+<?php
+	$usu_db = "root";
+	$pass_db = "";
+	$serv_db = "localhost";
+	$db = "sifweb";
+?>
