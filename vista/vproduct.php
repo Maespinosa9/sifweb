@@ -15,14 +15,14 @@ include ("../controlador/conexion.php");
 	$i=0;
 	foreach($estados as $estado){
 		$result[$i]["value"]=$estado["id_producto"];
-		$result[$i]["nombre"]=$estado["precio_venta"];
+		$result[$i]["precio_venta"]=$estado["precio_venta"];
 		$i++;
 		}
 	$div='Precio<br/>';   
-	$html='<select name="id_producto" id="id_estado" style="width: 195px;">';
-	$html.='<option value="">Seleccione</option>';
+	$html='<select name="precio_venta" id="precio_venta" style="width: 195px;">';
+	//$html.='<option value=""></option>';
 	foreach($result as $res){
-			$html.='<option value="'.$res["value"].'">'.$res["nombre"].'</option>';
+			$html.='<option value="'.$res["precio_venta"].'">'.$res["precio_venta"].'</option>';
 		}
 	$html.='</select>';
 	echo $div;
