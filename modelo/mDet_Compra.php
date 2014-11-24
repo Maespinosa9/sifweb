@@ -37,7 +37,7 @@ class mDet_Compra{
 	}
 
 	function SelProducto(){
-		$sql = "SELECT * FROM producto";
+		$sql = "SELECT id_producto, descripcion	FROM producto";
 		$conexionBD = new conexion();
 		$conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);

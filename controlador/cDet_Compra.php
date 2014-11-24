@@ -17,7 +17,7 @@
 	$pr = isset($_GET['pr']) ? $_GET['pr']:NULL;
 
 	$factura = $ins->SelOrden($orden_id);
-
+	$productos = $ins -> SelProducto();
 
 	//Paginar
 	$bo = "";
