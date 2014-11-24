@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2014 a las 17:42:49
+-- Tiempo de generación: 24-11-2014 a las 23:09:37
 -- Versión del servidor: 5.6.20
 -- Versión de PHP: 5.5.15
 
@@ -73,9 +73,16 @@ CREATE TABLE IF NOT EXISTS `caja` (
 --
 
 CREATE TABLE IF NOT EXISTS `categoria_producto` (
-  `id_categoria` int(11) NOT NULL,
+`id_categoria` int(11) NOT NULL,
   `descripcion` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `categoria_producto`
+--
+
+INSERT INTO `categoria_producto` (`id_categoria`, `descripcion`) VALUES
+(1, 'Categoria 1');
 
 -- --------------------------------------------------------
 
@@ -290,7 +297,15 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `precio_venta` decimal(10,2) DEFAULT NULL,
   `impuesto` float NOT NULL,
   `categoria_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id_producto`, `codigo_barras`, `descripcion`, `precio_venta`, `impuesto`, `categoria_id`) VALUES
+(2, '1234567890', 'producto 1', '2000.00', 2, 1),
+(3, '0987654321', 'producto 2', '10000.00', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -526,6 +541,11 @@ ALTER TABLE `valor`
 ALTER TABLE `caja`
 MODIFY `id_caja` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `categoria_producto`
+--
+ALTER TABLE `categoria_producto`
+MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
@@ -584,7 +604,7 @@ MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `valor`
 --
