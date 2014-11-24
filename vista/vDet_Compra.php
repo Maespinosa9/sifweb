@@ -8,7 +8,7 @@ include ("controlador/cDet_Compra.php");
 	<br>
 	<form name = "form_Det_Compra" action = "" method = "POST">
 		<label for ="producto">Producto: &nbsp;&nbsp;</label>
-		<select name= "producto">
+		<select name= "producto" required>
 			<option value = "">Seleccione</option>
 		<?php 
 			for($i = 0; $i<count($productos); $i++){
@@ -18,6 +18,7 @@ include ("controlador/cDet_Compra.php");
 			}
 		?>
 		</select>
+		<input type="number" placeholder = "Cantidad">
 	</form>
 </div>
 
