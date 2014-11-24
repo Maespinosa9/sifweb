@@ -1,12 +1,15 @@
 <?php 
  include ("modelo/mOrdenCompra.php");
+ include ("modelo/mpagina.php");
  $ins = new mOrdenCompra();
  
   $delete = isset($_GET["del"]) ? $_GET["del"]:NULL;
     if ($delete){
-      $ins->delete($del);
+      $ins->delete($delete);
     }
-	
+    $filtro=isset($_GET["filtro"]) ? $_GET["filtro"]:NULL;
+	$pac = isset ($_GET["pac"]) ? $_GET["pac"]:NULL;
+	$pr = isset($_GET['pr']) ? $_GET['pr']:NULL;
 	$id_orden = isset($_POST["id_orden"]) ? $_POST["id_orden"]:NULL;
 	$FechaFactura = isset ($_POST["FechaFactura"]) ? $_POST["FechaFactura"]:NULL;
 	$vencimiento = isset ($_POST["Vencimiento"]) ? $_POST["Vencimiento"]:NULL;
@@ -22,10 +25,11 @@
 	$ajuste = isset ($_POST["ajuste"]) ? $_POST["ajuste"]:NULL;
 	$proveedor = isset ($_POST["proveedor"]) ? $_POST["proveedor"]:NULL;
 	$actu = isset($_POST["actu"]) ? $_POST["actu"]:NULL;
+	$editar = $ins->selEditar($pr);
 
-	
+
 	if (is_null($pagado)){
-		$pagado = "False";
+		$pagado = 0;
 	}
 	//echo $FechaFactura." ".$vencimiento." ".$factura." ".$subtotal." ".$iva." ".$pagado." ".$Usuario." ".$descuento." ".$total." ".$vendedor." ".$ajuste." ".$proveedor." "	;
 	if ($id_orden && $actu ){
@@ -35,6 +39,18 @@
 		$ins->insert($FechaFactura, $vencimiento, $factura, $subtotal, $iva, $pagado, $Usuario, $descuento, $total, $observacion, $vendedor, $ajuste, $proveedor);
 	}
 										
-	$dat = $ins->selOrden();
+	$dat2 = $ins->selOrden();
 	$usu = $ins->selUsuario();
 	$pro = $ins->selProveedor();
+
+	//Paginar
+	$bo = "";
+	$nreg = 10;//numero de registros a mostrar
+	$pag = new mpagina($nreg);
+	$conp ="SELECT count(id_orden)as Npe FROM orden_compra";  
+	if($filtro) $conp.= " WHERE orden_compra.factura LIKE '%".$filtro."%'";
+
+?>
+
+
+

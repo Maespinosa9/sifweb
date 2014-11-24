@@ -8,13 +8,12 @@ class mOrdenCompra{
 	}
 	
 	function insert($FechaFactura, $vencimiento, $factura, $subtotal, $iva, $pagado, $IdUsuario, $descuento, $total, $observacion, $vendedor, $ajuste, $nit_id){
-		echo "entro";
 		$sql = "INSERT INTO orden_compra(fecha_factura, vencimiento, factura, subtotal, iva, pagado, usuario_id, descuento, total, observacion, vendedor, ajuste, nit_id) VALUES ('".$FechaFactura."', '".$vencimiento."', '".$factura."', '".$subtotal."', '".$iva."', '".$pagado."', '".$IdUsuario."', '".$descuento."', '".$total."', '".$observacion."', '".$vendedor."', '".$ajuste."', '".$nit_id."');";
 		$this->cons($sql);
 	}
 	
 	function delete($id_orden){
-		$sql = "DELETE * FROM orden_compra WHERE id_orden='".$id_orden."';";
+		$sql = "DELETE FROM orden_compra WHERE id_orden='".$id_orden."';";
 		$this->cons($sql);
 	}
 	
@@ -47,6 +46,25 @@ class mOrdenCompra{
 	
 	function selProveedor(){
 		$sql = "SELECT id_nit, razon_social From proveedor;";
+		$conexionBD = new conexion();
+		$conexionBD->conectarBD();
+		$data = $conexionBD->ejeCon($sql,0);
+		return $data;
+	}
+
+	function selOrden2($filtro,$rvalini,$rvalfin){
+		$sql = "SELECT oc.*, p.razon_social FROM orden_compra as oc inner join proveedor as p on oc.nit_id = p.id_nit";
+		if($filtro)
+		$sql.= " WHERE oc.factura LIKE '%".$filtro."%'";
+		$sql.= " ORDER BY oc.factura LIMIT ".$rvalini.", ".$rvalfin;
+		$conexionBD = new conexion();
+		$conexionBD->conectarBD();
+		$data = $conexionBD->ejeCon($sql,0);
+		return $data;
+	}
+
+	function selEditar($id_orden){
+		$sql = "SELECT  * FROM orden_compra WHERE id_orden = '".$id_orden."';";
 		$conexionBD = new conexion();
 		$conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);

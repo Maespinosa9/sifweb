@@ -3,22 +3,19 @@ include ("controlador/cOrdenCompra.php");
 ?>
 
 <div name="OrdenCompra" id="izquierda">
-<h3>INGRESAR ORDEN DE COMPRA</h3>
-
+<h3>EDITAR ORDEN DE COMPRA</h3>
 <form name="OrdenCompra" action="" method="post">
 	<label style = "margin-right: 2.5em">Fecha de Compra&nbsp;</label>
-	<input type="date" id= "FechaFactura" name="FechaFactura" required="required"/><br/><br/>
+	<input type="date" id= "FechaFactura" name="FechaFactura" required="required" value= "<?php echo $editar[0]['fecha_factura']; ?>"/><br/><br/>
     <label>Fecha de Vencimiento&nbsp;</label>
-    <input type = "date" id= "Vencimiento" name = "Vencimiento" required="required"/><br/><br/>
-    <input type = "text" id="Factura" name = "Factura" placeholder="N&uacute;mero de Factura" size="20px" required="required" onblur="fnValidar(this.value)"/>
-    <div id="divmsg" style = "display:none"><span id='resultado' style='color:red'><strong><?php echo is_null($mensaje)?'':$mensaje;?></strong></span><br/></div>
-    <input type = "text" id = "subtotal" name="subtotal" placeholder="SubTotal" size="20px" required="required"/></br></br>
-    <input type = "text" id = "iva" name= "iva" placeholder="Iva" size="20px" required="required"/>
+    <input type = "date" id= "Vencimiento" name = "Vencimiento" required="required" value= "<?php echo $editar[0]['vencimiento']; ?>"/><br/><br/>
+    <input type = "text" id="Factura" name = "Factura" placeholder="N&uacute;mero de Factura" size="20px" required="required" value= "<?php echo $editar[0]['factura']; ?>" />
+    <input type = "text" id = "subtotal" name="subtotal" placeholder="SubTotal" size="20px" required="required" value= "<?php echo $editar[0]['subtotal']; ?>"/></br></br>
+    <input type = "text" id = "iva" name= "iva" placeholder="Iva" size="20px" required="required" value= "<?php echo $editar[0]['iva']; ?>"/>
 
     <label for="pagado" style= "float:inherit">Pagado</label>
-    <input type="checkbox" id= "pagado" name="pagado" value=1>
-</br></br>
-
+    <input type="checkbox" id= "pagado" name="pagado" value=1 <?php if ($editar[0]['pagado']== 1) echo "checked"; ?>>
+    </br></br>
 
     <label for="Usuario">Usuario&nbsp;&nbsp;&nbsp; </label>
     <select name="Usuario" required="required" >
@@ -26,17 +23,17 @@ include ("controlador/cOrdenCompra.php");
     <?php 
 		for($i = 0; $i<count($usu); $i++){
 	?>
-    <option value="<?php echo $usu[$i]['id_usuario']; ?>" ><?php echo $usu[$i]['nombre']; ?> <?php echo $usu[$i]['apellido']; ?></option>
+    <option value="<?php echo $usu[$i]['id_usuario']; ?>" <?php if($editar[0]['usuario_id']==$usu[$i]['id_usuario']) echo 'selected'; ?> ><?php echo $usu[$i]['nombre']; ?> <?php echo $usu[$i]['apellido']; ?></option>
     <?php
 		}
 	?>
     </select>
-    <input type="text" id="descuento" name="descuento" placeholder="Descuento %" required="required"></br><br/>
-    <input type="text" id ="Total" name = "Total" placeholder="Valor Total" required="required">
-    <input type="text" name="ajuste" id="ajuste" placeholder="Ajuste" required="required"></br><br/><br/>
-    <textarea id="Observaciones" style = "resize:none; width:90%" name= "Observaciones" rows="4" cols="50" placeholder="Ingrese sus Observaciones, M&aacute;ximo 250 caracteres" maxlength="250"></textarea>
+    <input type="text" id="descuento" name="descuento" placeholder="Descuento %" required="required" value= "<?php echo $editar[0]['descuento']; ?>"></br><br/>
+    <input type="text" id ="Total" name = "Total" placeholder="Valor Total" required="required" value= "<?php echo $editar[0]['total']; ?>">
+    <input type="text" name="ajuste" id="ajuste" placeholder="Ajuste" required="required" value= "<?php echo $editar[0]['ajuste']; ?>"></br><br/><br/>
+    <textarea id="Observaciones" style = "resize:none; width:90%" name= "Observaciones" rows="4" cols="50" placeholder="Ingrese sus Observaciones, M&aacute;ximo 250 caracteres" maxlength="250"><?php echo $editar[0]['observacion']; ?></textarea>
 	<br/><br/>
-    <input type="text" name="Vendedor" id="Vendedor" placeholder="Vendedor" required= "required">
+    <input type="text" name="Vendedor" id="Vendedor" placeholder="Vendedor" required= "required" value= "<?php echo $editar[0]['vendedor']; ?>">
         
     <label for="proveedor">Proveedor&nbsp;&nbsp;&nbsp;</label>
     <select style="width: 14.5em" name="proveedor" required= "required">
@@ -44,17 +41,17 @@ include ("controlador/cOrdenCompra.php");
     <?php
 		for ($i = 0; $i<count($pro); $i++){
 	?>
-    	<option value="<?php echo $pro[$i]['id_nit']; ?>"><?php echo $pro[$i]['razon_social']; ?></option>
+    	<option value="<?php echo $pro[$i]['id_nit']; ?>" <?php if($editar[0]['nit_id']==$pro[$i]['id_nit']) echo 'selected'; ?>><?php echo $pro[$i]['razon_social']; ?></option>
     <?php
 		}
 	?>
-</select><br><br>   <br><br>  
+    </select><br><br>   <br><br>  
     <input class="guardar" type="submit"  id="guardar" value="Guardar">
-    <a href="home.php"><input class="guardar" name="del" type="button" value="Cancelar"></a>
+    <a href="home.php?pac=108"><input class="guardar" name="del" type="button" value="Cancelar"></a>
 
 </form>
 </div>
-<div name="table_orden_compra" id= "derecha">
+<div id= "derecha">
 
     <h3>Ordenes de Compra Ingresadas</h3>
 
@@ -110,32 +107,3 @@ include ("controlador/cOrdenCompra.php");
         </td>
     </div>
 </div>
-
-<script>
-    function fnValidar(num){
-        var postForm = { //Fetch form data
-            'datos'  : num,
-            'funcion' : 'orden_compra'
-        };
-        $.ajax({
-        url: "controlador/ajaxValidador.php",
-        type: "post",
-        data: postForm,
-        success: function(response){
-            //alert("success");
-            $("#resultado").html(response);
-            var val=$.trim(response);
-            if(val!= ""){
-                $("#divmsg").css({'display':'block',});
-                $("#Factura").focus();
-                $("#Factura").select();
-            }else
-                $("#divmsg").css({'display':'none',});
-        },
-        error:function(){
-            alert("failure");
-            $("#result").html('There is error while submit');
-        }
-    });
-    }
-</script>

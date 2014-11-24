@@ -6,7 +6,7 @@ $autenti = isset($_SESSION["autentificado"]) ? $_SESSION["autentificado"]:NULL;
 if ($autenti != 10) {
 	//si no existe, envio a la página de autentificacion
 	session_destroy();
-	header("Location: ../index.php");
+	header("Location: index.php");
 	exit();
 }
 	

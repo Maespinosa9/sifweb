@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2014 a las 22:51:40
+-- Tiempo de generación: 24-11-2014 a las 17:42:49
 -- Versión del servidor: 5.6.20
 -- Versión de PHP: 5.5.15
 
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `fac_venta` (
   `descuento` decimal(10,2) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `observacion` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `lote` (
 
 CREATE TABLE IF NOT EXISTS `orden_compra` (
 `id_orden` int(11) NOT NULL,
-  `fecha_factura` datetime NOT NULL,
+  `fecha_factura` date NOT NULL,
   `vencimiento` date NOT NULL,
   `factura` varchar(30) NOT NULL,
   `subtotal` decimal(10,2) NOT NULL,
@@ -188,11 +188,21 @@ CREATE TABLE IF NOT EXISTS `orden_compra` (
   `usuario_id` int(11) NOT NULL,
   `descuento` decimal(10,2) NOT NULL,
   `total` decimal(10,2) NOT NULL,
-  `observacion` varchar(250) NOT NULL,
+  `observacion` varchar(250) DEFAULT NULL,
   `vendedor` varchar(50) NOT NULL,
   `ajuste` decimal(10,2) NOT NULL,
   `nit_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Volcado de datos para la tabla `orden_compra`
+--
+
+INSERT INTO `orden_compra` (`id_orden`, `fecha_factura`, `vencimiento`, `factura`, `subtotal`, `iva`, `pagado`, `usuario_id`, `descuento`, `total`, `observacion`, `vendedor`, `ajuste`, `nit_id`) VALUES
+(2, '2014-11-24', '2014-11-25', '56789', '10000.00', '15.00', 1, 123456, '2.00', '8000.00', 'segunda factura ', 'Michael Espinosa', '0.00', 123434),
+(3, '2014-11-01', '2014-11-24', '12345', '2000.00', '16.00', 0, 123456, '2.00', '4000.00', 'sdasdasd', 'Michael Espinosa', '0.00', 123434),
+(7, '2014-11-04', '2014-11-26', '9887766', '2000.00', '16.00', 1, 123456, '2.00', '4000.00', 'asdasdasd', 'Michael Espinosa', '0.00', 123434),
+(8, '2014-11-12', '2014-11-20', '234234', '10000.00', '16.00', 0, 123456, '2.00', '8000.00', 'asdasdasd', 'Michael Espinosa', '0.00', 123434);
 
 -- --------------------------------------------------------
 
@@ -240,7 +250,14 @@ CREATE TABLE IF NOT EXISTS `pago` (
 CREATE TABLE IF NOT EXISTS `parametro` (
 `idParametro` int(11) NOT NULL,
   `descripcion` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `parametro`
+--
+
+INSERT INTO `parametro` (`idParametro`, `descripcion`) VALUES
+(1, 'Tipo de Documento');
 
 -- --------------------------------------------------------
 
@@ -292,6 +309,13 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
   `observaciones` varchar(100) DEFAULT NULL,
   `contacto` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`id_nit`, `tipo_documento`, `razon_social`, `telefono_1`, `telefono_2`, `direccion`, `e_mail`, `observaciones`, `contacto`) VALUES
+(123434, '2', 'proveedor', NULL, NULL, NULL, NULL, NULL, 'Michael');
 
 -- --------------------------------------------------------
 
@@ -352,7 +376,15 @@ CREATE TABLE IF NOT EXISTS `valor` (
 `idValor` int(11) NOT NULL,
   `descripcion` varchar(100) DEFAULT NULL,
   `idParametro` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `valor`
+--
+
+INSERT INTO `valor` (`idValor`, `descripcion`, `idParametro`) VALUES
+(1, 'Cedula', 1),
+(2, 'Nit', 1);
 
 --
 -- Índices para tablas volcadas
@@ -507,7 +539,7 @@ MODIFY `id_deta_compra` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `fac_venta`
 --
 ALTER TABLE `fac_venta`
-MODIFY `id_factura` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_factura` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `inventario`
 --
@@ -522,7 +554,7 @@ MODIFY `id_lote` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `orden_compra`
 --
 ALTER TABLE `orden_compra`
-MODIFY `id_orden` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_orden` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `pagina`
 --
@@ -542,7 +574,7 @@ MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `parametro`
 --
 ALTER TABLE `parametro`
-MODIFY `idParametro` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idParametro` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `perfil`
 --
@@ -557,7 +589,7 @@ MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `valor`
 --
 ALTER TABLE `valor`
-MODIFY `idValor` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idValor` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --
