@@ -43,5 +43,17 @@ class mDet_Compra{
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
 	}
+
+	function selDetalle($filtro,$rvalini,$rvalfin, $id_orden){
+		$sql = "SELECT d.*, p.descripcion FROM det_compra as d inner join producto as p on d.producto_id = p.id_producto";
+		$sql .= " WHERE d.orden_id = '".$id_orden."'";
+		if($filtro)
+		$sql.= " AND p.descripcion LIKE '%".$filtro."%'";
+		$sql.= " ORDER BY d.id_deta_compra LIMIT ".$rvalini.", ".$rvalfin;
+		$conexionBD = new conexion();
+		$conexionBD->conectarBD();
+		$data = $conexionBD->ejeCon($sql,0);
+		return $data;
+	}
 }
 ?>

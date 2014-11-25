@@ -79,7 +79,7 @@ include ("controlador/cOrdenCompra.php");
             <th>Proveedor</th>
             <th>Acciones</th>
         </thead>
-        <input name="pac" type="hidden" id="pac" value="106"/>
+        <input name="pac" type="hidden" id="pac" value="108"/>
         <?php 
          $dat=$ins->selOrden2($filtro, $pag->rvalini(), $pag->rvalfin());  
         for($i = 0; $i<count($dat); $i++){
@@ -100,7 +100,7 @@ include ("controlador/cOrdenCompra.php");
         <?php } ?>
         </form>
     </table>
-    <div  id="paginar" style="position:absolute; bottom:0px; right:50px;">
+    <div id="paginar" style="position:absolute; bottom:0px; right:50px;">
         <td align="bottom" valign="bottom">
             <?php
             $bo = "<input type='hidden' name='filtro' value='".$filtro."' />";
