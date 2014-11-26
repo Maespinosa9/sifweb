@@ -36,6 +36,13 @@ class mDet_Compra{
 		return $data;
 	}
 
+	function SelEditar($id_deta_compra){
+		$sql = "SELECT d.* from det_compra as d inner join producto as p on p.id_producto = d.producto_id WHERE d.id_deta_compra = '".$id_deta_compra."'";
+		$conexionBD = new conexion();
+		$conexionBD->conectarBD();
+		$data = $conexionBD->ejeCon($sql,0);
+		return $data;
+	}
 	function SelProducto(){
 		$sql = "SELECT id_producto, descripcion	FROM producto";
 		$conexionBD = new conexion();

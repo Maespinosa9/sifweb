@@ -1,6 +1,7 @@
 <?Php
 include ("controlador/cDet_Compra.php");
 ?>
+<section name="insertar" style= "<?php if (!is_null($up)) echo 'display:none'; ?>">
 <br>
 <h2 align="center">Detalles para la Factura de compra Nro. <?php echo $factura[0]['factura']?></h2>
 <div name="det_compra" id="izquierda">
@@ -24,13 +25,40 @@ include ("controlador/cDet_Compra.php");
     	<a href="home.php?pac=108"><input class="guardar" name="del" type="button" value="Cancelar"></a>
 	</form>
 </div>
-
+</section>
+<section name="editar" style= "<?php if (is_null($up)) echo 'display:none'; ?>">
+    <br>
+    <h2 align="center">Detalles para la Factura de compra Nro. <?php echo $factura[0]['factura']?></h2>
+    <div name="det_compra" id="izquierda">
+    <h3> Modificar Detalle</h3>
+    <br>
+    <form name = "form_Det_Compra" action = "" method = "POST">
+        <label for ="producto">Producto: &nbsp;&nbsp;</label>
+        <select name= "producto" required>
+            <option value = "">Seleccione</option>
+        <?php 
+            for($i = 0; $i<count($productos); $i++){
+        ?>
+        <option value="<?php echo $productos[$i]['id_producto']; ?>" <?php if($editar[0]['producto_id']==$productos[$i]['id_producto']) echo 'selected'; ?> ><?php echo $productos[$i]['descripcion']; ?></option>
+        <?php
+            }
+        ?>
+        </select>
+        <input type="hidden" id="actu" name="actu" value="actu"/>
+        <input type="number" id= "cantidad" name="cantidad" placeholder = "Cantidad" value="<?php echo $editar[0]['cantidad']; ?>"><br><br>
+        <input type="text" name="valor_unitario" id="valor_unitario" placeholder= "Valor Unitario" value="<?php echo $editar[0]['valor_unitario']; ?>"><br><br><br><br>
+        <input class="guardar" type="submit"  id="guardar" value="Editar">
+        <a href="home.php?pac=108"><input class="guardar" name="del" type="button" value="Cancelar"></a>
+    </form>
+</div>
+</section>
 <div name="table_det_compra" id="derecha">
 	<H3>Detalles de la Orden </H3>
 	<br/>   <table width="650"><tr>
     <td>
         <form id="formfil" name="formfil" method="GET" action="home.php">
-            <input name="pac" type="hidden" value="<?php echo $pac; ?>" />
+            <input name="pac" type="hidden" value="<?php echo $pac; ?>"/>
+            <input name="or" type="hidden" value="<?php echo $orden_id; ?>">
             <input type="text" name="filtro" value="<?php echo $filtro;?>" onChange="this.form.submit();" placeholder= "Producto">
             <input id="boton2" type="submit" name="busca" value="Buscar" />
         </form>
@@ -56,7 +84,7 @@ include ("controlador/cDet_Compra.php");
         	<td align="right"><?php echo $dat[$i]['cantidad'] ?></td>
         	<td align="right"><?php echo $dat[$i]['valor_unitario'] ?></td>
         	<td align = "center">
-            <a href = "home.php?pr=<?php echo $dat[$i]['id_deta_compra'] ?>&pac=<?php echo $pac; ?>&up=11"><img src="image/editar.png" name="editar" title = "Editar"></a>
+            <a href = "home.php?pr=<?php echo $dat[$i]['id_deta_compra'] ?>&pac=<?php echo $pac; ?>&up=11&or=<?php echo $orden_id; ?>"><img src="image/editar.png" name="editar" title = "Editar"></a>
            	<a href = "home.php?del=<?php echo $dat[$i]['id_deta_compra'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="del" title= "Eliminar"></a></td>
         	</tr>
         </tbody>	
@@ -72,3 +100,4 @@ include ("controlador/cDet_Compra.php");
         </td>
     </div>
 </div>
+</section>
