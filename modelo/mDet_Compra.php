@@ -11,7 +11,7 @@ class mDet_Compra{
 		$this->cons($sql);
 	}
 
-	function update($id_deta_compra, $producto_id, $cantidad, $valor_unitario, $orden_id){
+	function update($id_deta_compra, $cantidad, $valor_unitario, $orden_id){
 		$sql = "UPDATE det_compra SET cantidad = '".$cantidad."', valor_unitario = '".$valor_unitario."'";
 		$sql .=" WHERE id_deta_compra = '".$id_deta_compra."'";
 		$this -> cons($sql);
@@ -57,6 +57,14 @@ class mDet_Compra{
 		if($filtro)
 		$sql.= " AND p.descripcion LIKE '%".$filtro."%'";
 		$sql.= " ORDER BY d.id_deta_compra LIMIT ".$rvalini.", ".$rvalfin;
+		$conexionBD = new conexion();
+		$conexionBD->conectarBD();
+		$data = $conexionBD->ejeCon($sql,0);
+		return $data;
+	}
+
+	function validaProducto($id_producto){
+		$sql = "SELECT * From producto WHERE id_producto = '".$id_producto."'";
 		$conexionBD = new conexion();
 		$conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);

@@ -21,13 +21,16 @@
 	$factura = $ins->SelOrden($orden_id);
 	$productos = $ins -> SelProducto();
 	$editar = $ins -> SelEditar($pr);
-	
-	if (!$actu && !is_null($valor_unitario) && !is_null($producto)){
-		$ins -> insert($producto, $cantidad, $valor_unitario, $orden_id);
+	$validaProducto = $ins ->validaProducto($producto);
+
+	if (is_null($validaProducto)){
+		if (!$actu && !is_null($valor_unitario) && !is_null($producto)){
+			$ins -> insert($producto, $cantidad, $valor_unitario, $orden_id);
+		}
 	}
 
 	if ($actu && !is_null($orden_id)){
-		$ins-> update($id_deta_compra, $producto, $cantidad, $valor_unitario, $orden_id);
+		$ins-> update($id_deta_compra, $cantidad, $valor_unitario, $orden_id);
 	}
 	//Paginar
 	$bo = "";
