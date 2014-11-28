@@ -5,8 +5,8 @@ class mproducto{
 	function mproducto(){
 	}
 	
-	function insert_producto($id_producto, $codigo_barras, $descripcion, $precio_venta, $impuesto, $categoria_id){
-        $sql = "INSERT INTO producto values ('".$id_producto."', '".$codigo_barras."','".$descripcion."','".$precio_venta."','".$impuesto."','".$categoria_id."');";
+	function insert_producto($codigo_barras, $descripcion, $precio_venta, $impuesto, $categoria_id){
+        $sql = "INSERT INTO producto values (NULL, '".$codigo_barras."','".$descripcion."','".$precio_venta."','".$impuesto."','".$categoria_id."');";
         $this->cons($sql);
 	}
 
@@ -26,21 +26,28 @@ class mproducto{
 		$conexionBD->ejeCon($c,1);
 	}
 
-	function select_producto1(){
-		$sql= "SELECT id_producto, codigo_barras, descripcion, precio_venta, impuesto, categoria_id FROM producto";		      
+	function selCategoria(){
+		$sql= "SELECT id_categoria, descripcion FROM categoria_producto order by descripcion";		      
 		$conexionBD = new conexion();
 		$conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
 	}
 
-	function select_producto2($id_producto){
-       $sql = "SELECT id_producto, codigo_barras, descripcion, precio_venta, impuesto, categoria_id FROM producto WHERE id_producto = '".$id_producto."';";
+	function select(){
+       $sql = "SELECT producto.id_producto, producto.codigo_barras, producto.descripcion, producto.precio_venta, producto.impuesto, categoria_producto.descripcion as categoria FROM producto INNER JOIN categoria_producto ON categoria_producto.id_categoria = producto.categoria_id order by producto.id_producto;";
         $conexionBD = new conexion();        
         $conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
 
+	}
+	function selEditar($id_producto){
+		$sql = "SELECT * FROM producto WHERE id_producto = '".$id_producto."';";
+		$conexionBD = new conexion();
+		$conexionBD->conectarBD();
+		$data = $conexionBD->ejeCon($sql,0);
+		return $data;
 	}
 }
 ?>

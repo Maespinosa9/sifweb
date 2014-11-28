@@ -39,7 +39,11 @@ $perusu = isset($_SESSION["perfil"]) ? $_SESSION["perfil"]:NULL;?>
     }else if ($Pac == "106") {
       include("vista/vPago.php");
     }else if ($Pac == "107") {
-      include("vista/vproducto.php");
+      if (is_null($Up)) {
+        include("vista/vproducto.php");
+      } else {
+        include("vista/vproducto1.php");
+      }
     }else if ($Pac == "108") {
       if (is_null($Up)) {
         include("vista/vOrdenCompra.php");

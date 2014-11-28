@@ -4,25 +4,27 @@
 
 <script language="javascript" src="js/jquery-1.2.6.min.js"></script><!-- llamamos al JQuery-->
 <center>
-	<form name="form1" action="" method="POST">
+	<form name="form1" action="home.php?pac=107" method="POST">
 		<table align="center" width="400" border="0" cellspacing="5" cellpadding="3">
 			<tr>
-				<td colspan=5 align="center"><h1>Registro Producto</h1></td>
+				<td colspan=5 align="center"><h1>Editar Producto</h1></td>
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="codBarras" id="codBarras" size="25" maxlength="30" required="required" placeholder="Codigo de Barras" /> 
+                    <input type="text" name="codBarras" id="codBarras" size="25" maxlength="30" required="required" placeholder="Codigo de Barras" value = "<?php echo $editar[0]['codigo_barras']; ?>"/> 
+                    <input type="hidden" id="idProducto" name="idProducto" value="<?php echo $editar[0]['id_producto']; ?>"/>
+    				<input type="hidden" id="actu" name="actu" value="actu"/>
                 </td>
                 <td>
-                    <input type="text" name="descripcion" id="descripcion" size="25" maxlength="30" required="required" placeholder="Descripcion"  />
+                    <input type="text" name="descripcion" id="descripcion" size="25" maxlength="30" required="required" placeholder="Descripcion" value = "<?php echo $editar[0]['descripcion']; ?>" />
                 </td>                    
             </tr>
             <tr>
                 <td>
-                    <input type="number" name="preVenta" id="preVenta" size="25" maxlength="30" required="required" placeholder="Precio Venta" />
+                    <input type="number" name="preVenta" id="preVenta" size="25" maxlength="30" required="required" placeholder="Precio Venta" value = "<?php echo $editar[0]['precio_venta']; ?>"/>
                 </td>
                 <td>
-                    <input type="number" name="impuesto" id="impuesto" size="25" maxlength="30"  placeholder="Impuesto" />
+                    <input type="number" name="impuesto" id="impuesto" size="25" maxlength="30"  placeholder="Impuesto" value = "<?php echo $editar[0]['impuesto']; ?>"/>
                 </td>
             </tr>
             <tr>
@@ -33,7 +35,7 @@
 	        				<?php 
 	                        	for ($i=0; $i < count($arrayCategoria); $i++){
 	                     	?>
-	                    		<option value="<?php echo $arrayCategoria[$i]['id_categoria'] ?>"><?php echo $arrayCategoria[$i]['descripcion'] ?></option>
+	                    		<option value="<?php echo $arrayCategoria[$i]['id_categoria'] ?>"<?php if($editar[0]['categoria_id']==$arrayCategoria[$i]['id_categoria']) echo 'selected';?>> <?php  echo $arrayCategoria[$i]['descripcion']; ?></option>
 	                    	<?php 
 	                    		} 
 	                    	?>
@@ -45,7 +47,7 @@
                 	<input id="boton" type="submit" value="Guardar" />
                 </td>
 	            <td  align="center" valign="bottom">
-                    <input id="boton1" type="button" value=" Volver " onclick="location = 'home.php'" />
+                    <input id="boton1" type="button" value=" Volver " onclick="location = 'home.php?pac=107'" />
                 </td>
             </tr>
         </table>
