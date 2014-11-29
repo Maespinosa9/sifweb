@@ -21,7 +21,7 @@ include ("controlador/cDet_Compra.php");
 		</select>
         
 		<input type="number" id= "cantidad" name="cantidad" placeholder = "Cantidad"><br><br>
-        <div id="divmsg" style = "display:none"><span id='resultado' style='color:red'><strong><?php echo is_null($mensaje)?'':$mensaje;?></strong></span><br/></div>
+        <div id="divmsg" style = "display:none"><span id='resultado' style='color:red'><strong><?php echo is_null($mensaje)?'':$mensaje;?></strong></span><br/><br/></div>
 		<input type="text" name="valor_unitario" id="valor_unitario" placeholder= "Valor Unitario" ><br><br><br><br>
 		<input class="guardar" type="submit"  id="guardar" value="Guardar">
     	<a href="home.php?pac=108"><input class="guardar" name="del" type="button" value="Cancelar"></a>

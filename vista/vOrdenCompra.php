@@ -13,6 +13,7 @@ include ("controlador/cOrdenCompra.php");
     <input type = "text" id="Factura" name = "Factura" placeholder="N&uacute;mero de Factura" size="20px" required="required" onblur="fnValidar(this.value)"/>
     <div id="divmsg" style = "display:none"><span id='resultado' style='color:red'><strong><?php echo is_null($mensaje)?'':$mensaje;?></strong></span><br/></div>
     <input type = "text" id = "subtotal" name="subtotal" placeholder="SubTotal" size="20px" required="required"/></br></br>
+    <div id="divmsg" style = "display:none"><span id='resultado' style='color:red'><strong><?php echo is_null($mensaje)?'':$mensaje;?></strong></span><br/></div>
     <input type = "text" id = "iva" name= "iva" placeholder="Iva" size="20px" required="required"/>
 
     <label for="pagado" style= "float:inherit">Pagado</label>
