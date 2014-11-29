@@ -14,7 +14,7 @@
 <li><a href="home.php?pac=103"><span><img border=0 src="image/descarga.jpg" width="50" height="50" margin-top="15px"/>Facturas</span></a></li>
 <li><a href="home.php?pac=107"><span><img border=0 src="image/egreso.png" width="50" height="50" margin-top="15px"/>Ingresos</span></a></li>
 <li><a href="#"><span><img border=0 src="image/reporte.png" width="50" height="50" margin-top="15px"/>Reportes</span></a></li>
-<li><a href="home.php?pac=200"><span><img border=0 src="image/admin.png" width="50" height="50" margin-top="15px"/>Administrar</span></a></li>
+<li><a href="home2.php"><span><img border=0 src="image/admin.png" width="50" height="50" margin-top="15px"/>Administrar</span></a></li>
 </ul></nav>
 <br /> <br />
 </body>

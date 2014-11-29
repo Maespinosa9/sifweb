@@ -51,7 +51,7 @@ $perusu = isset($_SESSION["perfil"]) ? $_SESSION["perfil"]:NULL;?>
         include("vista/vOrdenCompra1.php");
       }
     }else if ($Pac == "200") {
-      include("vista/menusec.php");
+      include("home2.php");
     }else if ($Pac == "109"){
       include("vista/vparametro.php");
     }else if ($Pac == "110"){

@@ -8,6 +8,7 @@
 		if ($delete){
 		$ins->delete($delete);
 	}
+
 	$up = isset($_GET["up"]) ? $_GET["up"]:NULL;
 	$orden_id = isset($_GET["or"]) ? $_GET["or"]:NULL;
 	$filtro=isset($_GET["filtro"]) ? $_GET["filtro"]:NULL;
@@ -21,7 +22,7 @@
 	$factura = $ins->SelOrden($orden_id);
 	$productos = $ins -> SelProducto();
 	$editar = $ins -> SelEditar($pr);
-	$validaProducto = $ins ->validaProducto($producto);
+	$validaProducto = $ins ->validaProducto($producto, $orden_id);
 
 	if (is_null($validaProducto)){
 		if (!$actu && !is_null($valor_unitario) && !is_null($producto)){

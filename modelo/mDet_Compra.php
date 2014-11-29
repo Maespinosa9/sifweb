@@ -63,8 +63,8 @@ class mDet_Compra{
 		return $data;
 	}
 
-	function validaProducto($id_producto){
-		$sql = "SELECT * From producto WHERE id_producto = '".$id_producto."'";
+	function validaProducto($id_producto, $orden_id){
+		$sql = "SELECT * From det_compra WHERE producto_id = '".$id_producto."' AND orden_id = '".$orden_id."'";
 		$conexionBD = new conexion();
 		$conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);

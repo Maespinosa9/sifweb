@@ -63,9 +63,9 @@ function insertaTipo(){
 	<link rel="stylesheet" type="text/css" href="../css/style.css" />
 <div name="izquierda" id="izquierda">
 	<form name="FormPago" action="" method="post">
-	<H3>PAGO</H3>
+	<H3>PAGOS</H3>
     	<label for="fecha">Fecha de Pago&nbsp;&nbsp;</label>
-        <input type="date" name="fecha" id = "fechaPago" required = "required"/></br></br>
+        <input type="date" name="fecha" id = "fechaPago" style="" required = "required"/></br></br>
         <label for= "ValorPago">Valor del Pago&nbsp;&nbsp;</label>
         <input type="text" name="ValorPago" id = "ValorPago" required="required"/></BR></br>
         <div id ="SelectPagos">

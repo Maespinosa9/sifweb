@@ -13,7 +13,7 @@
         <div class=icon> 
         <i class="icon-mobile-phone icon-2x"></i>
         </div>
-        <a href="home.php?pac=105"><span>Crear usuario</span></a>
+        <a href="home2.php?pac=105"><span>Crear usuario</span></a>
       </div>
    </li>
    <li class="var_nav">
@@ -32,7 +32,7 @@
         <div class=icon> 
         <i class="icon-briefcase icon-2x"></i>
         </div>
-      <a href="home.php?pac=102"><span>Tienda</span></a>
+      <a href="home2.php?pac=102"><span>Tienda</span></a>
       </div>
    </li>
 
@@ -42,7 +42,7 @@
         <div class=icon> 
         <i class="icon-briefcase icon-2x"></i>
         </div>
-      <a href="home.php?pac=109"><span>Parametros</span></a>
+      <a href="home2.php?pac=109"><span>Parametros</span></a>
       </div>
   </li>
      
@@ -52,7 +52,7 @@
         <div class=icon> 
           <i class="icon-briefcase icon-2x"></i>
         </div>
-        <a href=""><span>Pagos</span></a>
+        <a href="home2.php?pac=106"><span>Pagos</span></a>
       </div>
   </li>
   </UL>
