@@ -23,7 +23,11 @@ $perusu = isset($_SESSION["perfil"]) ? $_SESSION["perfil"]:NULL;?>
     if (is_null($Pac)) {
       include("vista/menu.php");
     } else if ($Pac == "101") {
-      include("vista/vproveedor.php");
+        if (is_null($Up)) {
+        include("vista/vproveedor.php");
+      } else {
+        include("vista/vproveedor1.php");
+      }
     }else if ($Pac == "102") {
       include("vista/vtienda.php");
     } else if ($Pac == "103") {
@@ -62,6 +66,10 @@ $perusu = isset($_SESSION["perfil"]) ? $_SESSION["perfil"]:NULL;?>
       } else {
         include("vista/vinventario1.php");
       }
+    }else if ($Pac == "113"){
+      include("vista/vcaja.php");
+    }else if ($Pac == "114"){
+      include("vista/vcliente.php");
     }
   ?>
   </div>

@@ -61,14 +61,14 @@ class mproveedor{
 
 
 function selparametro1($num){
-		$sql = "SELECT idValor, descripcion, idParametro FROM valor where idValor='".$num."';";
+		$sql = "SELECT idValor, nomvalor, idParametro FROM valor where idValor='".$num."';";
 		$conexionBD = new conexion();
 		$conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
 	}
 	function selparametro($a){
-		$sql = "SELECT idValor, descripcion, idParametro FROM valor WHERE idParametro='".$a."';";
+		$sql = "SELECT idValor, nomvalor, idParametro FROM valor WHERE idParametro='".$a."';";
 		$conexionBD = new conexion();
 		$conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);

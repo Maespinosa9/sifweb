@@ -7,7 +7,7 @@
 <script language="javascript" src="../js/jquery-1.2.6.min.js"></script><!-- llamamos al JQuery-->
 <script language="javascript">
     
-     function Duplicidad(Id){
+ function Duplicidad(Id){
       var doc = {
                 "Id" : Id
         };
@@ -33,14 +33,14 @@
 
            <td valign="bottom">    
     <div align="left" id="2" class="rojo">*&nbsp;Tipo de Documento:</div>
-<select name="tipo_documento" style="width: 195px;" onblur="probar(id='tipo_documento', 2)">
-    <option id="tipo_documento" value="0">Seleccione</option>
+    <select name="tipo_documento" style="width: 195px;" required="required">
+    <option id="tipo_documento" value="">Seleccione</option>
                     <?php 
                             //Select
                             $dat3 = $ins->selparametro(1);
                             for ($i=0; $i < count($dat3); $i++){
                          ?>
-                            <option value="<?php echo $dat3[$i]['idValor'] ?>"><?php echo $dat3[$i]['descripcion'] ?></option>
+                            <option value="<?php echo $dat3[$i]['idValor'] ?>"><?php echo $dat3[$i]['nomvalor'] ?></option>
                         <?php } ?>
           </select>
     </td>
@@ -48,8 +48,8 @@
 
 
 
-              <td ><div id="id_nit_duplicado"></div>
-                    <input type="text" name="id_nit" id="id_nit" size="25" maxlength="11"  required="required" placeholder="N&uacute;mero" onblur="javascript:Duplicidad(this.value);" /></td>
+              <td >
+                    <input type="text" name="id_nit" id="id_nit_duplicado" size="25" maxlength="11"  required="required" placeholder="N&uacute;mero" onblur="javascript:Duplicidad(this.value);" /></td>
             </tr>
             <tr>
                 <td>
@@ -133,15 +133,7 @@
              <td class="style2" align="center"><?php echo $dat[$i]['e_mail'] ?></td>
              <td class="style2" align="center"><?php echo $dat[$i]['contacto'] ?></td>
              <td class="style2" align="center"><?php echo $dat[$i]['observaciones'] ?></td>
-             <td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_nit'] ?>&pac=101&up=11"><img border=0 src="image/editar.png" width="16" height="16" /></a></td>
-             
-
-
-
-
-
-
-
+             <td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_nit'] ?>&pac=101&up=11"><img border=0 src="image/editar.png" width="16" height="16" /></a></td> 
              </tr>  
               <?php  }  ?>
            <tr>

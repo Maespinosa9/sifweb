@@ -3,7 +3,7 @@
 ?>
 <center>
 	<form name="form2" action="home.php?pac=101" method="POST" >
-		<table align="center" width="400" border="0" cellspacing="5" cellpadding="3" style="background:white">
+		<table align="center" width="400" border="0" cellspacing="5" cellpadding="3" >
 
          <tr>
       <td><input type="hidden"<?php echo $dat[0]['id_nit'] ?>/>
@@ -26,7 +26,7 @@
                             $dat3 = $ins->selparametro1(1);
                             for ($i=0; $i < count($dat3); $i++){
                          ?>
-                            <option value="<?php echo $dat3[$i]['idValor'] ?>"><?php echo $dat3[$i]['descripcion'] ?></option>
+                            <option value="<?php echo $dat3[$i]['idValor'] ?>"><?php echo $dat3[$i]['nomvalor'] ?></option>
                         <?php } ?>
           </select>
     </td>
