@@ -2,13 +2,10 @@
     include ("modelo/musuario.php");
     $ins = new musuario();
 
-    $delete = isset($_GET["delete"]) ? $_GET["delete"]:NULL;
-    if ($delete){
-      $ins->delete($delete);
-    }
-
- 
+   
+    $pac = isset ($_GET["pac"]) ? $_GET["pac"]:NULL;
     $id_usuario = isset($_POST["id_usuario"]) ? $_POST["id_usuario"]:NULL;
+    $tipo_document = isset($_POST["tipo_document"]) ? $_POST["tipo_document"]:NULL;
     $nombre = isset($_POST["nombre"]) ? $_POST["nombre"]:NULL;
     $apellido = isset($_POST["apellido"]) ? $_POST["apellido"]:NULL;
     $telefono_1 = isset($_POST["telefono_1"]) ? $_POST["telefono_1"]:NULL;
@@ -21,20 +18,44 @@
     $fecha_ingreso = isset($_POST["fecha_ingreso"]) ? $_POST["fecha_ingreso"]:NULL;
     $salario = isset($_POST["salario"]) ? $_POST["salario"]:NULL;
     $activo = isset($_POST["activo"]) ? $_POST["activo"]:NULL;
-    $foto = isset($_POST["foto"]) ? $_POST["foto"]:NULL;
     $actu = isset($_POST["actu"]) ? $_POST["actu"]:NULL;
-	
+    $pr = isset($_GET["pr"]) ? $_GET["pr"]:NULL;
+    $editar = $ins->selEditar($pr);
+    $document = $ins->selparametro(1);
+    $perfil = $ins->selPerfil();
+    $dat = $ins->selecUsu();
+    
+     
+    $delete = isset($_GET["delete"]) ? $_GET["delete"]:NULL;
+    if ($delete){
+      $ins->deleteUsu($delete);
+    }
+
     if($id_usuario && $actu ){
-        	$ins->update ($id_usuario , $nombre ,$apellido , $telefono_1 , $celular , $direccion , $e_mail , $cargo , $clave , $perfil_id , $fecha_ingreso , $salario , $activo , $foto);
+            $ins->updateUsu($id_usuario, $tipo_document, $nombre ,$apellido , $telefono_1 , $celular , $direccion , $e_mail , $cargo , $clave , $perfil_id , $fecha_ingreso , $salario , $activo );
     }
 
 
-    if(!$actu && $id_usuario){
-        $ins->insert($id_usuario , $nombre ,$apellido , $telefono_1 , $celular , $direccion , $e_mail , $cargo , $clave , $perfil_id , $fecha_ingreso , $salario , $activo , $foto);
-        echo "<script type='text/javascript'>alert('Se ha registro satisfactoriamente.');</script>";
+ //   if($id_usuario && $tipo_document && $nombre && $apellido && $telefono_1 && $celular && $direccion && $e_mail && $cargo && $clave && $perfil_id && $fecha_ingreso && $salario && $activo && $actu ){
+   //     	$ins->updateUsu($tipo_document, $nombre ,$apellido , $telefono_1 , $celular , $direccion , $e_mail , $cargo , $clave , $perfil_id , $fecha_ingreso , $salario , $activo );
+   // }
+
   
-}
-     $dat = $ins->selecUsu();
-    $pr = isset($_GET["pr"]) ? $_GET["pr"]:NULL;
+     if($id_usuario && $tipo_document && $nombre && $apellido && $telefono_1 && $celular && $direccion && $e_mail && $cargo && $clave && $perfil_id && $fecha_ingreso && $salario  && !$actu ){
+        $duplicar = $ins->Duplicidad($id_usuario);
+        if ($duplicar==0){
+         $ins->insertUsu($id_usuario, $tipo_document, $nombre, $apellido, $telefono_1, $celular, $direccion, $e_mail, $cargo , $clave , $perfil_id , $fecha_ingreso , $salario , $activo );
+           if($perusu==1 || $perusu==2){
+            echo "<script type='text/javascript'>alert('Se ha registro satisfactoriamente el usuario.');window.location='home2.php?pac=105';</script>";
+        }else {
+           echo "<script type='text/javascript'>alert('Se ha registro satisfactoriamente el usuario.');window.location='home2.php?pac=105';</script>";   
+        }    
+        }
+    }
+
+     //if(!$actu && $id_usuario && $tipo_document && $nombre && $apellido && $telefono_1 && $celular && $direccion && $e_mail && $cargo && $clave && $perfil_id && $fecha_ingreso && $salario && $activo){
+       //     $ins->insertUsu($id_usuario, $tipo_document, $nombre, $apellido, $telefono_1, $celular, $direccion, $e_mail, $cargo , $clave , $perfil_id , $fecha_ingreso , $salario , $activo );
+        //}
+   
    
 ?>

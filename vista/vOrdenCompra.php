@@ -11,8 +11,8 @@ include ("controlador/cOrdenCompra.php");
     <label>Fecha de Vencimiento&nbsp;</label>
     <input type = "date" id= "Vencimiento" name = "Vencimiento" required="required"/><br/><br/>
     <input type = "text" id="Factura" name = "Factura" placeholder="N&uacute;mero de Factura" size="20px" required="required" onblur="fnValidar(this.value)"/>
-    <div id="divmsg" style = "display:none"><span id='resultado' style='color:red'><strong><?php echo is_null($mensaje)?'':$mensaje;?></strong></span><br/></div>
     <input type = "text" id = "subtotal" name="subtotal" placeholder="SubTotal" size="20px" required="required"/></br></br>
+    <div id="divmsg" style = "display:none"><span id='resultado' style='color:red'><strong><?php echo is_null($mensaje)?'':$mensaje;?></strong></span><br/></div>
     <input type = "text" id = "iva" name= "iva" placeholder="Iva" size="20px" required="required"/>
 
     <label for="pagado" style= "float:inherit">Pagado</label>
@@ -34,7 +34,7 @@ include ("controlador/cOrdenCompra.php");
     <input type="text" id="descuento" name="descuento" placeholder="Descuento %" required="required"></br><br/>
     <input type="text" id ="Total" name = "Total" placeholder="Valor Total" required="required">
     <input type="text" name="ajuste" id="ajuste" placeholder="Ajuste" required="required"></br><br/><br/>
-    <textarea id="Observaciones" style = "resize:none; width:90%" name= "Observaciones" rows="4" cols="50" placeholder="Ingrese sus Observaciones, M&aacute;ximo 250 caracteres" maxlength="250"></textarea>
+    <textarea id="Observaciones" style = "resize:none; width:76%" name= "Observaciones" rows="4" cols="50" placeholder="Ingrese sus Observaciones, M&aacute;ximo 250 caracteres" maxlength="250"></textarea>
 	<br/><br/>
     <input type="text" name="Vendedor" id="Vendedor" placeholder="Vendedor" required= "required">
         
@@ -58,7 +58,7 @@ include ("controlador/cOrdenCompra.php");
 
     <h3>Ordenes de Compra Ingresadas</h3>
 
-<br/>   <table width="650"><tr>
+<br/>   <table width="650" align="center"><tr>
     <td>
         <form id="formfil" name="formfil" method="GET" action="home.php">
             <input name="pac" type="hidden" value="<?php echo $pac; ?>" />
@@ -69,7 +69,7 @@ include ("controlador/cOrdenCompra.php");
 
 </tr></table>
 <br><br>
-    <table cellpadding="8" >
+    <table cellpadding="8" align="center">
         <form id="formfil" name="formfil" method="GET" action="home.php" onSubmit="return confirm('¿Desea eliminar?')">
         <thead>
             <th>Nro. Factura</th>
