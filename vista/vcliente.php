@@ -80,7 +80,10 @@
             <td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_cliente'] ?>&pac=114&up=11"><img border=0 src="image/editar.png" width="16" height="16" name="editar" title = "Editar"/></a></td>
             </tr>
         </tbody>
-        <?php  }  ?>       
+        <?php  }  ?>      
+        <tr>
+        <td colspan=9 class="style2">Para eliminar presione el n&uacute;mero del c&oacute;digo.</td>
+        </tr> 
 </form>
     </table>
  </div>

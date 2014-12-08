@@ -39,7 +39,7 @@
     <div id="derecha" name="derecha">
 <h3>REGISTRO INVENTARIOS</h3>
  <table cellpadding="8" align="center" width="200">
- <form name="form2" action="" method="GET" onSubmit="return confirm('¿Desea eliminar?')">
+ <form name="form2" action="" method="GET" onSubmit="return confirm('Eliminara el Inventario Desea Continuar')">
                 <thead>
 	    	    	<th>Codigo<input name="pac" type="hidden" id="pac" value="111"/></th>
 	              	<th>Producto</th>
