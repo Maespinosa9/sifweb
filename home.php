@@ -69,7 +69,11 @@ $perusu = isset($_SESSION["perfil"]) ? $_SESSION["perfil"]:NULL;?>
     }else if ($Pac == "113"){
       include("vista/vcaja.php");
     }else if ($Pac == "114"){
-      include("vista/vcliente.php");
+       if (is_null($Up)) {
+        include("vista/vcliente.php");
+      } else {
+        include("vista/vcliente1.php");
+      }
     }
   ?>
   </div>

@@ -1,62 +1,86 @@
 <?php 
     include ("controlador/ccliente.php");
-    include ("js/cliente.js");
 ?>
 
 
-
-<script language="javascript" src="../Sifweb/js/jquery-1.2.6.min.js"></script><!-- llamamos al JQuery-->
-<script language="javascript">
-    
-     function Duplicidad(Id){
+<script type="text/javascript">
+ function Duplicidad(Id){
       var doc = {
                 "Id" : Id
         };
-
         $.ajax({
                 data:  doc,
-                url:   'vista/vduplicidad.php',
+                url:   'vista/vduplicidad2.php',
                 type:  'post',
                 success:  function (response) {
-                        $("#id_nit_duplicado").html(response);
+                        $("#id_cliente_duplicado").html(response);
                 }
         });
      }
 </script>
 
-<div id="izquierda">
-	<form name="form1" action="" method="POST">
-    <h3>Registrese</h3>
-    <label for="tipo_documento">Tipo de Documento &nbsp;</label>
-        <td><select name="tipo_documento" id="tipo_documento">
-        <option value="" selected="selected">Seleccione </option>
-           <?php 
-                //Select
-                $dat3 = $ins->selpara(1);
-                for ($i=0; $i < count($dat3); $i++){
-             ?>
-                <option value="<?php echo $dat3[$i]['idvalor'] ?>"><?php echo $dat3[$i]['descripcion'] ?></option>
-            <?php } ?>
-        </select>
-            <div id="id_nit_duplicado"></div>
-            <br/><br/><label for="documento">Numero del Documento&nbsp;</label>
-            <input type="text" name="documento" id="documento" size="25" maxlength="11"  required="required" onkeypress="return validar(event);" onblur="Duplicidad(this.value)" />
-            <br/><br/><label for="nombre">Ingrese su Nombre&nbsp;</label>
-            <input type="text" name="nombre" id="nombre" size="25" maxlength="30" required/>
-            <br/><br/><label for="apellido">Ingrese su Apellido&nbsp;</label>
-            <input type="text" name="apellido" id="apellido" size="25" maxlength="30" required />                    
-            <br/><br/><label for="telefono_1">Tel&eacute;fono Fijo&nbsp;</label>
-            <input type="text" name="telefono_1" id="telefono_1" size="25" maxlength="20" required onkeypress="return validar(event)" />
-            <br/><br/><label for="celular">N&uacute;mero Celular&nbsp;</label>
-            <input type="text" name="celular" id="celular" size="25" maxlength="20" onkeypress="return validar(event)" />
-            <br/><br/><label for="e_mail">Ingrese su E-mail&nbsp;</label>
-            <input type="email" name="e_mail" id="e_mail" size="25" maxlength="30" required />
-            <br/><br/><label for="direccion">Ingrese su Direcci&oacute;n&nbsp;</label>
-          
-            <input type="text" name="direccion" id="direccion" size="25" maxlength="30" required /> 
-              <p>             
-            <br/><br/><br/><br/><input id="boton" type="submit" value="Guardar" class="guardar" />
-            <input id="boton1" type="button" class="guardar" value=" Volver " onclick="location = 'home.php'" />
-            </p>
+<div name="izquierda" id="izquierda">
+<form name="form1" action="" method="POST">
+<h3>CLIENTE</h3>
+        <label>Tipo de Documento&nbsp;</label> 
+        <select name="tipo_documento" id="tipo_documento" required="required">
+        <option value="">Seleccione</option>
+                          <?php 
+                            //Select
+                            $dat3 = $ins->selpara(1);
+                            for ($i=0; $i < count($dat3); $i++){
+                         ?>
+                            <option value="<?php echo $dat3[$i]['idvalor'] ?>"><?php echo $dat3[$i]['nomvalor'] ?></option>
+                        <?php } ?>
+        </select></br></br>
+            <label>Numero del Documento&nbsp;</label>
+            <input type="text" style="width:15em;" name="id_cliente"  id="id_cliente_duplicado"  required="required"  onblur="javascript:Duplicidad(this.value);"/></br></br>   
+            <label>Ingrese su Nombre&nbsp;</label>
+            <input type="text" style="width:25em;" name="nombre" id="nombre" required="required"/></br></br>
+            <label>Ingrese su Apellido&nbsp;</label>
+            <input type="text" style="width:25em;" name="apellido" id="apellido" required="required" /></br></br>                   
+            <label>Tel&eacute;fono Fijo&nbsp;</label>
+            <input type="text" style="width:13em;" name="telefono_1" id="telefono_1"  required="required"/></br></br>
+            <label>N&uacute;mero Celular&nbsp;</label>
+            <input type="text" style="width:13em;" name="celular" id="celular" required="required"/></br></br>
+            <label>Ingrese su Direcci&oacute;n&nbsp;</label>
+            <input type="text" style="width:20em;" name="direccion" id="direccion" required="required"/> </br></br>
+            <label>Ingrese su E-mail&nbsp;</label>
+            <input type="email" style="width:25em;" name="e_mail" id="e_mail" required="required"/></br></br>
+            <p>  
+            <input class="guardar" id="boton" type="submit" value="Guardar" />
+            <input class="guardar" type="button" value="Volver" onclick="location = 'home.php'"/></br></br>
+            </p> 
 </form>
 </div>
+
+<div id="derecha" name="derecha">
+<h3>REGISTRO CLIENTES</h3>
+ <table cellpadding="8" align="center" width="200">
+<form id="form2" name="form2" method="GET" action="" onSubmit="return confirm('¿Eliminara el Cliente Desea Continuar?')">
+    <thead>
+         <th>No. Documento<input name="pac" type="hidden" id="pac" value="114"/></th>
+         <th>Nombre</th>
+         <th>Telefono</th>
+         <th>Celular</th>
+         <th>Direccion</th>
+         <th>Editar</th>
+      </thead>
+      <?php 
+            $dat = $ins->select();
+         for ($i=0; $i < count($dat); $i++){
+      ?>
+       <tbody>
+            <tr>
+            <td class="style2" align="center"><input type="submit" name="delete" value=<?php echo $dat[$i]['id_cliente'] ?>></td>
+            <td class="style2" align="center"><?php echo $dat[$i]['nombre'] ?>&nbsp;&nbsp;<?php echo $dat[$i]['apellido'] ?></td>
+            <td class="style2" align="center"><?php echo $dat[$i]['telefono_1'] ?></td>
+            <td class="style2" align="center"><?php echo $dat[$i]['celular'] ?></td>
+            <td class="style2" align="center"><?php echo $dat[$i]['direccion'] ?></td>
+            <td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_cliente'] ?>&pac=114&up=11"><img border=0 src="image/editar.png" width="16" height="16" name="editar" title = "Editar"/></a></td>
+            </tr>
+        </tbody>
+        <?php  }  ?>       
+</form>
+    </table>
+ </div>

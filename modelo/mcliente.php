@@ -6,20 +6,8 @@ class mcliente{
 
 	}
 
-
-
-	/*function Duplicidad($id_cliente){
-		$sql = "SELECT count(id_nit) as total FROM cliente WHERE id_nit='".$id_nit."';";
-		$conexionBD = new conexion();
-		$conexionBD->conectarBD();
-		$data = $conexionBD->ejeCon($sql,0);
-		return $data[0]["total"];
-	}*/
-	
 	function insert($id_cliente, $tipo_documento, $nombre, $apellido, $telefono_1, $celular, $direccion, $e_mail){
-        //echo "si entro";
         $sql = "INSERT INTO cliente values ('".$id_cliente."', '".$tipo_documento."','".$nombre."','".$apellido."','".$telefono_1."','".$celular."','".$direccion."','".$e_mail."');";
-        //echo $sql;
         $this->cons($sql);
 	}
 
@@ -28,9 +16,8 @@ class mcliente{
     	$this->cons($sql);
     }
 
-    function update($tipo_documento, $nombre, $telefono_1, $celular, $direccion, $e_mail, $apellido){
-        $sql = "UPDATE cliente SET  id_cliente='".$id_cliente."', nombre='".$nombre."', apellido='".$apellido."', telefono_1='".$telefono_1."',celular='".$celular."', direccion='".$direccion."', e_mail='".$e_mail."' WHERE id_cliente='".$id_cliente."';";
-        //echo $sql;
+    function update($id_cliente, $tipo_documento, $nombre, $apellido, $telefono_1, $celular, $direccion, $e_mail){
+        $sql = "UPDATE cliente SET tipo_documento='".$tipo_documento."',  nombre='".$nombre."', apellido='".$apellido."', telefono_1='".$telefono_1."', celular='".$celular."', direccion='".$direccion."', e_mail='".$e_mail."' WHERE id_cliente='".$id_cliente."';";
         $this->cons($sql);
     } 
 
@@ -40,20 +27,38 @@ class mcliente{
 		$conexionBD->ejeCon($c,1);
 	}
 
+   	function Duplicidad($id_cliente){
+		$sql = "SELECT count(id_cliente) as total FROM cliente WHERE id_cliente='".$id_cliente."';";
+		$conexionBD = new conexion();
+		$conexionBD->conectarBD();
+		$data = $conexionBD->ejeCon($sql,0);
+		return $data[0]["total"];
+	}
+
 	function select(){
-		$sql= "SELECT id_cliente, tipo_documento, nombre, telefono_1, celular, direccion, e_mail, apellido  FROM cliente";		      
+		$sql= "SELECT * FROM cliente";		      
 		$conexionBD = new conexion();
 		$conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
 	}
 
+	function select2($id_cliente){
+		$sql= "SELECT * FROM cliente  WHERE id_cliente = '".$id_cliente."';";		      
+		$conexionBD = new conexion();
+		$conexionBD->conectarBD();
+		$data = $conexionBD->ejeCon($sql,0);
+		return $data;
+	}
+    
+
 	function selpara($num){
-       $sql = "SELECT  idvalor, descripcion, idparametro FROM valor WHERE idparametro = '".$num."';";
+       $sql = "SELECT  idvalor, nomvalor, idparametro FROM valor WHERE idparametro='".$num."';";
         $conexionBD = new conexion();        
         $conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
 	}
+
 }
 ?>
