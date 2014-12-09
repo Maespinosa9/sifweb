@@ -57,7 +57,7 @@ function Cargar()
         <?php
 			for ($i=0; $i<count($dat); $i++){ 
 		?>
-		<option value = "<?php echo $dat[$i]['idValor']; ?>"><?php echo $dat[$i]['descripcion']; ?></option>
+		<option value = "<?php echo $dat[$i]['idValor']; ?>"><?php echo $dat[$i]['nomvalor']; ?></option>
          <?php
 			}
 		?>

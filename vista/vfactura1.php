@@ -2,8 +2,6 @@
 include("controlador/cfactura.php");
 
 ?>
-<link rel="stylesheet" type="text/css" href="../css/style.css" />
-
 <div align="center" style=" width:1350; height:100">
 <H3 style="font-family:'Comic Sans MS', cursive; font-size:20px;"> FACTURA DE VENTA </H3>
 </div>
