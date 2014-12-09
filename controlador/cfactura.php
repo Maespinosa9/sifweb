@@ -3,7 +3,9 @@ include ("modelo/mfactura.php");
 
 $productos = array();
 
-switch($_POST["accion"]){
+$accion = isset($_POST["accion"])? $_POST["accion"]:NULL;
+
+switch($accion){
 	
 	case "":
 		$_SESSION["sPRODUCTOS"] = null;
@@ -18,7 +20,6 @@ switch($_POST["accion"]){
 		
 		$numpro = count($productos);
 		
-		
 		$productos[$numpro] = array(
 							"producto_id"=>$_POST["producto_id"],
 							"cantidad" => $_POST["cantidad"],
@@ -29,7 +30,6 @@ switch($_POST["accion"]){
 		 		
 		 print_r($_SESSION);
 				
-		
 	break;
 	case "grabarfactura":
 	
@@ -52,11 +52,7 @@ switch($_POST["accion"]){
 				} 
 	
 			}
-
-	
-	
 	break;
-	
 }
 
 $ins = new mfactura();

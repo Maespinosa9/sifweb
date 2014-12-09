@@ -27,11 +27,11 @@ class mPago{
 		$conexionBD->ejeCon($c,1);
 	}
 	function InsertaTipo($pago){
-		$sql = "INSERT INTO valor (descripcion, idparametro) VALUES ('".$pago."', 1);";
+		$sql = "INSERT INTO valor (nomvalor, idparametro) VALUES ('".$pago."', 1);";
 		$this->cons($sql);
 	}
 	function selTipo (){
-		$sql = "SELECT idValor, descripcion FROM valor where idParametro = 1;";
+		$sql = "SELECT idValor, nomvalor FROM valor where idParametro = 1;";
 		$conexionBD = new conexion();
 		$conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);

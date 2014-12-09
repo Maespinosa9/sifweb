@@ -98,7 +98,7 @@ include ("controlador/cparametro.php");
         
             <td><?php echo $datos[$i]['nomvalor'] ?></td>
             <td><?php echo $datos[$i]['nomparametro'] ?></td>
-            <td align = "center"><a href="home2.php?pr=<?php echo $datos[$i]['idvalor'] ?>&pac=109&up=11&ed=1&prr=<?php echo $datos[$i]['idparametro'] ?>"><img border=0 src="image/editar.png" name="editar" title = "Editar" /></a></td>    
+            <td align = "center"><a href="home2.php?pr=<?php echo $datos[$i]['idvalor'] ?>&pac=109&up=11&ed=1&prr=<?php echo $datos[$i]['idparametro'] ?>"><img border=0 src="/image/editar.png" name="editar" title = "Editar" /></a></td>    
         </tr>
         </tbody>
     <?php  }  ?>

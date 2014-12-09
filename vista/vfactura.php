@@ -1,115 +1,52 @@
 <?php
-include ("controlador/cfactura.php");
-//include ("controlador/cproductof.php");
+include("controlador/cfactura.php");
 ?>
-
-<link rel="stylesheet" type="text/css" href="../css/style.css" />
-<script src="js/jquery-1.9.1.js" type="text/javascript"></script>
 <script type="text/javascript">
-
- function RecargarProdcutos(value){
-    var parametros = {
-                "valor" : value
+$( window ).load(function() {
+      var postForm = { //Fetch form data
+            'datos'  : 'Factura',
         };
         $.ajax({
-                data:  parametros,
-                url:   'vista/vproduct.php',
-                type:  'post',
-                success:  function (response) {
-                        $("#valor_unitario").html(response);
-                }
-        });
-     }
+        url: "controlador/ajaxFactura.php",
+        type: "post",
+        data: postForm,
+        success: function(response){
+        },
+        error:function(){
+            alert("failure");
+            $("#result").html('There is error while submit');
+        }
+    });
+});
+
+function agregaProducto(){
+	
+}
 </script>
 
-<div name="izquierda" id="izquierda">
 
-    <form name "form4" action="" method="post">
-    	<input type=hidden name="accion" value=""></input>
-        <table align="center">
-            <tr>
-                <td colspan="2" align="center">
-                    <H3 style="font-family:'Comic Sans MS', cursive; font-size:22px" align="center">Productos</H3>
-                </td>
-            <tr>
-                <td colspan="2" align="center">
-                    <img src="image/prod.jpg" width="120" height="100" style=""/>
-                </td>
-            </tr>
-            </tr>
-            <tr>
-                <td>
-                     <div align="left" id="10" class="rojo">Producto</div>
-        			<input type="text" name="CodigoProducto" id="CodigoProducto" />
-                    <select name="producto_id" onchange="javascript:RecargarProdcutos(this.value);">
-                        <option value="" id="producto_id">Seleccione</option>
-                         <?php 
-                            //Select
-                                 $dat5 = $ins->selproducto();
-                                     for ($i=0; $i < count($dat5); $i++){
-                         ?>
-                        
-                        <option value="<?php echo $dat5[$i]['id_producto'] ?>"><?php echo $dat5[$i]['descripcion'] ?></option>
-                        
-                        <?php } ?>
-                    </select>
-                </td>
-                <td valign="bottom">
-                <div id="valor_unitario"></div>
-            	</td>
-            </tr>
-            <tr>
-                <td aling="right">
-                    <label>Cantidad</label>
-                </td>
-                <td>
-                    <input type="text" name="cantidad" id="cantidad">
-                </td>
-                <td>
-                 <?php 
-            //Select
-                $dat = $ins->selfactura();
-                for ($i=0; $i < count($dat); $i++){
-              ?>
-        
-    
-                <input id="factura_id" type="hidden" name="factura_id" 
-                value=<?php echo $dat[$i]['id_factura'] ?>></input>
-                 <?php  }  ?>
-                
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <input class="guardar" id="guardar" type="button" value="Agregar" onclick="this.form.accion.value='AddProducto'; this.form.submit();"></input>
-                </td>
-            </tr>
-            
-        
-        </table>
-
-     
-	<table height="20" align="center">
-	</table>
-    
+<div id="izquierda">	
+	<h3>FACTURA DE VENTA</h3>
+	<form name = "cliente" action="" method ="post">
+		<label for="idCliente">Cliente</label>
+		<input type="text" name="idCliente" id="idCliente" style="margin-right:20px">
+		<input class="guardar" type="submit" id="guardar" value="Buscar" style="margin:0px">
+	</form>
+	</br>
+	<form name "form4" action="" method="post">
+		<label  for="CodigoProducto">Producto</label>
+		<input type="text" name="CodigoProducto" id="CodigoProducto" style = "margin-right: 4em" />
+		<label  for="cantidad">Cantidad</label>
+		<input type="text" name="cantidad" id="cantidad" onblur = "this.form.accion.value='AddProducto';">
+	</br></br>	</br>
 	<table align="center" border="2">
-		<tr>
-        	<td>
-            	Producto
-            </td>
-            <td>
-            	Valor Unitario
-            </td>
-        	<td>
-            	Cantidad
-            </td>
-            <td>
-            	Precio
-            </td>
-            <td>
-            	Eliminar
-            </td>
-    	</tr>
+		<thead>
+            <th>Producto</th>
+            <th>Valor Unitario</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </thead>
         <?php 
 
 			foreach ($productos as $idpr) {
@@ -117,114 +54,61 @@ include ("controlador/cfactura.php");
 				<td>".$idpr["valor_total"]."</td><td align='center'><img src='image/elimipro.jpg' width='40' height='40'/></td></tr>";
 				
 			}
-				echo "<table border='1' align='center'center'><tr><td colspan='3'><input type='submit' 
-				value='ENVIAR' class='guardar' id='guardar'></input></td></tr><table>";
-		
 		?>
 	</table>
-       <?php 
 
-			foreach ($productos as $idpr => $Cantidad) {
-				echo "<input type=hidden name='producto[".$idpr["producto_id"]."]' value='".$idpr["cantidad"]."'></input>";
-			}
-		
-		?>
-        
-            </form>
+
+
+
+
+		<input class="guardar" id="boton" type="submit" value="Guardar" />
+	</form>
+	</br>
+	</br>
 </div>
 
-<div name="derecha" id="derecha">
+<div id="derecha">
+<div id="clienteFac" style = "display:none">
+	<form name="form1" action="home.php?pac=114" method="POST">
+<h3>CLIENTE</h3>
+        <label>Tipo de Documento&nbsp;</label> 
+        <select name="tipo_documento" id="tipo_documento" required="required">
+        <option value="">Seleccione</option>
+                          <?php 
+                            //Select
+                            //$document = $ins->selparametro(1);
+                            for ($i=0; $i < count($document); $i++){
+                         ?>
+                              <option value="<?php echo $document[$i]['idvalor']; ?>" <?php if($editar[0]['tipo_documento']==$document[$i]['idvalor']) echo 'selected'; ?> ><?php echo $document[$i]['nomvalor']; ?></option>
 
-<form name="form1" action="" method="post">
-
-        
-        <table align="center" width="300">
-            <tr>
-                <td>
-                    <H3 style="font-family:'Comic Sans MS', cursive; font-size:22px" align="center">Factura de Venta<H3> 
-        
-                </td>
-            <tr>
-            <tr>
-                <td align="center">
-                    <img src="image/codbar.jpg" width="200" height="50">
-                </td>
-            </tr>
-            <tr>
-                        <input type=hidden name="fecha" value="select now();"></input>
-                    
-                        <input type=hidden name="subtotal" value="0.0"></input>
-                   
-                        <input type=hidden name="total" value="0.0"></input>
-                    
-                        <input type=hidden name="iva" value="0.0"></input>
-                    
-                        <input type=hidden name="cliente_id" value="1"></input>
-                   
-                        <input type=hidden name="estado" value="1"></input>
-                  
-                        <input type=hidden name="descuento" value="0.0"></input>
-                    
-                        <input type=hidden name="usuario_id" value="1"></input>
-                        
-                        <input type=hidden name="observacion" value="Escriba su observacion"></input>
-                
-                 <td colspan=3 align="center">
-                        <input class="guardar" id="guardar" type="submit" value="Generar"></input>
-                 </td>
-            </tr>
-        </table>
-
-<div style="width:400; height:200; float:left"></div>
-
-</form>
-
-<h3 align="center">Informacion Factura</h3>
-<form id="form2" method="get" action="" onsubmit="return confirm('¿Desea Eliminar?')">
-
-	<table width="100" align="center" style="float:left">
-            <tr>
-                <td height="50"><label style="font-family:'Comic Sans MS', cursive; font-size:15px ">
-                No. Factura:</label></td><input name="pac" type="hidden" id="pac" value="103"/></td>
-            </tr>
-            <tr>
-                <td height="59"><label style="font-family:'Comic Sans MS',cursive; font-size:15px ">Fecha:</label></td>
-           </tr>
-           <tr>
-                <td height="20"><label style="font-family:'Comic Sans MS',cursive; font-size:15px ">Estado:</label></td>
-        
-            <?php 
-            //Select
-                $dat = $ins->selfactura();
-                for ($i=0; $i < count($dat); $i++){
-              ?>
-        
-     </table>
-     <table width="300" style="float:left" align="center" border="2">
-            <tr>
-                <td width="150" align="center"><input class="guardar" id="guardar" type="submit" name="del" 
-                value=<?php echo $dat[$i]['id_factura'] ?>></td>
-                <td  width="150" align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_factura'] ?>&pac=103&up=11">
-                <img src="image/editar.jpg" width="40" height="40" style=""/></a>
-                </td>
-            <tr>
-                <td align="center">Eliminar</td>
-                <td align="center">Editar</td>
-            </tr>
-            <tr>
-                <td colspan="2"><?php echo $dat[$i]['fecha'] ?></td>
-           </tr>
-           <tr>
-                <td  height="50"colspan="2" align="center"><?php echo $dat[$i]['estado'] ?></td>
-                
-            <?php  }  ?>
-	 </table>
+                        <?php } ?>
+        </select></br></br>
+        <label>Numero del Documento&nbsp;</label>
+        <input type="hidden" name="actu" value="actu" />
+        <input type="text" style="width:15em;" name="id_cliente"  id="id_cliente_duplicado" required="required"  
+        value="<?php echo $editar[0]['id_cliente']; ?>" readonly="readonly"/></br></br>   
+        <label>Ingrese su Nombre&nbsp;</label>
+        <input type="text" style="width:25em;" name="nombre" id="nombre" required="required"
+        value="<?php echo $editar[0]['nombre']; ?>"/></br></br>
+        <label>Ingrese su Apellido&nbsp;</label>
+        <input type="text" style="width:25em;" name="apellido" id="apellido" required="required" 
+        value="<?php echo $editar[0]['apellido']; ?>"/></br></br>                   
+        <label>Tel&eacute;fono Fijo&nbsp;</label>
+        <input type="text" style="width:13em;" name="telefono_1" id="telefono_1"  required="required"
+        value="<?php echo $editar[0]['telefono_1']; ?>"/></br></br>
+        <label>N&uacute;mero Celular&nbsp;</label>
+        <input type="text" style="width:13em;" name="celular" id="celular" required="required"
+        value="<?php echo $editar[0]['celular']; ?>"/></br></br>
+        <label>Ingrese su Direcci&oacute;n&nbsp;</label>
+        <input type="text" style="width:20em;" name="direccion" id="direccion" required="required"
+        value="<?php echo $editar[0]['direccion']; ?>"/> </br></br>
+        <label>Ingrese su E-mail&nbsp;</label>
+        <input type="email" style="width:25em;" name="e_mail" id="e_mail" required="required"
+        value="<?php echo $editar[0]['e_mail']; ?>"/></br></br>
+        <p>  
+        <input class="guardar" id="boton" type="submit" value="Guardar" />
+        <input class="guardar" type="button" value="Volver" onclick="location = 'home.php?pac=114'"/></br></br>
+        </p> 
 </form>
 </div>
-
-
-
-
-
-
-
+</div>

@@ -41,24 +41,6 @@ function Cargar()
 }
 }
 
-function insertaTipo(){
-	var newTipo = document.getElementById("nuevoPago");
-	if (newTipo = ""){
-		alert("Debe ingresar una nueva forma de pago para guardar");
-	}
-	if (window.XMLHttpRequest){
-		peticion= new XMLHttpRequest();
-	}else{
-		peticion = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	peticion.onreadystatechange=function(){
-		if(peticion.readyState==4&& peticion.status==200){
-			document.getElementById("SelectPagos").innerHTML=peticion.responseText;
-		}
-	}
-	peticion.open("GET","cPago.php?pago=" + newTipo, true);
-	peticion.send();
-}
 </script>
 	<link rel="stylesheet" type="text/css" href="../css/style.css" />
 <div name="izquierda" id="izquierda">
@@ -75,7 +57,7 @@ function insertaTipo(){
         <?php
 			for ($i=0; $i<count($dat); $i++){ 
 		?>
-		<option value = "<?php echo $dat[$i]['idValor']; ?>"><?php echo $dat[$i]['descripcion']; ?></option>
+		<option value = "<?php echo $dat[$i]['idValor']; ?>"><?php echo $dat[$i]['nomvalor']; ?></option>
          <?php
 			}
 		?>
@@ -91,3 +73,31 @@ function insertaTipo(){
         </br></br></br></br></br></br><input class="guardar" type="submit"  id="guardar" value="Guardar">
     </form>
 </div>
+
+<script>
+    function AgregaPago(num){
+        var postForm = { //Fetch form data
+            'datos'  : $("#new_pago"),
+        };
+        $.ajax({
+        url: "controlador/AgregaPago.php",
+        type: "post",
+        data: postForm,
+        success: function(response){
+            //alert("success");
+            $("#resultado").html(response);
+            var val=$.trim(response);
+            if(val!= ""){
+                $("#divmsg").css({'display':'block',});
+                $("#Factura").focus();
+                $("#Factura").select();
+            }else
+                $("#divmsg").css({'display':'none',});
+        },
+        error:function(){
+            alert("failure");
+            $("#result").html('There is error while submit');
+        }
+    });
+    }
+</script>

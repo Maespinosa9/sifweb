@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-12-2014 a las 19:31:04
--- Versión del servidor: 5.6.21
--- Versión de PHP: 5.6.3
+-- Tiempo de generación: 09-12-2014 a las 08:03:51
+-- Versión del servidor: 5.6.16
+-- Versión de PHP: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -33,7 +33,10 @@ CREATE TABLE IF NOT EXISTS `abono_compra` (
   `orden_id` int(11) NOT NULL,
   `forma_pago` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
-  `observacion` varchar(250) NOT NULL
+  `observacion` varchar(250) NOT NULL,
+  PRIMARY KEY (`id_abono`),
+  KEY `factura_id` (`orden_id`),
+  KEY `usuario_id` (`usuario_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -47,7 +50,9 @@ CREATE TABLE IF NOT EXISTS `abono_venta` (
   `valor` decimal(10,2) NOT NULL,
   `fecha` datetime NOT NULL,
   `factura_id` int(11) NOT NULL,
-  `observacion` varchar(250) NOT NULL
+  `observacion` varchar(250) NOT NULL,
+  PRIMARY KEY (`id_abono`),
+  KEY `factura_id` (`factura_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -57,14 +62,16 @@ CREATE TABLE IF NOT EXISTS `abono_venta` (
 --
 
 CREATE TABLE IF NOT EXISTS `caja` (
-`id_caja` int(11) NOT NULL,
+  `id_caja` int(11) NOT NULL AUTO_INCREMENT,
   `base` decimal(10,2) NOT NULL,
   `fecha` datetime NOT NULL,
   `venta` decimal(10,2) NOT NULL,
   `gasto` decimal(10,2) NOT NULL,
   `observacion` varchar(250) NOT NULL,
-  `usuario_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `usuario_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_caja`),
+  KEY `usuario_id` (`usuario_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -73,9 +80,10 @@ CREATE TABLE IF NOT EXISTS `caja` (
 --
 
 CREATE TABLE IF NOT EXISTS `categoria_producto` (
-`id_categoria` int(11) NOT NULL,
-  `descripcion` varchar(30) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(30) NOT NULL,
+  PRIMARY KEY (`id_categoria`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcado de datos para la tabla `categoria_producto`
@@ -98,7 +106,8 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `telefono_1` varchar(30) DEFAULT NULL,
   `celular` varchar(30) DEFAULT NULL,
   `direccion` varchar(30) DEFAULT NULL,
-  `e_mail` varchar(30) DEFAULT NULL
+  `e_mail` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id_cliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -108,12 +117,15 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 --
 
 CREATE TABLE IF NOT EXISTS `detalle_venta` (
-`id_detalle` int(11) NOT NULL,
+  `id_detalle` int(11) NOT NULL AUTO_INCREMENT,
   `producto_id` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `valor_unitario` double DEFAULT NULL,
-  `factura_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `factura_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_detalle`),
+  KEY `producto_id` (`producto_id`),
+  KEY `factura_id` (`factura_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -122,12 +134,15 @@ CREATE TABLE IF NOT EXISTS `detalle_venta` (
 --
 
 CREATE TABLE IF NOT EXISTS `det_compra` (
-`id_deta_compra` int(11) NOT NULL,
+  `id_deta_compra` int(11) NOT NULL AUTO_INCREMENT,
   `producto_id` int(11) NOT NULL,
   `cantidad` int(11) DEFAULT NULL,
   `valor_unitario` decimal(10,2) NOT NULL,
-  `orden_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `orden_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_deta_compra`),
+  KEY `producto_id` (`producto_id`),
+  KEY `orden_id` (`orden_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `det_compra`
@@ -144,17 +159,51 @@ INSERT INTO `det_compra` (`id_deta_compra`, `producto_id`, `cantidad`, `valor_un
 --
 
 CREATE TABLE IF NOT EXISTS `fac_venta` (
-`id_factura` int(11) NOT NULL,
+  `id_factura` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` datetime NOT NULL,
   `subtotal` decimal(10,2) NOT NULL,
   `total` decimal(10,2) NOT NULL,
   `iva` decimal(10,2) NOT NULL,
-  `cliente_id` int(11) NOT NULL,
+  `cliente_id` int(11) DEFAULT NULL,
   `estado` int(11) NOT NULL,
   `descuento` decimal(10,2) NOT NULL,
   `usuario_id` int(11) NOT NULL,
-  `observacion` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `observacion` varchar(250) NOT NULL,
+  PRIMARY KEY (`id_factura`),
+  KEY `cliente_id` (`cliente_id`),
+  KEY `usuario_id` (`usuario_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+
+--
+-- Volcado de datos para la tabla `fac_venta`
+--
+
+INSERT INTO `fac_venta` (`id_factura`, `fecha`, `subtotal`, `total`, `iva`, `cliente_id`, `estado`, `descuento`, `usuario_id`, `observacion`) VALUES
+(15, '2014-12-09 06:52:15', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(16, '2014-12-09 06:59:52', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(17, '2014-12-09 07:00:28', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(18, '2014-12-09 07:06:11', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(19, '2014-12-09 01:07:49', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(21, '2014-12-09 01:24:45', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(22, '2014-12-09 01:26:15', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(23, '2014-12-09 01:27:10', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(24, '2014-12-09 01:41:00', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(25, '2014-12-09 01:44:22', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(26, '2014-12-09 01:44:58', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(27, '2014-12-09 01:48:56', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(28, '2014-12-09 01:49:52', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(29, '2014-12-09 01:50:08', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(30, '2014-12-09 01:51:15', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(31, '2014-12-09 01:51:29', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(32, '2014-12-09 01:52:51', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(33, '2014-12-09 01:53:23', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(34, '2014-12-09 01:53:35', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(35, '2014-12-09 01:53:55', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(36, '2014-12-09 01:54:08', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(37, '2014-12-09 01:54:33', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(38, '2014-12-09 01:54:49', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(39, '2014-12-09 01:55:06', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0'),
+(40, '2014-12-09 01:55:33', '0.00', '0.00', '0.00', NULL, 1, '0.00', 123456, '0');
 
 -- --------------------------------------------------------
 
@@ -163,13 +212,15 @@ CREATE TABLE IF NOT EXISTS `fac_venta` (
 --
 
 CREATE TABLE IF NOT EXISTS `inventario` (
-`id_inventario` int(11) NOT NULL,
+  `id_inventario` int(11) NOT NULL AUTO_INCREMENT,
   `producto_id` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `cantidad` int(11) NOT NULL,
   `entrada` tinyint(1) NOT NULL,
-  `observacion` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `observacion` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id_inventario`),
+  KEY `producto_id` (`producto_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `inventario`
@@ -187,13 +238,15 @@ INSERT INTO `inventario` (`id_inventario`, `producto_id`, `fecha`, `cantidad`, `
 --
 
 CREATE TABLE IF NOT EXISTS `lote` (
-`id_lote` int(11) NOT NULL,
+  `id_lote` int(11) NOT NULL AUTO_INCREMENT,
   `vencimiento` date NOT NULL,
   `dias` tinyint(4) NOT NULL,
   `estado` tinyint(1) NOT NULL,
   `observacion` varchar(250) NOT NULL,
-  `producto_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `producto_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_lote`),
+  KEY `producto_id` (`producto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -202,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `lote` (
 --
 
 CREATE TABLE IF NOT EXISTS `orden_compra` (
-`id_orden` int(11) NOT NULL,
+  `id_orden` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_factura` date NOT NULL,
   `vencimiento` date NOT NULL,
   `factura` varchar(30) NOT NULL,
@@ -215,8 +268,11 @@ CREATE TABLE IF NOT EXISTS `orden_compra` (
   `observacion` varchar(250) DEFAULT NULL,
   `vendedor` varchar(50) NOT NULL,
   `ajuste` decimal(10,2) NOT NULL,
-  `nit_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+  `nit_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_orden`),
+  KEY `usuario_id` (`usuario_id`),
+  KEY `nit_id` (`nit_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Volcado de datos para la tabla `orden_compra`
@@ -240,9 +296,10 @@ INSERT INTO `orden_compra` (`id_orden`, `fecha_factura`, `vencimiento`, `factura
 --
 
 CREATE TABLE IF NOT EXISTS `pagina` (
-`idPagina` int(11) NOT NULL,
-  `url` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idPagina` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idPagina`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -251,10 +308,13 @@ CREATE TABLE IF NOT EXISTS `pagina` (
 --
 
 CREATE TABLE IF NOT EXISTS `pagina_perfil` (
-`idPagina_perfil` int(11) NOT NULL,
+  `idPagina_perfil` int(11) NOT NULL AUTO_INCREMENT,
   `idPerfil` int(11) NOT NULL,
-  `idPagina` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idPagina` int(11) NOT NULL,
+  PRIMARY KEY (`idPagina_perfil`),
+  KEY `idPerfil` (`idPerfil`),
+  KEY `idPagina` (`idPagina`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -263,12 +323,13 @@ CREATE TABLE IF NOT EXISTS `pagina_perfil` (
 --
 
 CREATE TABLE IF NOT EXISTS `pago` (
-`id_pago` int(11) NOT NULL,
+  `id_pago` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(300) DEFAULT NULL,
   `valor` decimal(10,2) NOT NULL,
   `fecha` datetime NOT NULL,
-  `tipo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `tipo` int(11) NOT NULL,
+  PRIMARY KEY (`id_pago`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -277,10 +338,11 @@ CREATE TABLE IF NOT EXISTS `pago` (
 --
 
 CREATE TABLE IF NOT EXISTS `parametro` (
-`idParametro` int(11) NOT NULL,
+  `idParametro` int(11) NOT NULL AUTO_INCREMENT,
   `nomparametro` varchar(100) DEFAULT NULL,
-  `parametro_fijo` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+  `parametro_fijo` int(1) NOT NULL,
+  PRIMARY KEY (`idParametro`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Volcado de datos para la tabla `parametro`
@@ -296,9 +358,10 @@ INSERT INTO `parametro` (`idParametro`, `nomparametro`, `parametro_fijo`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `perfil` (
-`id_perfil` int(11) NOT NULL,
-  `descripcion` varchar(30) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `id_perfil` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(30) NOT NULL,
+  PRIMARY KEY (`id_perfil`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `perfil`
@@ -315,13 +378,15 @@ INSERT INTO `perfil` (`id_perfil`, `descripcion`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `producto` (
-`id_producto` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL AUTO_INCREMENT,
   `codigo_barras` varchar(50) NOT NULL,
   `descripcion` varchar(100) DEFAULT NULL,
   `precio_venta` decimal(10,2) DEFAULT NULL,
   `impuesto` float NOT NULL,
-  `categoria_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `categoria_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_producto`),
+  KEY `categoria_id` (`categoria_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `producto`
@@ -346,7 +411,8 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
   `direccion` varchar(30) DEFAULT NULL,
   `e_mail` varchar(30) DEFAULT NULL,
   `observaciones` varchar(100) DEFAULT NULL,
-  `contacto` varchar(50) NOT NULL
+  `contacto` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_nit`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -373,7 +439,8 @@ CREATE TABLE IF NOT EXISTS `tienda` (
   `regimen` varchar(50) DEFAULT NULL,
   `resolucion` varchar(200) DEFAULT NULL,
   `logo` varchar(250) DEFAULT NULL,
-  `administrador` varchar(50) NOT NULL
+  `administrador` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_nit`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -403,7 +470,9 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `perfil_id` int(11) NOT NULL,
   `fecha_ingreso` datetime NOT NULL,
   `salario` decimal(10,2) NOT NULL,
-  `activo` tinyint(1) NOT NULL
+  `activo` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id_usuario`),
+  KEY `perfil_id` (`perfil_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -424,11 +493,13 @@ INSERT INTO `usuario` (`id_usuario`, `tipo_document`, `nombre`, `apellido`, `tel
 --
 
 CREATE TABLE IF NOT EXISTS `valor` (
-`idValor` int(11) NOT NULL,
+  `idValor` int(11) NOT NULL AUTO_INCREMENT,
   `nomvalor` varchar(100) DEFAULT NULL,
   `idParametro` int(11) NOT NULL,
-  `valor_fijo` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `valor_fijo` int(1) NOT NULL,
+  PRIMARY KEY (`idValor`),
+  KEY `idParametro` (`idParametro`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `valor`
@@ -439,215 +510,6 @@ INSERT INTO `valor` (`idValor`, `nomvalor`, `idParametro`, `valor_fijo`) VALUES
 (2, 'Nit', 1, 0);
 
 --
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `abono_compra`
---
-ALTER TABLE `abono_compra`
- ADD PRIMARY KEY (`id_abono`), ADD KEY `factura_id` (`orden_id`), ADD KEY `usuario_id` (`usuario_id`);
-
---
--- Indices de la tabla `abono_venta`
---
-ALTER TABLE `abono_venta`
- ADD PRIMARY KEY (`id_abono`), ADD KEY `factura_id` (`factura_id`);
-
---
--- Indices de la tabla `caja`
---
-ALTER TABLE `caja`
- ADD PRIMARY KEY (`id_caja`), ADD KEY `usuario_id` (`usuario_id`);
-
---
--- Indices de la tabla `categoria_producto`
---
-ALTER TABLE `categoria_producto`
- ADD PRIMARY KEY (`id_categoria`);
-
---
--- Indices de la tabla `cliente`
---
-ALTER TABLE `cliente`
- ADD PRIMARY KEY (`id_cliente`);
-
---
--- Indices de la tabla `detalle_venta`
---
-ALTER TABLE `detalle_venta`
- ADD PRIMARY KEY (`id_detalle`), ADD KEY `producto_id` (`producto_id`), ADD KEY `factura_id` (`factura_id`);
-
---
--- Indices de la tabla `det_compra`
---
-ALTER TABLE `det_compra`
- ADD PRIMARY KEY (`id_deta_compra`), ADD KEY `producto_id` (`producto_id`), ADD KEY `orden_id` (`orden_id`);
-
---
--- Indices de la tabla `fac_venta`
---
-ALTER TABLE `fac_venta`
- ADD PRIMARY KEY (`id_factura`), ADD KEY `cliente_id` (`cliente_id`), ADD KEY `usuario_id` (`usuario_id`);
-
---
--- Indices de la tabla `inventario`
---
-ALTER TABLE `inventario`
- ADD PRIMARY KEY (`id_inventario`), ADD KEY `producto_id` (`producto_id`);
-
---
--- Indices de la tabla `lote`
---
-ALTER TABLE `lote`
- ADD PRIMARY KEY (`id_lote`), ADD KEY `producto_id` (`producto_id`);
-
---
--- Indices de la tabla `orden_compra`
---
-ALTER TABLE `orden_compra`
- ADD PRIMARY KEY (`id_orden`), ADD KEY `usuario_id` (`usuario_id`), ADD KEY `nit_id` (`nit_id`);
-
---
--- Indices de la tabla `pagina`
---
-ALTER TABLE `pagina`
- ADD PRIMARY KEY (`idPagina`);
-
---
--- Indices de la tabla `pagina_perfil`
---
-ALTER TABLE `pagina_perfil`
- ADD PRIMARY KEY (`idPagina_perfil`), ADD KEY `idPerfil` (`idPerfil`), ADD KEY `idPagina` (`idPagina`);
-
---
--- Indices de la tabla `pago`
---
-ALTER TABLE `pago`
- ADD PRIMARY KEY (`id_pago`);
-
---
--- Indices de la tabla `parametro`
---
-ALTER TABLE `parametro`
- ADD PRIMARY KEY (`idParametro`);
-
---
--- Indices de la tabla `perfil`
---
-ALTER TABLE `perfil`
- ADD PRIMARY KEY (`id_perfil`);
-
---
--- Indices de la tabla `producto`
---
-ALTER TABLE `producto`
- ADD PRIMARY KEY (`id_producto`), ADD KEY `categoria_id` (`categoria_id`);
-
---
--- Indices de la tabla `proveedor`
---
-ALTER TABLE `proveedor`
- ADD PRIMARY KEY (`id_nit`);
-
---
--- Indices de la tabla `tienda`
---
-ALTER TABLE `tienda`
- ADD PRIMARY KEY (`id_nit`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
- ADD PRIMARY KEY (`id_usuario`), ADD KEY `perfil_id` (`perfil_id`);
-
---
--- Indices de la tabla `valor`
---
-ALTER TABLE `valor`
- ADD PRIMARY KEY (`idValor`), ADD KEY `idParametro` (`idParametro`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `caja`
---
-ALTER TABLE `caja`
-MODIFY `id_caja` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `categoria_producto`
---
-ALTER TABLE `categoria_producto`
-MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT de la tabla `detalle_venta`
---
-ALTER TABLE `detalle_venta`
-MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `det_compra`
---
-ALTER TABLE `det_compra`
-MODIFY `id_deta_compra` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `fac_venta`
---
-ALTER TABLE `fac_venta`
-MODIFY `id_factura` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT de la tabla `inventario`
---
-ALTER TABLE `inventario`
-MODIFY `id_inventario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT de la tabla `lote`
---
-ALTER TABLE `lote`
-MODIFY `id_lote` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `orden_compra`
---
-ALTER TABLE `orden_compra`
-MODIFY `id_orden` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT de la tabla `pagina`
---
-ALTER TABLE `pagina`
-MODIFY `idPagina` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `pagina_perfil`
---
-ALTER TABLE `pagina_perfil`
-MODIFY `idPagina_perfil` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `pago`
---
-ALTER TABLE `pago`
-MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `parametro`
---
-ALTER TABLE `parametro`
-MODIFY `idParametro` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
---
--- AUTO_INCREMENT de la tabla `perfil`
---
-ALTER TABLE `perfil`
-MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `producto`
---
-ALTER TABLE `producto`
-MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT de la tabla `valor`
---
-ALTER TABLE `valor`
-MODIFY `idValor` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
 -- Restricciones para tablas volcadas
 --
 
@@ -655,85 +517,85 @@ MODIFY `idValor` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- Filtros para la tabla `abono_compra`
 --
 ALTER TABLE `abono_compra`
-ADD CONSTRAINT `abono_compra_ibfk_1` FOREIGN KEY (`orden_id`) REFERENCES `orden_compra` (`id_orden`),
-ADD CONSTRAINT `abono_compra_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`);
+  ADD CONSTRAINT `abono_compra_ibfk_1` FOREIGN KEY (`orden_id`) REFERENCES `orden_compra` (`id_orden`),
+  ADD CONSTRAINT `abono_compra_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`);
 
 --
 -- Filtros para la tabla `abono_venta`
 --
 ALTER TABLE `abono_venta`
-ADD CONSTRAINT `abono_venta_ibfk_1` FOREIGN KEY (`factura_id`) REFERENCES `fac_venta` (`id_factura`);
+  ADD CONSTRAINT `abono_venta_ibfk_1` FOREIGN KEY (`factura_id`) REFERENCES `fac_venta` (`id_factura`);
 
 --
 -- Filtros para la tabla `caja`
 --
 ALTER TABLE `caja`
-ADD CONSTRAINT `caja_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`);
+  ADD CONSTRAINT `caja_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`);
 
 --
 -- Filtros para la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-ADD CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`factura_id`) REFERENCES `fac_venta` (`id_factura`),
-ADD CONSTRAINT `detalle_venta_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`);
+  ADD CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`factura_id`) REFERENCES `fac_venta` (`id_factura`),
+  ADD CONSTRAINT `detalle_venta_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`);
 
 --
 -- Filtros para la tabla `det_compra`
 --
 ALTER TABLE `det_compra`
-ADD CONSTRAINT `det_compra_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`),
-ADD CONSTRAINT `det_compra_ibfk_2` FOREIGN KEY (`orden_id`) REFERENCES `orden_compra` (`id_orden`);
+  ADD CONSTRAINT `det_compra_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`),
+  ADD CONSTRAINT `det_compra_ibfk_2` FOREIGN KEY (`orden_id`) REFERENCES `orden_compra` (`id_orden`);
 
 --
 -- Filtros para la tabla `fac_venta`
 --
 ALTER TABLE `fac_venta`
-ADD CONSTRAINT `fac_venta_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`),
-ADD CONSTRAINT `fac_venta_ibfk_2` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id_cliente`);
+  ADD CONSTRAINT `fac_venta_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`),
+  ADD CONSTRAINT `fac_venta_ibfk_2` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id_cliente`);
 
 --
 -- Filtros para la tabla `inventario`
 --
 ALTER TABLE `inventario`
-ADD CONSTRAINT `inventario_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`);
+  ADD CONSTRAINT `inventario_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`);
 
 --
 -- Filtros para la tabla `lote`
 --
 ALTER TABLE `lote`
-ADD CONSTRAINT `lote_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`);
+  ADD CONSTRAINT `lote_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id_producto`);
 
 --
 -- Filtros para la tabla `orden_compra`
 --
 ALTER TABLE `orden_compra`
-ADD CONSTRAINT `orden_compra_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`),
-ADD CONSTRAINT `orden_compra_ibfk_2` FOREIGN KEY (`nit_id`) REFERENCES `proveedor` (`id_nit`);
+  ADD CONSTRAINT `orden_compra_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id_usuario`),
+  ADD CONSTRAINT `orden_compra_ibfk_2` FOREIGN KEY (`nit_id`) REFERENCES `proveedor` (`id_nit`);
 
 --
 -- Filtros para la tabla `pagina_perfil`
 --
 ALTER TABLE `pagina_perfil`
-ADD CONSTRAINT `pagina_perfil_ibfk_1` FOREIGN KEY (`idPerfil`) REFERENCES `perfil` (`id_perfil`),
-ADD CONSTRAINT `pagina_perfil_ibfk_2` FOREIGN KEY (`idPagina`) REFERENCES `pagina` (`idPagina`);
+  ADD CONSTRAINT `pagina_perfil_ibfk_1` FOREIGN KEY (`idPerfil`) REFERENCES `perfil` (`id_perfil`),
+  ADD CONSTRAINT `pagina_perfil_ibfk_2` FOREIGN KEY (`idPagina`) REFERENCES `pagina` (`idPagina`);
 
 --
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria_producto` (`id_categoria`);
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria_producto` (`id_categoria`);
 
 --
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`perfil_id`) REFERENCES `perfil` (`id_perfil`);
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`perfil_id`) REFERENCES `perfil` (`id_perfil`);
 
 --
 -- Filtros para la tabla `valor`
 --
 ALTER TABLE `valor`
-ADD CONSTRAINT `valor_ibfk_1` FOREIGN KEY (`idParametro`) REFERENCES `parametro` (`idParametro`);
+  ADD CONSTRAINT `valor_ibfk_1` FOREIGN KEY (`idParametro`) REFERENCES `parametro` (`idParametro`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
