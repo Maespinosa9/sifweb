@@ -70,7 +70,7 @@ include ("controlador/cOrdenCompra.php");
 </tr></table>
 <br><br>
     <table cellpadding="8" align="center">
-        <form id="formfil" name="formfil" method="GET" action="home.php" onSubmit="return confirm('¿Desea eliminar?')">
+        <form id="formfil" name="formfil" method="GET" action="" onSubmit="return confirm('¿Desea eliminar?')">
         <thead>
             <th>Nro. Factura</th>
             <th>Pagada</th>
@@ -92,6 +92,7 @@ include ("controlador/cOrdenCompra.php");
                 <td><?php echo $dat[$i]['total']; ?></td>
                 <td><?php echo $dat[$i]['razon_social']; ?></td>
                 <td align = "center">
+                <a href="home.php?er=<?php echo $dat[$i]['id_orden'] ?>&pac=112"><img src="image/abono.png" title="Agregar Abono"></a>
                 <a href="home.php?or=<?php echo $dat[$i]['id_orden'] ?>&pac=110"><img src="image/plusmen.png" title="Agregar Detalles"></a>
                 <a href = "home.php?pr=<?php echo $dat[$i]['id_orden'] ?>&pac=<?php echo $pac; ?>&up=11"><img src="image/editar.png" name="editar" title = "Editar"></a>
                <a href = "home.php?del=<?php echo $dat[$i]['id_orden'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="del" title= "Eliminar"></a></td>
