@@ -20,6 +20,10 @@ $( window ).load(function() {
 });
 
 function agregaProducto(){
+if ($("#CodigoProducto").val() == '' || $("#cantidad").val() == '' ){
+    alert("Debe Ingresar un Producto e ingresar la cantidad a vender");
+    $("#CodigoProducto").focus();
+}else{
 	var postForm = { //Fetch form data
             'CodigoProducto'  : $("#CodigoProducto").val(),
             'Cantidad' : $("#cantidad").val(),
@@ -42,6 +46,7 @@ function agregaProducto(){
         }
     });
 }
+}
 
 function pintaDatos(){
      var postForm = { //Fetch form data
@@ -52,7 +57,7 @@ function pintaDatos(){
         type: "post",
         data: postForm,
         success: function(response){
-            $("#tablaDetalle").append(response);
+            $("#tablaDetalle").html(response);
         },
         error:function(){
             alert("failure");
@@ -73,8 +78,8 @@ function pintaDatos(){
 	<form name "form4" action="" method="post">
 		<label  for="CodigoProducto" style ="margin-right: 4.2em">Producto</label>
 		<input type="text" name="CodigoProducto" id="CodigoProducto" style = "margin-right: 4em"  required="required"/>
-		  </br>   </br><label  for="cantidad" style ="margin-right: 4em">Cantidad</label>
-		<input type="text" name="cantidad" id="cantidad" size="10px" required="required" onblur = "agregaProducto()" >
+		  </br></br><label  for="cantidad" style ="margin-right: 4em">Cantidad</label>
+		<input type="number" min="0" width="25em" name="cantidad" id="cantidad" size="10px" required="required" onblur = "agregaProducto()" >
 	</br></br></br>
 	<table cellpadding="8" align="center" id="tablaDetalle">
 		<thead>
@@ -86,13 +91,14 @@ function pintaDatos(){
         </thead>
 	</table>
 
-
+<div style="position:absolute; bottom:0px; left:50px;">
 		<input class="guardar" id="boton" type="submit" value="Guardar" />
+    </div>
 	</form>
 	</br>
 	</br>
 </div>
-
+</div>
 <div id="derecha">
 <div id="clienteFac" style = "display:none">
 	<form name="form1" action="home.php?pac=114" method="POST">

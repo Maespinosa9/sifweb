@@ -2,7 +2,7 @@
 include ("controlador/cOrdenCompra.php");
 ?>
 
-<div name="OrdenCompra" id="izquierda">
+<div name="izquierda" id="izquierda">
 <h3>INGRESAR ORDEN DE COMPRA</h3>
 
 <form name="OrdenCompra" action="" method="post">
@@ -100,7 +100,7 @@ include ("controlador/cOrdenCompra.php");
         <?php } ?>
         </form>
     </table>
-    <div id="paginar" style="position:absolute; bottom:0px; right:50px;">
+    <div id="paginar" style="position:inherit; bottom:0px; right:50px;">
         <td align="bottom" valign="bottom">
             <?php
             $bo = "<input type='hidden' name='filtro' value='".$filtro."' />";

@@ -44,6 +44,13 @@ if ($datos == "Factura"){
 if ($datos == "pinta"){
 	$factu = selfactura();
 	$resultado = selDetalles($factu[0]['id_factura']);
+	echo "<thead>
+            <th>Producto</th>
+            <th>Valor Unitario</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </thead>";
 	for ($i = 0; $i<count($resultado); $i++){
 		echo "<tr><td>";
 		echo $resultado[$i]['descripcion']."</td><td>";
