@@ -76,7 +76,7 @@ function pintaDatos(){
 		  </br>   </br><label  for="cantidad" style ="margin-right: 4em">Cantidad</label>
 		<input type="text" name="cantidad" id="cantidad" size="10px" required="required" onblur = "agregaProducto()" >
 	</br></br></br>
-	<table align="center" border="2" id="tablaDetalle">
+	<table cellpadding="8" align="center" id="tablaDetalle">
 		<thead>
             <th>Producto</th>
             <th>Valor Unitario</th>
@@ -85,9 +85,6 @@ function pintaDatos(){
             <th>Acciones</th>
         </thead>
 	</table>
-
-
-
 
 
 		<input class="guardar" id="boton" type="submit" value="Guardar" />

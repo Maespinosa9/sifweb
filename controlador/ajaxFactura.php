@@ -3,8 +3,8 @@ include_once("conexion.php");
 include_once("../modelo/mseguridad.php");
 
 $datos=$_POST["datos"];
-$Codigo=$_POST["CodigoProducto"] ? $_POST["CodigoProducto"]:NULL ;
-$Cantidad=$_POST["Cantidad"] ? $_POST["Cantidad"]:NULL ;
+$Codigo=isset($_POST["CodigoProducto"]) ? $_POST["CodigoProducto"]:NULL ;
+$Cantidad=isset($_POST["Cantidad"]) ? $_POST["Cantidad"]:NULL ;
 
 if ($datos == "detalle"){
 		$data2 = selProducto($Codigo); 
@@ -44,7 +44,14 @@ if ($datos == "Factura"){
 if ($datos == "pinta"){
 	$factu = selfactura();
 	$resultado = selDetalles($factu[0]['id_factura']);
-	return $resultado;
+	for ($i = 0; $i<count($resultado); $i++){
+		echo "<tr><td>";
+		echo $resultado[$i]['descripcion']."</td><td>";
+		echo $resultado [$i]['valor_unitario']."</td><td>";
+		echo $resultado[$i]['cantidad']."</td><td>";
+		echo $resultado[$i]['cantidad'] * $resultado [$i]['valor_unitario']."</td><td align ='center'>";
+		echo "<img src='image/eliminar.png' name='del' title= 'Eliminar'></td></tr>";
+	}
 }
 
 
@@ -100,9 +107,10 @@ function actualizaInventario ($id_producto, $cantidad){
 }
 
 function selDetalles ($idfactura){
-	$sql = "SELECT * from detalle_venta WHERE factura_id = '".$idfactura."'";
+	$sql = "SELECT detalle_venta.*, producto.descripcion from detalle_venta inner join producto on detalle_venta.producto_id = producto.id_producto ";
+	$sql .= "WHERE factura_id = '".$idfactura."'";
 	$conexionBD = new conexion();
 	$conexionBD->conectarBD();
-	$data = $conexionBD->ejeCon($valida, 0);
+	$data = $conexionBD->ejeCon($sql, 0);
 	return $data;
 }
