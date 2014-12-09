@@ -58,7 +58,7 @@
               <th>Raz&oacute;n Social</th>
               <th>Telefono_1</th>
               <th>Contacto</th>
-              <th>Editar</th>
+              <th>Acciones</th>
            </thead>
           <?php 
   //Select
@@ -67,17 +67,16 @@
     ?>   
           <tbody>
          <tr>
-             <td class="style2" align="center"><input type="submit" name="delete" value=<?php echo $dat[$i]['id_nit'] ?>></td>
+             <td class="style2" align="center"><?php echo $dat[$i]['id_nit'] ?></td>
              <td class="style1" align="center"><?php echo $dat[$i]['razon_social']  ?></td>
              <td class="style2" align="center"><?php echo $dat[$i]['telefono_1']  ?></td>
              <td class="style2" align="center"><?php echo $dat[$i]['contacto'] ?></td>
-             <td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_nit'] ?>&pac=101&up=11"><img border=0 src="image/editar.png" width="16" height="16" /></a></td> 
+             <td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_nit'] ?>&pac=101&up=11"><img border=0 src="image/editar.png" name="editar" title= "Editar" /></a>
+                                <a href="home.php?delete=<?php echo $dat[$i]['id_nit'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="delete" title= "Eliminar"></a></td> 
             </tr>  
            <tbody>
               <?php  }  ?>
-           <tr>
-        <td colspan=9 class="style2">Para eliminar presione el n&uacute;mero del c&oacute;digo.</td>
-           </tr>
+     
     </form>
     </table>
  </div>

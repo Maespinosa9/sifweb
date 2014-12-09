@@ -66,6 +66,13 @@ $perusu = isset($_SESSION["perfil"]) ? $_SESSION["perfil"]:NULL;?>
       } else {
         include("vista/vinventario1.php");
       }
+    }else if ($Pac == "112"){
+       if (is_null($Up)) {
+        include("vista/vabonocompra.php");
+      } else {
+        include("vista/vabonocompra1.php");
+      }
+      
     }else if ($Pac == "113"){
       include("vista/vcaja.php");
     }else if ($Pac == "114"){

@@ -47,26 +47,25 @@
 	              	<th>Cantidad</th>
 	              	<th>Entrada</th>
 	              	<th>Observacion</th>
-	              	<th>Editar</th>
+	              	<th>Acciones</th>
 	            </thead>
 	    	    <?php 
 					for ($i=0; $i < count($tabla); $i++){
 		  		?>   
 		        <tbody>
                   <tr>
-	            	<td class="style2" align="center"><input type="submit" name="delete" value=<?php echo $tabla[$i]['id_inventario'] ?>></td>
+	            	<td class="style2" align="center"><?php echo $tabla[$i]['id_inventario'] ?></td>
 	             	<td class="style1" align="center"><?php echo $tabla[$i]['codigo_barras']." - ". $tabla[$i]['descripcion']?></td>
 	             	<td class="style2" align="center"><?php echo $tabla[$i]['fecha']  ?></td>
 	             	<td class="style2" align="center"><?php echo $tabla[$i]['cantidad'] ?></td>
 	             	<td class="style2" align="center"><?php echo $tabla[$i]['entrada'] ?></td>
 	             	<td class="style2" align="center"><?php echo $tabla[$i]['observacion'] ?></td>
-	             	<td align="center"><a href="home.php?pr=<?php echo $tabla[$i]['id_inventario'] ?>&pac=<?php echo $pac; ?>&up=11"><img border=0 src="image/editar.png" width="16" height="16" /></a></td>
+	             	<td align="center"><a href="home.php?pr=<?php echo $tabla[$i]['id_inventario'] ?>&pac=<?php echo $pac; ?>&up=11"><img border=0 src="image/editar.png" name="editar" title= "Editar"/>
+	             	    <a href="home.php?delete=<?php echo $tabla[$i]['id_inventario'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="delete" title= "Eliminar"></a></td>
 	              </tr>
                 </tbody>
 	            <?php } ?>
-	            <tr>
-			    	<td colspan=9 class="style2">Para eliminar presione el n&uacute;mero del c&oacute;digo.</td>
-	           	</tr>
+	     
          </form>
     </table>
  </div>

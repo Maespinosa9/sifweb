@@ -7,6 +7,7 @@
       $ins->delete_proveedor($delete);
     }
 
+    $pac = 101;
     $id_nit = isset($_POST["id_nit"]) ? $_POST["id_nit"]:NULL;
     $tipo_documento = isset($_POST["tipo_documento"]) ? $_POST["tipo_documento"]:NULL;
     $razon_social = isset($_POST["razon_social"]) ? $_POST["razon_social"]:NULL;
