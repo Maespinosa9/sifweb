@@ -50,5 +50,7 @@ class mabonocompra{
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
 	}
+
+
 }
 ?>	

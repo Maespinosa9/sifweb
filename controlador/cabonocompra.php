@@ -7,7 +7,9 @@ include ("/modelo/mabonocompra.php");
 	if ($del){
 		$ins->deltienda($del);
 	}
+
 	$pac = isset ($_GET["pac"]) ? $_GET["pac"]:NULL;
+	$orden_id = isset($_GET["er"]) ? $_GET["er"]:NULL;
 	$id_abono= isset($_POST["id_abono"]) ? $_POST["id_abono"]:NULL;
 	$valor= isset($_POST["valor"]) ? $_POST["valor"]:NULL;
 	$fecha= isset($_POST["fecha"]) ? $_POST["fecha"]:NULL;
@@ -17,9 +19,14 @@ include ("/modelo/mabonocompra.php");
 	$observacion= isset($_POST["observacion"]) ? $_POST["observacion"]:NULL;
 	$actu = isset($_POST["actu"]) ? $_POST["actu"]:NULL;
 	$pr = isset($_GET["pr"]) ? $_GET["pr"]:NULL;
+
+ 
+	
+
 	$dat1 = $ins->usuario();
 	$dat2 = $ins->orden();
 	$dat = $ins->selec();
+
 
 	
 	if ($id_abono && $valor && $fecha && $orden_id && $forma_pago && $usuario_id   &&  !$actu){
