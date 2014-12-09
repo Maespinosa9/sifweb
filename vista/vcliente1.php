@@ -53,9 +53,7 @@
     <thead>
          <th>No. Documento<input name="pac" type="hidden" id="pac" value="114"/></th>
          <th>Nombre</th>
-         <th>Telefono</th>
          <th>Celular</th>
-         <th>Direccion</th>
          <th>Acciones</th>
       </thead>
       <?php 
@@ -66,9 +64,7 @@
             <tr>
             <td class="style2" align="center"><?php echo $dat[$i]['id_cliente'] ?></td>
             <td class="style2" align="center"><?php echo $dat[$i]['nombre'] ?>&nbsp;&nbsp;<?php echo $dat[$i]['apellido'] ?></td>
-            <td class="style2" align="center"><?php echo $dat[$i]['telefono_1'] ?></td>
             <td class="style2" align="center"><?php echo $dat[$i]['celular'] ?></td>
-            <td class="style2" align="center"><?php echo $dat[$i]['direccion'] ?></td>
             <td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_cliente'] ?>&pac=114&up=11"><img border=0 src="image/editar.png" name="editar" title = "Editar"/></a>
                                <a href="home.php?delete=<?php echo $dat[$i]['id_cliente'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="delete" title= "Eliminar"></a></td>
             </tr>

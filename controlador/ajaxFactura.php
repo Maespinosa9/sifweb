@@ -5,6 +5,13 @@ include_once("../modelo/mseguridad.php");
 $datos=$_POST["datos"];
 $Codigo=isset($_POST["CodigoProducto"]) ? $_POST["CodigoProducto"]:NULL ;
 $Cantidad=isset($_POST["Cantidad"]) ? $_POST["Cantidad"]:NULL ;
+$idDetalle=isset($_POST["detalle"]) ? $_POST["detalle"]:NULL ;
+$id_Cliente=isset($_POST["identificacion"]) ? $_POST["identificacion"]:NULL ;
+
+if ($datos == "BuscaCliente"){
+	$cliente = buscarCliente($id_Cliente);
+	echo json_encode($cliente);
+}
 
 if ($datos == "detalle"){
 		$data2 = selProducto($Codigo); 
@@ -28,7 +35,6 @@ if ($datos == "detalle"){
 				cons($update);
 				actualizaInventario($producto, $cant);
 			}
-			echo "";
 		}
 }
 
@@ -57,15 +63,27 @@ if ($datos == "pinta"){
 		echo $resultado [$i]['valor_unitario']."</td><td>";
 		echo $resultado[$i]['cantidad']."</td><td>";
 		echo $resultado[$i]['cantidad'] * $resultado [$i]['valor_unitario']."</td><td align ='center'>";
-		echo "<img src='image/eliminar.png' name='del' title= 'Eliminar'></td></tr>";
+		echo "<button onClick = 'fnElimina(".$resultado[$i]['id_detalle'].");'><img src='image/eliminar.png' name='del' title= 'Eliminar'></td></tr></button>";
 	}
+	$totalVenta = total($factu[0]['id_factura']);
+	echo "<tfoot>
+			<tr>
+				<th colspan='3'>Total</th>
+				<th colspan = '2'>".$totalVenta[0]['valTotal']."
+			</tr>
+		</tfoot>";
 }
 
 
+if ($datos == "elimina"){
+	delDetalle($idDetalle);
+	echo "succes";
+}
+
 function cons($c){
-	$conexionBD = new conexion();
-	$conexionBD->conectarBD();
-	$conexionBD->ejeCon($c,0);
+		$conexionBD = new conexion();
+		$conexionBD->conectarBD();
+		$conexionBD->ejeCon($c,1);
 }
 
 function selfactura(){
@@ -93,6 +111,7 @@ function validaDetalle($id_producto, $idfactura){
 	return $data;
 }
 
+
 function validaInventario($id_producto){
 	$sql = "SELECT cantidad from inventario where producto_id = '".$id_producto."'";
 	$conexionBD = new conexion();
@@ -104,7 +123,6 @@ function validaInventario($id_producto){
 function actualizaInventario ($id_producto, $cantidad){
 	$cantIni = validaInventario($id_producto);
 	$cantFin = $cantIni[0]['cantidad'] - $cantidad;
-	echo $cantFin;
 	if ($cantFin < 0){
 		echo "no se puede actualizar el inventario";
 	}else{
@@ -116,6 +134,28 @@ function actualizaInventario ($id_producto, $cantidad){
 function selDetalles ($idfactura){
 	$sql = "SELECT detalle_venta.*, producto.descripcion from detalle_venta inner join producto on detalle_venta.producto_id = producto.id_producto ";
 	$sql .= "WHERE factura_id = '".$idfactura."'";
+	$conexionBD = new conexion();
+	$conexionBD->conectarBD();
+	$data = $conexionBD->ejeCon($sql, 0);
+	return $data;
+}
+
+function delDetalle($id_detalle){
+		$sql = "DELETE FROM detalle_venta WHERE id_detalle ='".$id_detalle."';";
+		cons($sql);
+}
+
+function total($idfactura){
+	$sql = "SELECT sum(valor_unitario*cantidad) as valTotal from detalle_venta where factura_id = '".$idfactura."'";
+	$conexionBD = new conexion();
+	$conexionBD->conectarBD();
+	$data = $conexionBD->ejeCon($sql, 0);
+	return $data;
+}
+
+
+function buscarCliente($id_cliente){
+	$sql = "SELECT * from cliente Where id_cliente = '".$id_cliente."'";
 	$conexionBD = new conexion();
 	$conexionBD->conectarBD();
 	$data = $conexionBD->ejeCon($sql, 0);
