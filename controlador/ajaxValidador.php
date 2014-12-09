@@ -5,10 +5,10 @@ $funcion = $_POST['funcion'];
 
 
 if ($funcion == "orden_compra"){
+
 	$validar=validaOrden($datos);
 	if(!is_null($validar) && count($validar)!=0)
 		echo "La Factura con n&uacute;mero ".$datos." ya existe";
-
 }
 
 if ($funcion == "deta_compra"){
@@ -41,6 +41,7 @@ function cons($c){
 	$conexionBD->conectarBD();
 	$this->result=$conexionBD->ejeCon($c,0);
 }
+
 
 ?>
 

@@ -1,60 +1,5 @@
 <?php
 include ("modelo/mfactura.php");
-
-$productos = array();
-
-$accion = isset($_POST["accion"])? $_POST["accion"]:NULL;
-
-switch($accion){
-	
-	case "":
-		$_SESSION["sPRODUCTOS"] = null;
-	break;
-	case "delete":
-	
-	break;
-	case "AddProducto":
-		print_r($_POST);
-		
-        $productos = $_SESSION["sPRODUCTOS"];
-		
-		$numpro = count($productos);
-		
-		$productos[$numpro] = array(
-							"producto_id"=>$_POST["producto_id"],
-							"cantidad" => $_POST["cantidad"],
-							"valor_unitario" => $_POST["precio_venta"],
-							"valor_total" => $_POST["cantidad"] * $_POST["precio_venta"]);
-		
-		 $_SESSION["sPRODUCTOS"] = $productos ;
-		 		
-		 print_r($_SESSION);
-				
-	break;
-	case "grabarfactura":
-	
-	$productos = $_SESSION["sPRODUCTOS"];
-		
-			
-			foreach ($productos as $idpr => $Cantidad) {
-				
-				//SELECT `id_detalle`, `producto_id`, `cantidad`, `valor_unitario`, `factura_id` FROM `detalle_venta` WHERE 1
-				$producto_id = isset($_POST["producto_id"])? $_POST["producto_id"]:NULL;
-				$cantidad = isset($_POST["cantidad"])? $_POST["cantidad"]:NULL;
-				$valor_unitario = isset($_POST["valor_unitario"])? $_POST["valor_unitario"]:NULL;
-				$factura_id = isset($_POST["factura_id"])? $_POST["factura_id"]:NULL;
-				$actu = isset($_POST["actu"]) ? $_POST["actu"]:NULL;
-				
-				
-				if ($producto_id && $cantidad && $valor_unitario && $factura_id && !$actu){
-				
-						$ins->insdetalle_venta($producto_id,$cantidad,$valor_unitario,$factura_id);
-				} 
-	
-			}
-	break;
-}
-
 $ins = new mfactura();
 //factura de venta
  $del = isset($_GET["del"]) ? $_GET["del"]:NULL;
@@ -82,7 +27,6 @@ $ins = new mfactura();
     }
 
   
-	$datt = $ins->selfactura1($pr);
 	$dat = $ins->selfactura();
 
 

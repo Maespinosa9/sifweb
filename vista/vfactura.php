@@ -4,7 +4,7 @@ include("controlador/cfactura.php");
 <script type="text/javascript">
 $( window ).load(function() {
       var postForm = { //Fetch form data
-            'datos'  : 'Factura',
+            'datos'  : 'Factura'
         };
         $.ajax({
         url: "controlador/ajaxFactura.php",
@@ -20,26 +20,68 @@ $( window ).load(function() {
 });
 
 function agregaProducto(){
-	
+if ($("#CodigoProducto").val() == '' || $("#cantidad").val() == '' ){
+    alert("Debe Ingresar un Producto e ingresar la cantidad a vender");
+    $("#CodigoProducto").focus();
+}else{
+	var postForm = { //Fetch form data
+            'CodigoProducto'  : $("#CodigoProducto").val(),
+            'Cantidad' : $("#cantidad").val(),
+            'datos' : 'detalle'
+        };
+        $.ajax({
+        url: "controlador/ajaxFactura.php",
+        type: "post",
+        data: postForm,
+        success: function(response){
+            alert(response);
+            $("#CodigoProducto").focus();
+            $("#CodigoProducto").val('');
+            $("#cantidad").val('');
+            pintaDatos();
+        },
+        error:function(){
+            alert("failure");
+            $("#result").html('There is error while submit');
+        }
+    });
+}
+}
+
+function pintaDatos(){
+     var postForm = { //Fetch form data
+            'datos'  : 'pinta'
+        };
+        $.ajax({
+        url: "controlador/ajaxFactura.php",
+        type: "post",
+        data: postForm,
+        success: function(response){
+            $("#tablaDetalle").html(response);
+        },
+        error:function(){
+            alert("failure");
+            $("#result").html('There is error while submit');
+        }
+    });
 }
 </script>
 
 
 <div id="izquierda">	
 	<h3>FACTURA DE VENTA</h3>
-	<form name = "cliente" action="" method ="post">
-		<label for="idCliente">Cliente</label>
+	<form name = "cliente" action="" method ="post" >
+		<label for="idCliente" style ="margin-right: 5em">Cliente</label>
 		<input type="text" name="idCliente" id="idCliente" style="margin-right:20px">
 		<input class="guardar" type="submit" id="guardar" value="Buscar" style="margin:0px">
 	</form>
-	</br>
 	<form name "form4" action="" method="post">
-		<label  for="CodigoProducto">Producto</label>
-		<input type="text" name="CodigoProducto" id="CodigoProducto" style = "margin-right: 4em" />
-		<label  for="cantidad">Cantidad</label>
-		<input type="text" name="cantidad" id="cantidad" onblur = "this.form.accion.value='AddProducto';">
-	</br></br>	</br>
-	<table align="center" border="2">
+		<label  for="CodigoProducto" style ="margin-right: 4.2em">Producto</label>
+		<input type="text" name="CodigoProducto" id="CodigoProducto" style = "margin-right: 4em"  required="required"/>
+		  </br></br><label  for="cantidad" style ="margin-right: 4em">Cantidad</label>
+		<input type="number" min="0" width="25em" name="cantidad" id="cantidad" size="10px" required="required" onblur = "agregaProducto()" >
+	</br></br></br>
+	<table cellpadding="8" align="center" id="tablaDetalle">
 		<thead>
             <th>Producto</th>
             <th>Valor Unitario</th>
@@ -47,26 +89,16 @@ function agregaProducto(){
             <th>Precio</th>
             <th>Acciones</th>
         </thead>
-        <?php 
-
-			foreach ($productos as $idpr) {
-				echo "<tr><td>".$idpr["producto_id"]."</td><td>".$idpr["valor_unitario"]."</td><td>".$idpr["cantidad"]."</td>
-				<td>".$idpr["valor_total"]."</td><td align='center'><img src='image/elimipro.jpg' width='40' height='40'/></td></tr>";
-				
-			}
-		?>
 	</table>
 
-
-
-
-
+<div style="position:absolute; bottom:0px; left:50px;">
 		<input class="guardar" id="boton" type="submit" value="Guardar" />
+    </div>
 	</form>
 	</br>
 	</br>
 </div>
-
+</div>
 <div id="derecha">
 <div id="clienteFac" style = "display:none">
 	<form name="form1" action="home.php?pac=114" method="POST">
