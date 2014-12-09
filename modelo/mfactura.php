@@ -38,25 +38,16 @@ class mfactura {
 	}
 	
 	function selfactura(){
-		$sql = "SELECT * from fac_venta order by id_factura DESC LIMIT 1";
+		$sql = "SELECT id_factura from fac_venta order by id_factura DESC LIMIT 1";
 		$conexionBD = new conexion();
 		$conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
 	}
 	
-	function selfactura1($id_factura){
-		$sql = "SELECT MAX(fac_venta.id_factura) as id_factura, fecha, subtotal, total, iva, cliente_id, estado, descuento, usuario_id, 
-		observacion FROM fac_venta WHERE id_factura='".$id_factura."';";
-		$conexionBD = new conexion();
-		$conexionBD->conectarBD();
-		$data = $conexionBD->ejeCon($sql,0);
-		return $data;
-	}
-//SELECT `id_producto`, `codigo_barras`, `descripcion`, `precio_venta`, `impuesto`, `categoria_id` FROM `producto` WHERE 1
 
-	function selproducto(){
-		$sql = "SELECT id_producto, descripcion FROM producto;";
+	function selproducto($Codigo){
+		$sql = "SELECT id_producto, descripcion FROM producto where codigo_barras = '".$Codigo."'";
 		$conexionBD = new conexion();
 		$conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);
