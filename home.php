@@ -14,7 +14,7 @@ $perusu = isset($_SESSION["perfil"]) ? $_SESSION["perfil"]:NULL;?>
   <div id="cabez">
   </div>
   <div id="inicio">&nbsp;&nbsp;<a id="ini"href="home.php"><img border=0 src="image/home.png" width="30" height="30"/></a></div>
-  <div id="salir"><img border=0 src="image/salir1.png" width="30" height="30"/></div>
+  <div id="salir"><a href='vista/salir.php'><img border=0 src="image/salir1.png"  width="30" height="30"/></a></div>
   <div id="contenidorc">
   <div id="contcen" class="bodytext" style="padding:12px;">
   <?php  
@@ -69,7 +69,11 @@ $perusu = isset($_SESSION["perfil"]) ? $_SESSION["perfil"]:NULL;?>
     }else if ($Pac == "113"){
       include("vista/vcaja.php");
     }else if ($Pac == "114"){
-      include("vista/vcliente.php");
+       if (is_null($Up)) {
+        include("vista/vcliente.php");
+      } else {
+        include("vista/vcliente1.php");
+      }
     }
   ?>
   </div>
