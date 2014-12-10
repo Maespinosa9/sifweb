@@ -8,7 +8,7 @@ $perusu = isset($_SESSION["perfil"]) ? $_SESSION["perfil"]:NULL;?>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link rel="stylesheet" href="css/estilos.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
-<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' type='text/javascript'/></script>
+<script src='js/jquery-1.9.1.js' type='text/javascript'/></script>
 </head>
 <body>
 <div id="contenedor">

@@ -103,9 +103,8 @@ function BuscaCliente(){
         url: "controlador/ajaxFactura.php",
         type: "post",
         data: postForm,
-        cache: false,
         success: function(response){
-            alert(response);
+            alert(response.0.id_cliente);
         },
         error:function(){
             alert("failure");
@@ -118,10 +117,9 @@ function BuscaCliente(){
 
 <div id="izquierda">	
 	<h3>FACTURA DE VENTA</h3>
-	<form name = "cliente" action="" method ="post" >
 		<label for="idCliente" style ="margin-right: 5em">Cliente</label>
 		<input type="text" name="idCliente" id="idCliente" style="margin-right:20px">
-		<input class="guardar" type="submit" id="guardar" value="Buscar" style="margin:0px" onclick="BuscaCliente()">
+		<input class="guardar" type="button" id="guardar" value="Buscar" style="margin:0px" onclick="BuscaCliente()">
 	</form>
 	<form name "form4" action="" method="post">
 		<label  for="CodigoProducto" style ="margin-right: 4.2em">Producto</label>

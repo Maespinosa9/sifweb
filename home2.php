@@ -13,8 +13,8 @@ $perusu = isset($_SESSION["perfil"]) ? $_SESSION["perfil"]:NULL;?>
 <div id="contenedor">
 <div id="cabez">
 </div>
-<div id="inicio">&nbsp;&nbsp;<a id="ini"href="home.php"><img border=0 src="image/home.png" width="30" height="30"/></a></div>
-<div id="salir"><a href='vista/salir.php'><img border=0 src="image/salir1.png"  width="30" height="30"/></a></div>
+<div id="inicio">&nbsp;&nbsp;<a id="ini" href="home.php"><img border=0 src="image/home.png" width="30" height="30"/></a></div>
+<div id="salir"><a href='vista/salir.php' style="width: 1450px"><img border=0 src="image/salir1.png"  width="30" height="30"/></a></div>
 <div id="contenidorc1">
     <div id="menu">
         <?php

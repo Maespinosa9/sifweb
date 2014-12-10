@@ -36,27 +36,27 @@
                             <option value="<?php echo $dat3[$i]['idvalor'] ?>"><?php echo $dat3[$i]['nomvalor'] ?></option>
                         <?php } ?>
         </select></br></br>
-        <label>Documento &nbsp;</label>  
-        <input type="text" style="width:37em;" name="id_usuario" id="id_usuario_duplicado"  required="required"  onblur="javascript:Duplicidad(this.value);" /> </br></br> 
-        <label>Nombre &nbsp;</label>  
-        <input type="text" style="width:37em;"name="nombre" id="nombre"  required="required" /> </br></br> 
-        <label>Apellido &nbsp;</label>  
-        <input type="text" style="width:37em;"name="apellido" id="apellido" required="required"/></br></br>                    
-        <label>Telefono &nbsp;</label>
-        <input type="text" style="width:15em;" name="telefono_1" id="telefono_1" required="required"/>
-        <label>&nbsp;Celular &nbsp;</label>
-        <input type="text" style="width:15em;" name="celular" id="celular" required="required"/></br></br>
-        <label>Direccion&nbsp;&nbsp;</label>
-        <input type="text" style="width:36em;" name="direccion" id="direccion" required="required"/></br></br>  
-        <label>Email &nbsp;</label>
-        <input type="email" style="width:38em;" name="e_mail" id="e_mail" required="required"/></br></br>             
-        <label>Cargo &nbsp;</label>  
-        <input type="text" style="width:38em;" name="cargo" id="cargo" required="required"/></br></br>                  
-        <label>&nbsp;Fecha de Ingreso &nbsp;</label>
-        <input type="date" name="fecha_ingreso"  id="fehca_ingreso" required="required"/>
-        <label>Salario &nbsp;</label>
-        <input type="text" style="width:15em;" name="salario" id="salario" required="required"/></br></br> 
-        <label>&nbsp;Perfil&nbsp;</label> 
+        <label>Documento&nbsp;</label>  
+        <input type="text" style="width:15em;" name="id_usuario" id="id_usuario_duplicado"  required="required"  onblur="javascript:Duplicidad(this.value);" /> </br></br> 
+        <label>Nombre&nbsp;</label>  
+        <input type="text" style="width:15em;"name="nombre" id="nombre"  required="required" />&nbsp;
+        <label>Apellido&nbsp;</label>  
+        <input type="text" style="width:15em;"name="apellido" id="apellido" required="required"/></br></br>                    
+        <label>Tel&eacute;fono&nbsp;</label>
+        <input type="text" style="width:10em;" name="telefono_1" id="telefono_1" required="required"/></br></br> 
+        <label>Celular&nbsp;</label>
+        <input type="text" style="width:10em;" name="celular" id="celular" required="required"/></br></br> 
+        <label>Direcci&oacute;n&nbsp;</label>
+        <input type="text" style="width:15em;" name="direccion" id="direccion" required="required"/></br></br>  
+        <label>Email&nbsp;</label>
+        <input type="email" style="width:15em;" name="e_mail" id="e_mail" required="required"/></br></br></br>        
+        <label>Cargo&nbsp;</label>  
+        <input type="text" style="width:15em;" name="cargo" id="cargo" required="required"/></br></br>                  
+        <label>Fecha de Ingreso&nbsp;</label>
+        <input type="date" name="fecha_ingreso"  id="fehca_ingreso" required="required"/>&nbsp;
+        <label>Salario&nbsp;</label>
+        <input type="text" style="width:10em;" name="salario" id="salario" required="required"/></br></br> 
+        <label>Perfil&nbsp;</label> 
         <select name="perfil_id" id="perfil_id" required="required">
         <option value="">Seleccione</option>
                        <?php 
@@ -68,7 +68,7 @@
                         <?php } ?>
              </select></br></br>
        <label>Clave &nbsp;</label>
-       <input type="password"  style="width:18em;" name="clave" id="clave" required="required"/></br></br>
+       <input type="password"  style="width:15em;" name="clave" id="clave" required="required"/></br></br>
        <label>Activo</label>
         <input type="checkbox" id="activo" name="activo" value=1></br></br>
       <p>  
@@ -104,7 +104,7 @@
             <td class="style2" align="center"><?php echo $dat[$i]['cargo'] ?></td>
             <td class="style2" align="center"><?php echo $dat[$i]['perfil_id'] ?></td>
             <td align= "center"><?php if ($dat[$i]['activo'] == 1){?><label>si</label><?php }?></td>
-            <td align="center"><a href = "home2.php?pr=<?php echo $dat[$i]['id_usuario'] ?>&pac=<?php echo $pac; ?>&up=11"><img src="image/editar.png" name="editar" title = "Editar"></a></td>
+            <td align="center" ><a href = "home2.php?pr=<?php echo $dat[$i]['id_usuario'] ?>&pac=<?php echo $pac; ?>&up=11" style="width: 30px"><img src="image/editar.png" name="editar" title = "Editar" width="12" height="12"></a></td>
 
             </tr>
         </tbody>

@@ -7,15 +7,15 @@
 <div name="izquierda" id="izquierda">
 <form name="form1" action="" method="POST">
 <h3>PRODUCTO</h3>
-        <label>Codigo de barras&nbsp;</label>
+        <label>C&oacute;digo de barras&nbsp;</label>
         <input type="text" name="codBarras" id="codBarras" size="25" maxlength="30" required="required"  /></br></br>
-        <label>Descripcion&nbsp;</label> 
+        <label>Descripci&oacute;n&nbsp;</label> 
         <input type="text" name="descripcion" id="descripcion" size="25" maxlength="30" required="required"   /></br></br>
         <label>Precio&nbsp;</label>       
         <input type="number" name="preVenta" id="preVenta" size="25" maxlength="30" required="required" /></br></br>
         <label>Impuesto&nbsp;</label>     
         <input type="number" name="impuesto" id="impuesto" size="25" maxlength="30"   /></br></br>
-        <label>Categoria&nbsp;</label>
+        <label>Categor&iacute;a&nbsp;</label>
 	    <select name="categoria" style="width: 195px;" id="categoria" required="required">
 	            <option value="" selected="selected">Seleccione</option>
 	        				<?php 
@@ -57,8 +57,8 @@
 	             	<td class="style2" align="center"><?php echo $tabla[$i]['precio_venta'] ?></td>
 	             	<td class="style2" align="center"><?php echo $tabla[$i]['impuesto'] ?></td>
 	             	<td class="style2" align="center"><?php echo $tabla[$i]['categoria'] ?></td>
-	             	<td align="center"><a href="home.php?pr=<?php echo $tabla[$i]['id_producto'] ?>&pac=<?php echo $pac; ?>&up=11"><img border=0 src="image/editar.png"  name="editar" title= "Editar" /></a>
-	             	                   <a href="home.php?delete=<?php echo $tabla[$i]['id_producto'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="delete" title= "Eliminar"></a> </td>
+	             	<td align="center"><a href="home.php?pr=<?php echo $tabla[$i]['id_producto'] ?>&pac=<?php echo $pac; ?>&up=11"><img border=0 src="image/editar.png"  name="editar" title= "Editar" width="17" height="17"/></a></td>
+	             	                  <!-- <a href="home.php?delete=<?php echo $tabla[$i]['id_producto'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="delete" title= "Eliminar"></a> </td>-->
 	            </tr>
 	            </tbody> 
 	            <?php  
