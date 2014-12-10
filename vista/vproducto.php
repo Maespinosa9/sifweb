@@ -11,10 +11,10 @@
         <input type="text" name="codBarras" id="codBarras" size="25" maxlength="30" required="required"  /></br></br>
         <label>Descripcion&nbsp;</label> 
         <input type="text" name="descripcion" id="descripcion" size="25" maxlength="30" required="required"   /></br></br>
-        <label>Precio&nbsp;</label>       
-        <input type="number" name="preVenta" id="preVenta" size="25" maxlength="30" required="required" /></br></br>
-        <label>Impuesto&nbsp;</label>     
-        <input type="number" name="impuesto" id="impuesto" size="25" maxlength="30"   /></br></br>
+        <label>Precio de Venta&nbsp;</label>       
+        <input type="text" name="preVenta" id="preVenta" size="25" maxlength="30" required="required" /></br></br>
+        <label>Iva&nbsp;</label>     
+        <input type="text" name="impuesto" id="impuesto" size="25" maxlength="30"   /></br></br>
         <label>Categoria&nbsp;</label>
 	    <select name="categoria" style="width: 195px;" id="categoria" required="required">
 	            <option value="" selected="selected">Seleccione</option>

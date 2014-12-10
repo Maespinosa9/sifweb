@@ -2,69 +2,57 @@
     include ("controlador/cinventario.php");
 ?>
 
-<script language="javascript" src="js/jquery-1.2.6.min.js"></script><!-- llamamos al JQuery-->
+<center>
+<div id="inventario" name="inventario">
+<h3>MOVIMIENTOS DE INVENTARIO</h3>
 
-<div name="izquierda" id="izquierda">
-<form name="form1" action="" method="POST">
-<h3>INVENTARIOS</h3>
-	<form name="form1" action="" method="POST">
-		            <label>Producto &nbsp;</label>
-	        		<select name="producto" style="width: 195px;" id="producto" required="required">
-	        			<option value="" selected="selected">Seleccione</option>
-	        				<?php 
-	                        	for ($i=0; $i < count($arrayProducto); $i++){
-	                     	?>
-	                    		<option value="<?php echo $arrayProducto[$i]['id_producto'] ?>"><?php echo $arrayProducto[$i]['codigo_barras']." - ".$arrayProducto[$i]['descripcion'] ?></option>
-	                    	<?php 
-	                    		} 
-	                    	?>
-	                </select></br></br>
-                    <label>Fecha&nbsp;</label>
-                    <input type="date" name="fecha" id="fecha" size="25" maxlength="30" required="required" placeholder="Fecha" /></br></br>
-                    <label>Cantidad&nbsp;</label>
-                    <input type="number" name="cantidad" id="cantidad" size="25" maxlength="30"  placeholder="Cantidad" /></br></br>
-                    <label for="entrada">Entrada&nbsp;</label>
-                    <input type="checkbox" name="entrada" id="entrada" value="1" style = "width: 15px;"></br></br>
-                    <label>Observaciones&nbsp;</label>
-                    <textarea name="observacion" cols="60" maxlength="100" id="observaciones" placeholder="observaciones" ></textarea></br></br>
-                    <p>  
-                	<input class="guardar" id="boton" type="submit" value="Guardar" />
-                    <input class="guardar" id="boton1" type="button" value=" Volver " onclick="location = 'home.php'" />
-                    </p>  
-    </form>
-</div>
+<br/>   <table width="400" align="right"><tr>
+    <td>
+        <form id="formfil" name="formfil" method="GET" action="home.php">
+            <input name="pac" type="hidden" value="<?php echo $pac; ?>" />
+            <input type="text" name="filtro" value="<?php echo $filtro;?>" onChange="this.form.submit();" placeholder= "C&oacute;digo del Producto">
+            <input id="boton2" type="submit" name="busca" value="Buscar" />
+        </form>
+    </td>
 
-
-<div id="derecha" name="derecha">
-<h3>REGISTRO INVENTARIOS</h3>
- <table cellpadding="8" align="center" width="200">
+</tr></table><br/><br/><br/>
+ <table cellpadding="8" align="center" width="95%">
  <form name="formfil" action="home.php" method="GET" onSubmit="return confirm('Eliminara el Inventario Desea Continuar')">
                 <thead>
 	    	    	<th>Codigo<input name="pac" type="hidden" id="pac" value="111"/></th>
 	              	<th>Producto</th>
-	              	<th>Fecha</th>
+	              	<th>Fecha del Movimiento</th>
 	              	<th>Cantidad</th>
 	              	<th>Entrada</th>
 	              	<th>Observacion</th>
 	              	<th>Acciones</th>
 	            </thead>
 	    	    <?php 
-					for ($i=0; $i < count($tabla); $i++){
+	    	    	 $dat=$ins->selMovimiento($filtro, $pag->rvalini(), $pag->rvalfin()); 
+					for ($i=0; $i < count($dat); $i++){
 		  		?>   
 		        <tbody>
                   <tr>
-	            	<td class="style2" align="center"><?php echo $tabla[$i]['id_inventario'] ?></td>
-	             	<td class="style1" align="center"><?php echo $tabla[$i]['codigo_barras']." - ". $tabla[$i]['descripcion']?></td>
-	             	<td class="style2" align="center"><?php echo $tabla[$i]['fecha']  ?></td>
-	             	<td class="style2" align="center"><?php echo $tabla[$i]['cantidad'] ?></td>
-	             	<td class="style2" align="center"><?php echo $tabla[$i]['entrada'] ?></td>
-	             	<td class="style2" align="center"><?php echo $tabla[$i]['observacion'] ?></td>
-	             	<td align="center"><a href="home.php?pr=<?php echo $tabla[$i]['id_inventario'] ?>&pac=<?php echo $pac; ?>&up=11"><img border=0 src="image/editar.png" name="editar" title= "Editar" /></a>
-	             	                   <a href="home.php?delete=<?php echo $tabla[$i]['id_inventario'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="delete" title= "Eliminar"></a></td>
+	            	<td class="style2" align="center"><?php echo $dat[$i]['id_inventario'] ?></td>
+	             	<td class="style1" align="center"><?php echo $dat[$i]['codigo_barras']." - ". $tabla[$i]['descripcion']?></td>
+	             	<td class="style2" align="center"><?php echo $dat[$i]['fecha']  ?></td>
+	             	<td class="style2" align="center"><?php echo $dat[$i]['cantidad'] ?></td>
+	             	<td class="style2" align="center"><?php if ($dat[$i]['entrada']  == 1) {?><img src="image/activa.png"><?php }?></td>
+	             	<td class="style2" align="center"><?php echo $dat[$i]['observacion'] ?></td>
+	             	<td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_inventario'] ?>&pac=<?php echo $pac; ?>&up=11"><img border=0 src="image/editar.png" name="editar" title= "Editar" /></a>
+					</td>
 	              </tr>
                 </tbody>
 	            <?php } ?>
-	      
          </form>
     </table>
+	<div id="paginar" style="position:absolute; bottom:0px; right:50px;">
+	<td align="bottom" valign="bottom">
+		<?php
+		$bo = "<input type='hidden' name='filtro' value='".$filtro."' />";
+		$pag->spag($conp,$nreg,$pac,$bo); 
+		?>
+	</td>
+	</div>
  </div>
+</center>

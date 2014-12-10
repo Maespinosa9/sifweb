@@ -45,8 +45,6 @@
 	              	<th>Producto</th>
 	              	<th>Fecha</th>
 	              	<th>Cantidad</th>
-	              	<th>Entrada</th>
-	              	<th>Observacion</th>
 	              	<th>Acciones</th>
 	            </thead>
 	    	    <?php 
@@ -58,10 +56,8 @@
 	             	<td class="style1" align="center"><?php echo $tabla[$i]['codigo_barras']." - ". $tabla[$i]['descripcion']?></td>
 	             	<td class="style2" align="center"><?php echo $tabla[$i]['fecha']  ?></td>
 	             	<td class="style2" align="center"><?php echo $tabla[$i]['cantidad'] ?></td>
-	             	<td class="style2" align="center"><?php echo $tabla[$i]['entrada'] ?></td>
-	             	<td class="style2" align="center"><?php echo $tabla[$i]['observacion'] ?></td>
 	             	<td align="center"><a href="home.php?pr=<?php echo $tabla[$i]['id_inventario'] ?>&pac=<?php echo $pac; ?>&up=11"><img border=0 src="image/editar.png" name="editar" title= "Editar"/>
-	             	    <a href="home.php?delete=<?php echo $tabla[$i]['id_inventario'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="delete" title= "Eliminar"></a></td>
+	             	</td>
 	              </tr>
                 </tbody>
 	            <?php } ?>

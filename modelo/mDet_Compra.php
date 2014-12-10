@@ -9,6 +9,12 @@ class mDet_Compra{
 		$sql = "INSERT INTO det_compra(producto_id, cantidad, valor_unitario, orden_id)";
 		$sql .=" VALUES ('".$producto_id."','".$cantidad."','".$valor_unitario."','".$orden_id."')";
 		$this->cons($sql);
+		date_default_timezone_set("America/Bogota"); 
+		$fecha=strftime( "%Y-%m-%d", time());
+		$observacion = "Entrada para la orden de Compra: ".$orden_id;
+		$sql2 = "INSERT INTO inventario(producto_id, IdOrden, fecha, cantidad, entrada, observacion)";
+		$sql2 .=" VALUES ('".$producto_id."', '".$orden_id."', '".$fecha."' , '".$cantidad."', 1, '".$observacion."')";
+		$this->cons($sql2);
 	}
 
 	function update($id_deta_compra, $cantidad, $valor_unitario, $orden_id){

@@ -35,7 +35,7 @@
 	}
 	//Paginar
 	$bo = "";
-	$nreg = 10;//numero de registros a mostrar
+	$nreg = 5;//numero de registros a mostrar
 	$pag = new mpagina($nreg);
 	$conp ="SELECT count(d.id_deta_compra)as Npe, p.descripcion FROM det_compra as d inner join producto as p on p.id_producto = d.producto_id WHERE d.orden_id = '".$orden_id."'";  
 	if($filtro) $conp.= " AND p.descripcion LIKE '%".$filtro."%'";

@@ -35,7 +35,7 @@ class minventario{
 	}
 
 	function select(){
-       $sql = "SELECT inventario.id_inventario, producto.codigo_barras, producto.descripcion, inventario.fecha, inventario.cantidad, CASE WHEN inventario.entrada = 1 THEN 'SI' ELSE 'NO' END AS entrada, inventario.observacion FROM inventario INNER JOIN producto ON producto.id_producto = inventario.producto_id order by inventario.id_inventario;";
+       $sql = "SELECT inventario.id_inventario, producto.codigo_barras, producto.descripcion, inventario.fecha, inventario.cantidad, inventario.entrada, inventario.observacion FROM inventario INNER JOIN producto ON producto.id_producto = inventario.producto_id order by inventario.id_inventario;";
         $conexionBD = new conexion();        
         $conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);
@@ -44,6 +44,17 @@ class minventario{
 	}
 	function selEditar($id_inventario){
 		$sql = "SELECT * FROM inventario WHERE id_inventario = '".$id_inventario."';";
+		$conexionBD = new conexion();
+		$conexionBD->conectarBD();
+		$data = $conexionBD->ejeCon($sql,0);
+		return $data;
+	}
+
+	function selMovimiento($filtro,$rvalini,$rvalfin){
+		$sql = "SELECT inventario.id_inventario, producto.codigo_barras, producto.descripcion, inventario.fecha, inventario.cantidad, inventario.entrada, inventario.observacion FROM inventario INNER JOIN producto ON producto.id_producto = inventario.producto_id";
+		if($filtro)
+		$sql.= " WHERE producto.codigo_barras LIKE '%".$filtro."%'";
+		$sql.= " ORDER BY inventario.id_inventario LIMIT ".$rvalini.", ".$rvalfin;
 		$conexionBD = new conexion();
 		$conexionBD->conectarBD();
 		$data = $conexionBD->ejeCon($sql,0);

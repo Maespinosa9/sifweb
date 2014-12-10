@@ -1,5 +1,7 @@
 <?php 
     include ("modelo/minventario.php");
+     include ("modelo/mpagina.php");
+
     $ins = new minventario();
 
     $delete = isset($_GET["delete"]) ? $_GET["delete"]:NULL;
@@ -9,6 +11,7 @@
 
     $pac = 111;
     $pr = isset($_GET['pr']) ? $_GET['pr']:NULL;
+    $filtro=isset($_GET["filtro"]) ? $_GET["filtro"]:NULL;
     $id_inventario = isset($_POST["idInventario"]) ? $_POST["idInventario"]:NULL;
     $producto = isset($_POST["producto"]) ? $_POST["producto"]:NULL;
     $fecha = isset($_POST["fecha"]) ? $_POST["fecha"]:NULL;
@@ -30,4 +33,12 @@
     }
 	
     $tabla = $ins->select();
+
+    //Paginar
+        //Paginar
+    $bo = "";
+    $nreg = 15;//numero de registros a mostrar
+    $pag = new mpagina($nreg);
+    $conp ="SELECT count(i.id_inventario)as Npe, p.codigo_barras FROM inventario as i inner join producto as p on i.producto_id = p.id_producto";  
+    if($filtro) $conp.= " WHERE p.codigo_barras LIKE '%".$filtro."%'";
 ?>
