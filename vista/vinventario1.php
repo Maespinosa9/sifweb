@@ -6,9 +6,9 @@
 
 <div name="izquierda" id="izquierda">
 <form name="form1" action="home.php?pac=111" method="POST">
-<h3>INVENTARIOS</h3>
+<h3>EDITAR INVENTARIO</h3>
 	<form name="form1" action="" method="POST">
-		            <label>Producto &nbsp;</label>
+		            <label>Producto&nbsp;</label>
 	        		<select name="producto" style="width: 195px;" id="producto" required="required">
 	        			<option value="" selected="selected">Seleccione</option>
 	        				<?php 
@@ -24,7 +24,7 @@
     				<label>Fecha&nbsp;</label>
                     <input type="date" name="fecha" id="fecha" size="25" maxlength="30" required="required" placeholder="Fecha" value = "<?php echo $editar[0]['fecha']; ?>"/></br></br>
                     <label>Cantidad&nbsp;</label>
-                    <input type="number" name="cantidad" id="cantidad" size="25" maxlength="30"  placeholder="Cantidad" value = "<?php echo $editar[0]['cantidad']; ?>"/></br></br>
+                    <input type="number" name="cantidad" id="cantidad" size="25" maxlength="30"   value = "<?php echo $editar[0]['cantidad']; ?>"/></br></br>
                     <label for="entrada">Entrada&nbsp;</label>
                     <input type="checkbox" name="entrada" id="entrada" style = "width: 15px;" <?php if($editar[0]['entrada']==1) echo 'checked'; ?> /></br></br>
                     <label>Observaciones&nbsp;</label>
@@ -36,10 +36,10 @@
     </form>
    </div>
 
-    <div id="derecha" name="derecha">
+ <div id="derecha" name="derecha">
 <h3>REGISTRO INVENTARIOS</h3>
  <table cellpadding="8" align="center" width="200">
- <form name="form2" action="" method="GET" onSubmit="return confirm('Eliminara el Inventario Desea Continuar')">
+ <form name="formfil" action="home.php" method="GET" onSubmit="return confirm('Eliminara el Inventario Desea Continuar')">
                 <thead>
 	    	    	<th>Codigo<input name="pac" type="hidden" id="pac" value="111"/></th>
 	              	<th>Producto</th>
@@ -61,7 +61,7 @@
 	              </tr>
                 </tbody>
 	            <?php } ?>
-	     
+	      
          </form>
     </table>
  </div>

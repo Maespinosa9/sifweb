@@ -20,7 +20,7 @@
     
     $actu = isset($_POST["actu"]) ? $_POST["actu"]:NULL;
 	
-    	if($id_nit && $razon_social && $telefono_1 && $telefono_2 && $direccion && $e_mail && $observaciones && $contacto && $actu ){
+    	if($id_nit && $actu ){
         	$ins->update_proveedor ($id_nit, $razon_social, $telefono_1, $telefono_2, $direccion, $e_mail, $observaciones, $contacto);
     }
 

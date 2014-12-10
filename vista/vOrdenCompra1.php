@@ -89,10 +89,11 @@ include ("controlador/cOrdenCompra.php");
                 <td><?php echo $dat[$i]['total']; ?></td>
                 <td><?php echo $dat[$i]['razon_social']; ?></td>
                 <td align = "center">
-                <a href="home.php?or=<?php echo $dat[$i]['id_orden'] ?>&pac=110"><img src="image/plusmen.png" title="Agregar Detalles"></a>
-                <a href = "home.php?pr=<?php echo $dat[$i]['id_orden'] ?>&pac=<?php echo $pac; ?>&up=11"><img src="image/editar.png" name="editar" title = "Editar"></a>
-               <a href = "home.php?del=<?php echo $dat[$i]['id_orden'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="del" title= "Eliminar"></a></td>
-            </tr>
+               <a href="home.php?er=<?php echo $dat[$i]['id_orden'] ?>&pac=112"><img src="image/abono.png" title="Agregar Abono" width="13" height="13"></a>
+                <a href="home.php?or=<?php echo $dat[$i]['id_orden'] ?>&pac=110"><img src="image/plusmen.png" title="Agregar Detalles" width="13" height="13"></a>
+                <a href = "home.php?pr=<?php echo $dat[$i]['id_orden'] ?>&pac=<?php echo $pac; ?>&up=11"><img src="image/editar.png" name="editar" title = "Editar" width="13" height="13"></a>
+               <a href = "home.php?del=<?php echo $dat[$i]['id_orden'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="del" title= "Eliminar" width="13" height="13"></a></td>
+             </tr>
         </tbody>
         <?php } ?>
         </form>

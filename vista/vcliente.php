@@ -33,19 +33,19 @@
                             <option value="<?php echo $dat3[$i]['idvalor'] ?>"><?php echo $dat3[$i]['nomvalor'] ?></option>
                         <?php } ?>
         </select></br></br>
-            <label>Numero del Documento&nbsp;</label>
+            <label>Documento&nbsp;</label>
             <input type="text" style="width:15em;" name="id_cliente"  id="id_cliente_duplicado"  required="required"  onblur="javascript:Duplicidad(this.value);"/></br></br>   
-            <label>Ingrese su Nombre&nbsp;</label>
+            <label>Nombres&nbsp;</label>
             <input type="text" style="width:25em;" name="nombre" id="nombre" required="required"/></br></br>
-            <label>Ingrese su Apellido&nbsp;</label>
+            <label>Apellidos&nbsp;</label>
             <input type="text" style="width:25em;" name="apellido" id="apellido" required="required" /></br></br>                   
             <label>Tel&eacute;fono Fijo&nbsp;</label>
             <input type="text" style="width:13em;" name="telefono_1" id="telefono_1"  required="required"/></br></br>
             <label>N&uacute;mero Celular&nbsp;</label>
             <input type="text" style="width:13em;" name="celular" id="celular" required="required"/></br></br>
-            <label>Ingrese su Direcci&oacute;n&nbsp;</label>
+            <label>Direcci&oacute;n&nbsp;</label>
             <input type="text" style="width:20em;" name="direccion" id="direccion" required="required"/> </br></br>
-            <label>Ingrese su E-mail&nbsp;</label>
+            <label>E-mail&nbsp;</label>
             <input type="email" style="width:25em;" name="e_mail" id="e_mail" required="required"/></br></br>
             <p>  
             <input class="guardar" id="boton" type="submit" value="Guardar" />
@@ -62,6 +62,7 @@
          <th>No. Documento<input name="pac" type="hidden" id="pac" value="114"/></th>
          <th>Nombre</th>
          <th>Celular</th>
+         <th>Tel&eacute;fono</th>
          <th>Acciones</th>
       </thead>
       <?php 
@@ -73,8 +74,9 @@
             <td class="style2" align="center"><?php echo $dat[$i]['id_cliente'] ?></td>
             <td class="style2" align="center"><?php echo $dat[$i]['nombre'] ?>&nbsp;&nbsp;<?php echo $dat[$i]['apellido'] ?></td>
             <td class="style2" align="center"><?php echo $dat[$i]['celular'] ?></td>
-            <td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_cliente'] ?>&pac=114&up=11"><img border=0 src="image/editar.png"  name="editar" title = "Editar"/></a>
-                               <a href="home.php?delete=<?php echo $dat[$i]['id_cliente'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="delete" title= "Eliminar"></a></td>
+            <td class="style2" align="center"><?php echo $dat[$i]['telefono_1'] ?></td>
+            <td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_cliente'] ?>&pac=114&up=11"><img border=0 src="image/editar.png"  name="editar" title = "Editar" width="19" height="19" /></a></td>
+                          <!--     <a href="home.php?delete=<?php echo $dat[$i]['id_cliente'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="delete" title= "Eliminar"></a>-->
             </tr>
         </tbody>
         <?php  }  ?>      

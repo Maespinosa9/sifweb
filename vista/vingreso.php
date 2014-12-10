@@ -32,21 +32,21 @@
                                 </p>
                                 <p> 
                                     <label for="password" class="youpasswd" data-icon="p">Contraseña </label>
-                                    <input id="password" name="password" required="required" type="password" placeholder="Minimo 6 Digitos" /> 
+                                    <input id="password" name="password" required="required" type="password" placeholder="Clave" /> 
                                 </p>
                                     <p class="login button"> 
                                     <input type="submit" value="Ingresar" /> 
 								</p>
                                 <p class="change_link">
-									olvido su contraseña?
-									<a href="#toregister" class="to_register">Aquí</a>
+									olvido su contrase&ntilde;a?
+									<a href="#toregister" class="to_register">Aqu&iacute;</a>
 								</p>
                             </form>
                         </div>
 
                         <div id="register" class="animate form">
                             <form  action="mysuperscript.php" autocomplete="on"> 
-                                <h1>Recordar Contraseña </h1> 
+                                <h1>Recordar Contrase&ntilde;a </h1> 
                                 <p> 
                                     <label for="usernamesignup" class="uname" data-icon="u">Ingrese No de Documento</label>
                                     <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />

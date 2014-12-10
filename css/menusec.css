@@ -38,14 +38,7 @@ width:100%;
 z-index:3;
 color:#fff;
 }
-.link_title:hover .icon
-{
--webkit-transform:rotate(360deg);
--moz-transform:rotate(360deg);
--o-transform:rotate(360deg);
--ms-transform:rotate(360deg);
-transform:rotate(360deg);  
-}
+
 .var_nav:hover .link_bg
 {
 width:100%;

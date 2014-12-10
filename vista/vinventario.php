@@ -15,6 +15,7 @@
         </form>
     </td>
 
+
 </tr></table><br/><br/><br/>
  <table cellpadding="8" align="center" width="95%">
  <form name="formfil" action="home.php" method="GET" onSubmit="return confirm('Eliminara el Inventario Desea Continuar')">
