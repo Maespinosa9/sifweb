@@ -69,7 +69,7 @@
                 <td align="center"><?php echo $dat[$i]['orden_id']; ?></td>
                 <td align="center"><?php echo $dat[$i]['nombre']." ".$dat[$i]['apellido']; ?></td>
                 <td align = "center">
-                <a href = "home.php?pr=<?php echo $dat[$i]['id_abono'] ?>&pac=<?php echo $pac; ?>&up=11"><img src="image/editar.png" name="editar" title = "Editar"></a>
+                <a href = "home.php?pr=<?php echo $dat[$i]['id_abono'] ?>&pac=<?php echo $pac; ?>&up=11"><img src="image/editar.png" name="editar" title = "Editar" width="19" height="19"></a>
                <a href = "home.php?del=<?php echo $dat[$i]['id_abono'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="del" title= "Eliminar"></a></td>
             </tr>
         </tbody>

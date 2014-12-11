@@ -87,7 +87,7 @@ include ("controlador/cDet_Compra.php");
         	<td align="right"><?php echo $dat[$i]['cantidad'] ?></td>
         	<td align="right"><?php echo $dat[$i]['valor_unitario'] ?></td>
         	<td align = "center">
-            <a href = "home.php?pr=<?php echo $dat[$i]['id_deta_compra'] ?>&pac=<?php echo $pac; ?>&up=11&or=<?php echo $orden_id; ?>"><img src="image/editar.png" name="editar" title = "Editar"></a>
+            <a href = "home.php?pr=<?php echo $dat[$i]['id_deta_compra'] ?>&pac=<?php echo $pac; ?>&up=11&or=<?php echo $orden_id; ?>"><img src="image/editar.png" name="editar" title = "Editar"width="19" height="19"></a>
            	<a href = "home.php?del=<?php echo $dat[$i]['id_deta_compra'] ?>&pac=<?php echo $pac; ?>&or=<?php echo $orden_id ?>"><img src="image/eliminar.png" name="del" title= "Eliminar"></a></td>
         	</tr>
         </tbody>	

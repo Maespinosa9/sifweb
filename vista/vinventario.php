@@ -27,6 +27,7 @@
 	              	<th>Entrada</th>
 	              	<th>Observacion</th>
 	              	<th>Acciones</th>
+	              	<th>Imprimir</th>
 	            </thead>
 	    	    <?php 
 	    	    	 $dat=$ins->selMovimiento($filtro, $pag->rvalini(), $pag->rvalfin()); 
@@ -38,9 +39,10 @@
 	             	<td class="style1" align="center"><?php echo $dat[$i]['codigo_barras']." - ". $tabla[$i]['descripcion']?></td>
 	             	<td class="style2" align="center"><?php echo $dat[$i]['fecha']  ?></td>
 	             	<td class="style2" align="center"><?php echo $dat[$i]['cantidad'] ?></td>
-	             	<td class="style2" align="center"><?php if ($dat[$i]['entrada']  == 1) {?><img src="image/activa.png"><?php }?></td>
+	             	<td class="style2" align="center"><?php if ($dat[$i]['entrada']  == 1) {?><img src="image/activa.png"><?php } elseif ($dat[$i]['entrada']  == 0) {?><img src="image/noactiva.png"><?php }?></td>
 	             	<td class="style2" align="center"><?php echo $dat[$i]['observacion'] ?></td>
 	             	<td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_inventario'] ?>&pac=<?php echo $pac; ?>&up=11"><img border=0 src="image/editar.png" name="editar" width="19" height="19" title= "Editar" /></a>
+	             	<td align="center"><a href="vista/inventariopdf.php?pr=<?php echo $dat[$i]['id_inventario'] ?>" target="_blank"><img border=0 src="image/pdf1.png" width="19" height="19" /></a></td>
 					</td>
 	              </tr>
                 </tbody>
