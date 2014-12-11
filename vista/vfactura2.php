@@ -29,7 +29,7 @@ include ("controlador/cfactura.php");
             <tr>
                 <td>
                      <div align="left" id="10" class="rojo">Producto</div>
-        			<input type="text" name="CodigoProducto" id="CodigoProducto" />
+        			 
                     <select name="producto_id" onchange="javascript:RecargarProdcutos(this.value);">
                         <option value="" id="producto_id">Seleccione</option>
                          <?php 

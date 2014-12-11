@@ -34,7 +34,7 @@ class mpagina{
 		if($this->nrm<$datanp[0]['Npe'])
 			$mpag .= $this->nrm; else $mpag .= $datanp[0]['Npe'];
 		$mpag .= " de ".$datanp[0]['Npe']."&nbsp;&nbsp;&nbsp;  <p>";
-		$mpag .= "<select name='npg' onChange='this.form.submit();' style='width: 80px'>";
+		$mpag .= "<select name='npg' onChange='this.form.submit();' style='width: 50px'>";
 		for ($q=1;$q<=$npag;$q++){
 			if ($q==$npg)
 				$sele="SELECTED";

@@ -66,7 +66,15 @@ include ("controlador/cOrdenCompra.php");
             <input id="boton2" type="submit" name="busca" value="Buscar" />
         </form>
     </td>
-
+     <div id="paginar" style="position:relative; bottom:0px; right:50px; display:none;">
+        <td align="bottom" valign="bottom">
+            <?php
+            $bo = "<input type='hidden' name='filtro' value='".$filtro."' />";
+            $pag->spag($conp,$nreg,$pac,$bo); 
+ 
+            ?>
+        </td>
+    </div>
 </tr></table>
 <br><br>
     <table cellpadding="8" align="center">
@@ -79,6 +87,8 @@ include ("controlador/cOrdenCompra.php");
             <th>Proveedor</th>
             <th>Acciones</th>
         </thead>
+        <?php
+            $bo = "<input type='hidden' name='filtro' value='".$filtro."' />"; ?>
         <input name="pac" type="hidden" id="pac" value="108"/>
         <?php 
          $dat=$ins->selOrden2($filtro, $pag->rvalini(), $pag->rvalfin());  

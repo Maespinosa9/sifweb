@@ -45,7 +45,7 @@
 
 	//Paginar
 	$bo = "";
-	$nreg = 5;//numero de registros a mostrar
+	$nreg = 7;//numero de registros a mostrar
 	$pag = new mpagina($nreg);
 	$conp ="SELECT count(id_orden)as Npe FROM orden_compra";  
 	if($filtro) $conp.= " WHERE orden_compra.factura LIKE '%".$filtro."%'";
