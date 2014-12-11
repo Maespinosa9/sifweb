@@ -6,7 +6,7 @@
 <div id="inventario" name="inventario">
 <h3>MOVIMIENTOS DE INVENTARIO</h3>
 
-<br/>   <table width="400" align="right"><tr>
+<br/><table width="1000" align="right"><tr>
     <td>
         <form id="formfil" name="formfil" method="GET" action="home.php">
             <input name="pac" type="hidden" value="<?php echo $pac; ?>" />
@@ -14,7 +14,12 @@
             <input id="boton2" type="submit" name="busca" value="Buscar" />
         </form>
     </td>
-
+	<td>
+		<?php
+		$bo = "<input type='hidden' name='filtro' value='".$filtro."' />";
+		$pag->spag($conp,$nreg,$pac,$bo); 
+		?>
+	</td>
 
 </tr></table><br/><br/><br/>
  <table cellpadding="8" align="center" width="95%">
@@ -47,13 +52,51 @@
 	            <?php } ?>
          </form>
     </table>
-	<div id="paginar" style="position:absolute; bottom:0px; right:50px;">
-	<td align="bottom" valign="bottom">
+ </div>
+</center>
+<center>
+<div id="inventario" name="inventario">
+<h3>INVENTARIO CONSOLIDADO</h3>
+<br/><table width="1000" align="right"><tr>
+    <td>
+        <form id="formInv" name="formInv" method="GET" action="home.php">
+            <input name="pac" type="hidden" value="<?php echo $pac; ?>" />
+            <input type="text" name="filtro2" value="<?php echo $filtro2;?>" onChange="this.form.submit();" placeholder= "C&oacute;digo del Producto">
+            <input id="boton2" type="submit" name="busca" value="Buscar" />
+        </form>
+    </td>
+	<td>
 		<?php
-		$bo = "<input type='hidden' name='filtro' value='".$filtro."' />";
-		$pag->spag($conp,$nreg,$pac,$bo); 
+		$bo2 = "<input type='hidden' name='filtro2' value='".$filtro2."' />";
+		$pag2->spag($conp2,$nreg,$pac,$bo2); 
 		?>
 	</td>
-	</div>
- </div>
+
+</tr></table><br/><br/><br/>
+ <table cellpadding="8" align="center" width="95%">
+ <form name="formfil" action="home.php" method="GET" onSubmit="return confirm('Eliminara el Inventario Desea Continuar')">
+                <thead>
+	              	<th>Producto<input name="pac" type="hidden" id="pac" value="111"/></th>
+	              	<th>C&oacute;digo Producto</th>
+	              	<th>Cantidad</th>
+	              	<th>&Uacute;ltimo Movimiento</th>
+	            </thead>
+	    	    <?php 
+	    	    	 $dat2 =$ins->SelInvConsolidado($filtro2, $pag2->rvalini(), $pag2->rvalfin()); 
+					for ($i=0; $i < count($dat2); $i++){
+		  		?>   
+		        <tbody>
+                  <tr>
+	            	<td class="style2" align="center"><?php echo $dat2[$i]['NomProducto'] ?></td>
+	             	<td class="style1" align="center"><?php echo $dat2[$i]['codigo_barras'] ?></td>
+	             	<td class="style2" align="center"><?php echo $dat2[$i]['Cantidad']  ?></td>
+	             	<td class="style2" align="center"><?php echo $dat2[$i]['UltimoMovimiento'] ?></td>
+	              </tr>
+                </tbody>
+	            <?php } ?>
+         </form>
+    </table>
+
+
+</div>
 </center>

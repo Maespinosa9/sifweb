@@ -34,7 +34,7 @@ include ("controlador/cDet_Compra.php");
     <div name="det_compra" id="izquierda">
     <h3> Modificar Detalle</h3>
     <br>
-    <form name = "formEditar" action = "" method = "POST">
+    <form name = "formEditar" action = "home.php?pac=110&or=<?php echo $orden_id ?>" method = "POST">
         <label for ="producto">Producto: &nbsp;&nbsp;</label>
         <select name= "producto" required disabled="disabled">
             <option value = "">Seleccione</option>

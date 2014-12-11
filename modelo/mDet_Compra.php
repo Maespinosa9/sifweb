@@ -18,9 +18,15 @@ class mDet_Compra{
 	}
 
 	function update($id_deta_compra, $cantidad, $valor_unitario, $orden_id){
+		
+		date_default_timezone_set("America/Bogota"); 
+		$fecha=strftime( "%Y-%m-%d", time());
+		$sql2 = "UPDATE inventario set cantidad = '".$cantidad."' WHERE IdOrden = '".$orden_id."'";
+		$this->cons($sql2);
 		$sql = "UPDATE det_compra SET cantidad = '".$cantidad."', valor_unitario = '".$valor_unitario."'";
 		$sql .=" WHERE id_deta_compra = '".$id_deta_compra."'";
 		$this -> cons($sql);
+
 	}
 
 	function delete($id_deta_compra){

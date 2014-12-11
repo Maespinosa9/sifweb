@@ -60,5 +60,16 @@ class minventario{
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
 	}
+
+	function SelInvConsolidado($filtro,$rvalini,$rvalfin){
+		$sql = "SELECT * from acumulainventario as ac inner join producto as p on ac.IdProducto = p.id_producto";
+		if($filtro)
+		$sql.= " WHERE p.codigo_barras LIKE '%".$filtro."%'";
+		$sql.= " ORDER BY ac.IdAcumulaInventario LIMIT ".$rvalini.", ".$rvalfin;
+		$conexionBD = new conexion();
+		$conexionBD->conectarBD();
+		$data = $conexionBD->ejeCon($sql,0);
+		return $data;
+	}
 }
 ?>

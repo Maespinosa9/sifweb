@@ -12,6 +12,7 @@
     $pac = 111;
     $pr = isset($_GET['pr']) ? $_GET['pr']:NULL;
     $filtro=isset($_GET["filtro"]) ? $_GET["filtro"]:NULL;
+    $filtro2=isset($_GET["filtro2"]) ? $_GET["filtro2"]:NULL;
     $id_inventario = isset($_POST["idInventario"]) ? $_POST["idInventario"]:NULL;
     $producto = isset($_POST["producto"]) ? $_POST["producto"]:NULL;
     $fecha = isset($_POST["fecha"]) ? $_POST["fecha"]:NULL;
@@ -41,4 +42,13 @@
     $pag = new mpagina($nreg);
     $conp ="SELECT count(i.id_inventario)as Npe, p.codigo_barras FROM inventario as i inner join producto as p on i.producto_id = p.id_producto";  
     if($filtro) $conp.= " WHERE p.codigo_barras LIKE '%".$filtro."%'";
+
+
+    //Paginar 2
+        //Paginar 2
+    $bo2 = "";
+    $nreg = 15;//numero de registros a mostrar
+    $pag2 = new mpagina($nreg);
+    $conp2 ="SELECT count(acu.IdAcumulaInventario)as Npe, p.codigo_barras FROM acumulainventario as acu inner join producto as p on acu.IdProducto = p.id_producto";  
+    if($filtro2) $conp2.= " WHERE p.codigo_barras LIKE '%".$filtro2."%'";
 ?>

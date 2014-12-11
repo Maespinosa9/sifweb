@@ -33,14 +33,14 @@ class mpagina{
 		$mpag .= "Registros: ".($this->nrini+1)." - ";
 		if($this->nrm<$datanp[0]['Npe'])
 			$mpag .= $this->nrm; else $mpag .= $datanp[0]['Npe'];
-		$mpag .= " de ".$datanp[0]['Npe']."&nbsp;&nbsp;&nbsp;  <p>";
+		$mpag .= " de ".$datanp[0]['Npe']."&nbsp;&nbsp;&nbsp;  ";
 		$mpag .= "<select name='npg' onChange='this.form.submit();' style='width: 50px'>";
 		for ($q=1;$q<=$npag;$q++){
 			if ($q==$npg)
 				$sele="SELECTED";
 			else
 				$sele="";
-			$mpag .=  "<option ".$sele.">".$q."</option>";
+			$mpag .=  "<option ".$sele.">".$q."</option><p>";
 		}
 		$mpag .= "</select>&nbsp;&nbsp;";
    //cambiar el pac por el de la pagina a mostrar o la que se esta trabajando.
