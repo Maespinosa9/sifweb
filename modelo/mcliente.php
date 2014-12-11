@@ -59,6 +59,19 @@ class mcliente{
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
 	}
+   
+    function selpro2($filtro,$rvalini,$rvalfin){
+	$sql = "SELECT c.*, v.nomvalor FROM cliente as c inner join valor as v on c.tipo_documento = v.idValor";
+	if($filtro)
+	$sql.= " WHERE id_cliente LIKE '%".$filtro."%'";
+	$sql.= " ORDER BY id_cliente LIMIT ".$rvalini.", ".$rvalfin;
+	$conexionBD = new conexion();
+	$conexionBD->conectarBD();
+	$data = $conexionBD->ejeCon($sql,0);
+	return $data;
+	}
+   
+
 
 }
 ?>

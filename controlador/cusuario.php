@@ -1,9 +1,11 @@
 <?php 
     include ("modelo/musuario.php");
+      include ("modelo/mpagina.php");
     $ins = new musuario();
 
    
     $pac = isset ($_GET["pac"]) ? $_GET["pac"]:NULL;
+    $filtro=isset($_GET["filtro"]) ? $_GET["filtro"]:NULL;
     $id_usuario = isset($_POST["id_usuario"]) ? $_POST["id_usuario"]:NULL;
     $tipo_document = isset($_POST["tipo_document"]) ? $_POST["tipo_document"]:NULL;
     $nombre = isset($_POST["nombre"]) ? $_POST["nombre"]:NULL;
@@ -58,4 +60,10 @@
         //}
    
    
+      //Paginar
+    $bo = "";
+    $nreg = 4;//numero de registros a mostrar
+    $pag = new mpagina($nreg);
+    $conp ="SELECT count(id_usuario)as Npe FROM usuario";  
+    if($filtro) $conp.= " WHERE usuario.id_usuario LIKE '%".$filtro."%'";
 ?>

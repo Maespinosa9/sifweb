@@ -15,8 +15,8 @@ include ("controlador/cparametro.php");
 <input class="guardar" id="boton1" type="submit" value="Guardar">
 </p></br></br>
 </form>
-
-        <table cellpadding="8" align="center" width="200">
+<center>
+        <table cellpadding="8" >
         <form id="form2" name="form2" method="GET" action="" onSubmit="return confirm('¿Eliminara El Parametro y sus Valores asociados desea continuar?')">
         <thead>
             <th>Cod. Parametro<input name="pac" type="hidden" id="pac" value="109" /></th>
@@ -37,12 +37,13 @@ include ("controlador/cparametro.php");
         <input type="submit" name="del" id="del" value=<?php echo $datos[$i]['idparametro']?>>
         <?php } ?>  </td>
                 <td><?php echo $datos[$i]['nomparametro'] ?></td>
-                <td><a href="home2.php?pr=<?php echo $datos[$i]['idparametro'] ?>&pac=109&up=11&ed=0"><img border=0 src="image/editar.png" name="editar" title = "Editar"/></a></td>
+                <td><a href="home2.php?pr=<?php echo $datos[$i]['idparametro'] ?>&pac=109&up=11&ed=0" style="width: 30px"><img border=0 src="image/editar.png" name="editar" title = "Editar" width="19" height="19"/></a></td>
              </tr>
         </tbody>
         <?php } ?>
         </form>
     </table>
+    </center>
 </div>
 
 
@@ -71,8 +72,8 @@ include ("controlador/cparametro.php");
 <input class="guardar" id="boton1" type="submit" value="Guardar">
 </p></br></br>
 </form>
-
- <table cellpadding="8" align="center" width="200">
+<center>
+ <table cellpadding="8" >
        <form id="form4" name="form1"  method="GET" action="" onSubmit="return confirm('¿Eliminara los valores Desea Continuar?')">
         <thead>
             <th>Cod. Valor<input name="pac" type="hidden" id="pac" value="109" /></th>
@@ -98,11 +99,12 @@ include ("controlador/cparametro.php");
         
             <td><?php echo $datos[$i]['nomvalor'] ?></td>
             <td><?php echo $datos[$i]['nomparametro'] ?></td>
-            <td align = "center"><a href="home2.php?pr=<?php echo $datos[$i]['idvalor'] ?>&pac=109&up=11&ed=1&prr=<?php echo $datos[$i]['idparametro'] ?>"><img border=0 src="/image/editar.png" name="editar" title = "Editar" /></a></td>    
+            <td align = "center"><a href="home2.php?pr=<?php echo $datos[$i]['idvalor'] ?>&pac=109&up=11&ed=1&prr=<?php echo $datos[$i]['idparametro'] ?>" style="width: 30px"><img border=0 src="image/editar.png" name="editar" width="19" height="19" title = "Editar" /></a></td>    
         </tr>
         </tbody>
     <?php  }  ?>
         </form>
     </table>
+    </center>
 </div>
      

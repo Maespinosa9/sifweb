@@ -40,7 +40,7 @@
 	             	<td class="style2" align="center"><?php echo $dat[$i]['cantidad'] ?></td>
 	             	<td class="style2" align="center"><?php if ($dat[$i]['entrada']  == 1) {?><img src="image/activa.png"><?php }?></td>
 	             	<td class="style2" align="center"><?php echo $dat[$i]['observacion'] ?></td>
-	             	<td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_inventario'] ?>&pac=<?php echo $pac; ?>&up=11"><img border=0 src="image/editar.png" name="editar" title= "Editar" /></a>
+	             	<td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_inventario'] ?>&pac=<?php echo $pac; ?>&up=11"><img border=0 src="image/editar.png" name="editar" width="19" height="19" title= "Editar" /></a>
 					</td>
 	              </tr>
                 </tbody>

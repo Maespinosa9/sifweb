@@ -57,9 +57,6 @@ class mproveedor{
 
 	}
 
-
-
-
 function selparametro1($num){
 		$sql = "SELECT idValor, nomvalor, idParametro FROM valor where idValor='".$num."';";
 		$conexionBD = new conexion();
@@ -74,6 +71,18 @@ function selparametro1($num){
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
 	}
+
+	function selpro2($filtro,$rvalini,$rvalfin){
+	$sql = "SELECT p.*, v.nomvalor FROM proveedor as p inner join valor as v on p.tipo_documento = v.idValor";
+	if($filtro)
+	$sql.= " WHERE id_nit LIKE '%".$filtro."%'";
+	$sql.= " ORDER BY id_nit LIMIT ".$rvalini.", ".$rvalfin;
+	$conexionBD = new conexion();
+	$conexionBD->conectarBD();
+	$data = $conexionBD->ejeCon($sql,0);
+	return $data;
+	}
+   
 
 
 

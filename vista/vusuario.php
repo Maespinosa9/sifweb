@@ -44,7 +44,7 @@
         <input type="text" style="width:15em;"name="apellido" id="apellido" required="required"/></br></br>                    
         <label>Tel&eacute;fono&nbsp;</label>
         <input type="text" style="width:10em;" name="telefono_1" id="telefono_1" required="required"/></br></br> 
-        <label>Celular&nbsp;</label>
+        <label>Celular&nbsp;&nbsp;&nbsp;</label>
         <input type="text" style="width:10em;" name="celular" id="celular" required="required"/></br></br> 
         <label>Direcci&oacute;n&nbsp;</label>
         <input type="text" style="width:15em;" name="direccion" id="direccion" required="required"/></br></br>  
@@ -67,7 +67,7 @@
                            <option value="<?php echo $dat4[$i]['id_perfil'] ?>" ><?php echo $dat4[$i]['descripcion'] ?></option>
                         <?php } ?>
              </select></br></br>
-       <label>Clave &nbsp;</label>
+       <label>Clave&nbsp;</label>
        <input type="password"  style="width:15em;" name="clave" id="clave" required="required"/></br></br>
        <label>Activo</label>
         <input type="checkbox" id="activo" name="activo" value=1></br></br>
@@ -82,8 +82,26 @@
 
 <div id="derecha" name="derecha">
 <h3>Registros Activos</h3>
- <table cellpadding="8" align="center" width="200">
-<form id="form2"  method="GET" action="" onSubmit="return confirm('¿Eliminara el usuario Desea Continuar?')">
+<br/>   <table width="650" align="center"><tr>
+    <td>
+        <form id="formfil" name="formfil" method="GET" action="home2.php">
+      <input name="pac" type="hidden" value="<?php echo $pac; ?>" />
+          <input type="text" name="filtro" value="<?php echo $filtro;?>" onChange="this.form.submit(); " placeholder= "NIT">
+            <input id="boton2" type="submit" name="busca" value="Buscar" />
+   
+    </td>   
+     <div id="paginar" style="position:absolute; bottom:0px; right:50px;" >
+        <td align="bottom" valign="bottom" >
+            <?php
+            $bo = "<input type='hidden' name='filtro' value='".$filtro."' />";
+            $pag->spag($conp,$nreg,$pac,$bo); 
+            ?>
+        </td>
+    </div>
+ </form>
+</tr></table>
+ <table cellpadding="8">
+<form id="form2"  method="GET" action="home2.php" onSubmit="return confirm('¿Eliminara el usuario Desea Continuar?')">
     <thead>
          <th>No. Documento<input name="pac" type="hidden" id="pac" value="105"/></th>
          <th>Nombre</th>
@@ -94,6 +112,7 @@
          <th>Editar</th>
       </thead>
       <?php 
+       $dat=$ins->selpro2($filtro, $pag->rvalini(), $pag->rvalfin());
          for ($i=0; $i < count($dat); $i++){
       ?>
        <tbody>
@@ -104,7 +123,7 @@
             <td class="style2" align="center"><?php echo $dat[$i]['cargo'] ?></td>
             <td class="style2" align="center"><?php echo $dat[$i]['perfil_id'] ?></td>
             <td align= "center"><?php if ($dat[$i]['activo'] == 1){?><label>si</label><?php }?></td>
-            <td align="center" ><a href = "home2.php?pr=<?php echo $dat[$i]['id_usuario'] ?>&pac=<?php echo $pac; ?>&up=11" style="width: 30px"><img src="image/editar.png" name="editar" title = "Editar" width="12" height="12"></a></td>
+            <td align="center" ><a href = "home2.php?pr=<?php echo $dat[$i]['id_usuario'] ?>&pac=<?php echo $pac; ?>&up=11" style="width: 30px"><img src="image/editar.png" name="editar" title = "Editar" width="19" height="19"></a></td>
 
             </tr>
         </tbody>

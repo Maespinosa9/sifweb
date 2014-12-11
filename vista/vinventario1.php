@@ -56,7 +56,7 @@
 	             	<td class="style1" align="center"><?php echo $tabla[$i]['codigo_barras']." - ". $tabla[$i]['descripcion']?></td>
 	             	<td class="style2" align="center"><?php echo $tabla[$i]['fecha']  ?></td>
 	             	<td class="style2" align="center"><?php echo $tabla[$i]['cantidad'] ?></td>
-	             	<td align="center"><a href="home.php?pr=<?php echo $tabla[$i]['id_inventario'] ?>&pac=<?php echo $pac; ?>&up=11"><img border=0 src="image/editar.png" name="editar" title= "Editar"/>
+	             	<td align="center"><a href="home.php?pr=<?php echo $tabla[$i]['id_inventario'] ?>&pac=<?php echo $pac; ?>&up=11"><img border=0 src="image/editar.png" width="19" height="19" name="editar" title= "Editar"/>
 	             	</td>
 	              </tr>
                 </tbody>

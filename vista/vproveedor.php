@@ -38,7 +38,6 @@
                         <?php } ?>
           </select></br></br>
            <label>Identificaci&oacute;n&nbsp;</label>
-           <input type="hidden" name="actu" value="actu" />
            <input type="text"  style="width:20em;" name="id_nit" id="id_nit_duplicado" size="25" maxlength="11"  required="required"  onblur="javascript:Duplicidad(this.value);" /></br></br>
            <label>Razon social&nbsp;</label>
            <input type="text"  style="width:25em;" name="razon_social" id="razon_social" size="25" maxlength="30" required="required" /></br></br>
@@ -63,10 +62,30 @@
 
 
 
-<div id="derecha" name="derecha">
+<div id="derecha" >
 <h3>REGISTRO PROVEEDORES</h3>
- <table cellpadding="8" align="center" width="200">
-    <form name="form2" action="home.php" method="GET" onSubmit="return confirm('¿Eliminara el Proveedor Desea Continuar?')">
+
+<br/>   <table width="650" align="center"><tr>
+    <td>
+        <form id="formfil" name="formfil" method="GET" action="home.php">
+      <input name="pac" type="hidden" value="<?php echo $pac; ?>" />
+          <input type="text" name="filtro" value="<?php echo $filtro;?>" onChange="this.form.submit(); " placeholder= "NIT">
+            <input id="boton2" type="submit" name="busca" value="Buscar" />
+    </form>
+    </td>   
+     <div id="paginar" style="position:absolute; bottom:0px; right:50px;">
+        <td align="bottom" valign="bottom">
+            <?php
+            $bo = "<input type='hidden' name='filtro' value='".$filtro."' />";
+            $pag->spag($conp,$nreg,$pac,$bo); 
+            ?>
+        </td>
+    </div>
+
+</tr></table>
+<br><br>
+ <table cellpadding="8" >
+    <form name="formfil" action="formfil" method="GET" onSubmit="return confirm('¿Eliminara el Proveedor Desea Continuar?')">
            <thead>
     	        <th>Identificaci&oacute;n<input name="pac" type="hidden" id="pac" value="101"/></td>
               <th>Raz&oacute;n Social</th>
@@ -76,9 +95,8 @@
               <th>Acciones</th>
            </thead>
     	    <?php 
- 	//Select
-		$dat = $ins->select_proveedor();
-		for ($i=0; $i < count($dat); $i++){
+            $dat=$ins->selpro2($filtro, $pag->rvalini(), $pag->rvalfin());
+	          	for ($i=0; $i < count($dat); $i++){
 	  ?>   
           <tbody>
 	       <tr>
@@ -94,7 +112,7 @@
               <?php  }  ?>
          
     </form>
-    </table>
+ </table>
  </div>
 
 

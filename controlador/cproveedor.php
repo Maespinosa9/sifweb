@@ -1,5 +1,6 @@
 <?php 
     include ("modelo/mproveedor.php");
+    include ("modelo/mpagina.php");
     $ins = new mproveedor();
 
     $delete = isset($_GET["delete"]) ? $_GET["delete"]:NULL;
@@ -7,7 +8,8 @@
       $ins->delete_proveedor($delete);
     }
 
-    $pac = 101;
+  $pac = isset ($_GET["pac"]) ? $_GET["pac"]:NULL;
+    $filtro=isset($_GET["filtro"]) ? $_GET["filtro"]:NULL;
     $id_nit = isset($_POST["id_nit"]) ? $_POST["id_nit"]:NULL;
     $tipo_documento = isset($_POST["tipo_documento"]) ? $_POST["tipo_documento"]:NULL;
     $razon_social = isset($_POST["razon_social"]) ? $_POST["razon_social"]:NULL;
@@ -25,12 +27,30 @@
     }
 
 
-    if(!$actu && $id_nit && $tipo_documento && $razon_social && $telefono_1 && $telefono_2 && $direccion && $e_mail && $observaciones && $contacto ){
+    if($id_nit && $tipo_documento && $razon_social && $telefono_1  && $direccion && $e_mail  && $contacto && !$actu){
         $duplicar = $ins->Duplicidad($id_nit);
         if ($duplicar==0){
             $ins->insert_proveedor($id_nit, $tipo_documento, $razon_social, $telefono_1, $telefono_2, $direccion, $e_mail, $observaciones, $contacto);
+          if($perusu==1 || $perusu==2){
+            echo "<script type='text/javascript'>alert('Se ha registro satisfactoriamente el proveedor.');window.location='home.php?pac=101';</script>";
+        }else {
+           echo "<script type='text/javascript'>alert('Se ha registro satisfactoriamente el proveedor.');window.location='home.php?pac=101';</script>";   
+        }    
     }
-}
+     
+    }
+
+
+   
     $pr = isset($_GET["pr"]) ? $_GET["pr"]:NULL;
     $dat = $ins->select_proveedor1($pr);
+
+    //Paginar
+    $bo = "";
+    $nreg = 4;//numero de registros a mostrar
+    $pag = new mpagina($nreg);
+    $conp ="SELECT count(id_nit)as Npe FROM proveedor";  
+    if($filtro) $conp.= " WHERE proveedor.id_nit LIKE '%".$filtro."%'";
+
+ 
 ?>

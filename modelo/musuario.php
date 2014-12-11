@@ -67,5 +67,16 @@ class musuario{
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
 	}
+
+	function selpro2($filtro,$rvalini,$rvalfin){
+	$sql = "SELECT u.*, p.descripcion FROM usuario as u inner join perfil as p on u.perfil_id = p.id_perfil";
+	if($filtro)
+	$sql.= " WHERE id_usuario LIKE '%".$filtro."%'";
+	$sql.= " ORDER BY id_usuario LIMIT ".$rvalini.", ".$rvalfin;
+	$conexionBD = new conexion();
+	$conexionBD->conectarBD();
+	$data = $conexionBD->ejeCon($sql,0);
+	return $data;
+	}
 }
 ?>

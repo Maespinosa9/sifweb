@@ -49,5 +49,18 @@ class mproducto{
 		$data = $conexionBD->ejeCon($sql,0);
 		return $data;
 	}
+
+	function selpro2($filtro,$rvalini,$rvalfin){
+	$sql = "SELECT p.id_producto, p.codigo_barras, p.descripcion as nombre, p.precio_venta, p.impuesto, p.categoria_id, c.descripcion FROM producto as p inner join categoria_producto as c on p.categoria_id = c.id_categoria";
+	if($filtro)
+	$sql.= " WHERE id_producto LIKE '%".$filtro."%'";
+	$sql.= " ORDER BY id_producto LIMIT ".$rvalini.", ".$rvalfin;
+	$conexionBD = new conexion();
+	$conexionBD->conectarBD();
+	$data = $conexionBD->ejeCon($sql,0);
+	return $data;
+	}
+   
+
 }
 ?>
