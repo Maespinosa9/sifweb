@@ -43,7 +43,7 @@
     <td>
           <form id="formfil" name="formfil" method="GET" action="home.php">
       <input name="pac" type="hidden" value="<?php echo $pac; ?>" />
-          <input type="text" name="filtro" value="<?php echo $filtro;?>" onChange="this.form.submit();">
+          <input type="text" name="filtro" value="<?php echo $filtro;?>" onChange="this.form.submit();" placeholder= "C&oacute;digo">
             <input id="boton2" type="submit" name="busca" value="Buscar" />
     </form>
     </td>

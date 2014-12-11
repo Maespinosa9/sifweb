@@ -31,7 +31,7 @@
                                     <input id="username" name="username" required="required" type="text" placeholder="No de Documento"/>
                                 </p>
                                 <p> 
-                                    <label for="password" class="youpasswd" data-icon="p">Contraseña </label>
+                                    <label for="password" class="youpasswd" data-icon="p">Contrase&ntilde;a </label>
                                     <input id="password" name="password" required="required" type="password" placeholder="Clave" /> 
                                 </p>
                                     <p class="login button"> 

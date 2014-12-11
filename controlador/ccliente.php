@@ -50,7 +50,7 @@
 
     //Paginar
     $bo = "";
-    $nreg = 2;//numero de registros a mostrar
+    $nreg = 5;//numero de registros a mostrar
     $pag = new mpagina($nreg);
     $conp ="SELECT count(id_cliente)as Npe FROM cliente";  
     if($filtro) $conp.= " WHERE cliente.id_cliente LIKE '%".$filtro."%'";
