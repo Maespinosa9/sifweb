@@ -18,7 +18,7 @@
     <td>
           <form id="formfil" name="formfil" method="GET" action="home.php">
       <input name="pac" type="hidden" value="<?php echo $pac; ?>" />
-          <input type="text" name="filtro" value="<?php echo $filtro;?>" onChange="this.form.submit(); "placeholder= "C&oacute;digo">
+          <input type="text" name="filtro" value="<?php echo $filtro;?>" onChange="this.form.submit(); " placeholder= "C&oacute;digo">
             <input id="boton2" type="submit" name="busca" value="Buscar" />
     </form>
     </td>
@@ -49,8 +49,8 @@
             <tr>
             <td class="style2" align="center"><?php echo $dat[$i]['id_categoria'] ?></td>
             <td class="style2" align="center"><?php echo $dat[$i]['descripcion'] ?></td>
-            <td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_categoria'] ?>&pac=116&up=11"><img border=0 src="image/editar.png"  name="editar" title = "Editar" width="19" height="19" /></a>
-            <a href="home.php?delete=<?php echo $dat[$i]['id_categoria'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="delete" title= "Eliminar"></a> </td>
+            <td align="center"><a href="home.php?pr=<?php echo $dat[$i]['id_categoria'] ?>&pac=116&up=11"><img border=0 src="image/editar.png"  name="editar" title = "Editar" width="19" height="19" /></a></td>
+          <!--  <a href="home.php?delete=<?php echo $dat[$i]['id_categoria'] ?>&pac=<?php echo $pac; ?>"><img src="image/eliminar.png" name="delete" title= "Eliminar"></a> </td>-->
                  </tr>
         </tbody>
         <?php  }  ?>      

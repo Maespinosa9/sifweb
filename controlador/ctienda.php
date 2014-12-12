@@ -1,5 +1,5 @@
 <?php
-include ("/modelo/mtienda.php");
+include ("modelo/mtienda.php");
 	$ins = new mtienda();
 	
 	//Eliminar
@@ -8,7 +8,7 @@ include ("/modelo/mtienda.php");
 		$ins->deltienda($del);
 	}
 	
-	$id_nit= isset($_POST["nit"]) ? $_POST["nit"]:NULL;
+	$id_nit= isset($_POST["id_nit"]) ? $_POST["id_nit"]:NULL;
 	$razon_social= isset($_POST["razon_social"]) ? $_POST["razon_social"]:NULL;
 	$direccion= isset($_POST["direccion"]) ? $_POST["direccion"]:NULL;
 	$telefono= isset($_POST["telefono"]) ? $_POST["telefono"]:NULL;
@@ -20,6 +20,8 @@ include ("/modelo/mtienda.php");
 	$administrador = isset($_POST["administrador"]) ? $_POST["administrador"]:NULL;
 	$actu = isset($_POST["actu"]) ? $_POST["actu"]:NULL;
 	$pr = isset($_GET["pr"]) ? $_GET["pr"]:NULL;
+
+	$editar = $ins->select2($pr);
 	
 	if ($id_nit && $razon_social && $direccion && $telefono && $celular && $e_mail && $regimen && $resolucion && $logo && $administrador && $actu){
 		$ins->updtienda($id_nit , $razon_social , $direccion , $telefono , $celular ,$e_mail , $regimen, $resolucion ,$logo , $administrador);

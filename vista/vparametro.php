@@ -36,7 +36,7 @@ include ("controlador/cparametro.php");
      }else{ ?>           
         <input type="submit" name="del" id="del" value=<?php echo $datos[$i]['idparametro']?>>
         <?php } ?>  </td>
-                <td><?php echo $datos[$i]['nomparametro'] ?></td>
+                <td align="center"><?php echo $datos[$i]['nomparametro'] ?></td>
                 <td><a href="home2.php?pr=<?php echo $datos[$i]['idparametro'] ?>&pac=109&up=11&ed=0" style="width: 30px"><img border=0 src="image/editar.png" name="editar" title = "Editar" width="19" height="19"/></a></td>
              </tr>
         </tbody>
@@ -89,7 +89,7 @@ include ("controlador/cparametro.php");
 
     <tbody>
         <tr>         
-        <td>
+        <td align="center">
      <?php if ($datos[$i]['valor_fijo']==0){ 
         echo $datos[$i]['idvalor'];
      }else{ ?>           
@@ -97,7 +97,7 @@ include ("controlador/cparametro.php");
         <?php } ?>
         </td>
         
-            <td><?php echo $datos[$i]['nomvalor'] ?></td>
+            <td align="center"><?php echo $datos[$i]['nomvalor'] ?></td>
             <td><?php echo $datos[$i]['nomparametro'] ?></td>
             <td align = "center"><a href="home2.php?pr=<?php echo $datos[$i]['idvalor'] ?>&pac=109&up=11&ed=1&prr=<?php echo $datos[$i]['idparametro'] ?>" style="width: 30px"><img border=0 src="image/editar.png" name="editar" width="19" height="19" title = "Editar" /></a></td>    
         </tr>
