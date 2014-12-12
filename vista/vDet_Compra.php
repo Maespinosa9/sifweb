@@ -22,7 +22,7 @@ include ("controlador/cDet_Compra.php");
         
 		<input type="number" id= "cantidad" name="cantidad" placeholder = "Cantidad"><br><br>
         <div id="divmsg" style = "display:none"><span id='resultado' style='color:red'><strong><?php echo is_null($mensaje)?'':$mensaje;?></strong></span><br/><br/></div>
-		<input type="text" name="valor_unitario" id="valor_unitario" placeholder= "Valor Unitario" ><br><br><br><br>
+		<input type="text" name="valor_unitario" id="valor_unitario" placeholder= "Valor Unitario de Compra" ><br><br><br><br>
 		<input class="guardar" type="submit"  id="guardar" value="Guardar">
     	<a href="home.php?pac=108"><input class="guardar" name="del" type="button" value="Cancelar"></a>
 	</form>
@@ -49,7 +49,7 @@ include ("controlador/cDet_Compra.php");
         <input type="hidden" id="actu" name="actu" value="actu"/>
         <input type="hidden" id="id_deta_compra" name="id_deta_compra" value="<?php echo $editar[0]['id_deta_compra']; ?>">
         <input type="number" id= "cantidad" name="cantidad" placeholder = "Cantidad" value="<?php echo $editar[0]['cantidad']; ?>"><br><br>
-        <input type="text" name="valor_unitario" id="valor_unitario" placeholder= "Valor Unitario" value="<?php echo $editar[0]['valor_unitario']; ?>"><br><br><br><br>
+        <input type="text" name="valor_unitario" id="valor_unitario" placeholder= "Valor Unitario de Compra" value="<?php echo $editar[0]['valor_unitario']; ?>"><br><br><br><br>
         <input class="guardar" type="submit"  id="editar" value="Editar">
         <a href="home.php?pac=110&or=<?php echo $orden_id ?>"><input class="guardar" name="del" type="button" value="Cancelar"></a>
     </form>

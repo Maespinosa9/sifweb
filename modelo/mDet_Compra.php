@@ -15,10 +15,13 @@ class mDet_Compra{
 		$sql2 = "INSERT INTO inventario(producto_id, IdOrden, fecha, cantidad, entrada, observacion)";
 		$sql2 .=" VALUES ('".$producto_id."', '".$orden_id."', '".$fecha."' , '".$cantidad."', 1, '".$observacion."')";
 		$this->cons($sql2);
+		$subtotal = ($cantidad * $valor_unitario);
+		$sql3 = "UPDATE orden_compra set subtotal = (subtotal + '".$subtotal."'), ";
+		$sql3 .= "total = (subtotal + iva) WHERE id_orden = '".$orden_id."'";
+		$this->cons($sql3);
 	}
 
 	function update($id_deta_compra, $cantidad, $valor_unitario, $orden_id){
-		
 		date_default_timezone_set("America/Bogota"); 
 		$fecha=strftime( "%Y-%m-%d", time());
 		$sql2 = "UPDATE inventario set cantidad = '".$cantidad."' WHERE IdOrden = '".$orden_id."'";
@@ -26,7 +29,10 @@ class mDet_Compra{
 		$sql = "UPDATE det_compra SET cantidad = '".$cantidad."', valor_unitario = '".$valor_unitario."'";
 		$sql .=" WHERE id_deta_compra = '".$id_deta_compra."'";
 		$this -> cons($sql);
-
+		$subtotal = ($cantidad * $valor_unitario);
+		$sql3 = "UPDATE orden_compra set subtotal = (subtotal + '".$subtotal."'), ";
+		$sql3 .= "total = ((subtotal + '".$subtotal."')+ iva) WHERE id_orden = '".$orden_id."'";
+		$this->cons($sql3);
 	}
 
 	function delete($id_deta_compra){
